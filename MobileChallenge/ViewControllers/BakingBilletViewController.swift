@@ -39,10 +39,10 @@ class BakingBilletViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       //showAtrributes(for: .individualPerson)
+       showAtrributes(for: .individualPerson)
     }
     
-    /*
+    
     func showAtrributes(for person: PersonType){
         switch person {
             case .individualPerson:
@@ -59,18 +59,16 @@ class BakingBilletViewController: UIViewController {
                 viewBt.isHidden = false
         }
     }
-    */
-    /*
-    @IBAction func chosedPerson(_ sender: UISegmentedControl) {
+    
+    
+    @IBAction func chosedPerson(_ sender: Any) {
         print(scForWho.selectedSegmentIndex)
-        /*switch scForWho.selectedSegmentIndex {
+        
+        switch scForWho.selectedSegmentIndex {
             case 0:
-        //showAtrributes(for: .individualPerson)
+        showAtrributes(for: .individualPerson)
             default:
                 showAtrributes(for: .juridicalPerson)
-            }
-    }*/
+        }
     }
-    */
-    
 }
