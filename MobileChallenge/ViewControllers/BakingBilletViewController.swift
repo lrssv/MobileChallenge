@@ -60,7 +60,6 @@ class BakingBilletViewController: UIViewController {
         }
     }
     
-    
     @IBAction func chosedPerson(_ sender: Any) {
         print(scForWho.selectedSegmentIndex)
         
@@ -71,4 +70,19 @@ class BakingBilletViewController: UIViewController {
                 showAtrributes(for: .juridicalPerson)
         }
     }
+
+    @IBAction func swAddFields(_ sender: UISwitch) {
+        if sender.isOn {
+            viewAddres.isHidden = false
+        } else {
+            viewAddres.isHidden = true
+        }
+    }
+    
+    @IBAction func btNextView(_ sender: UIButton) {
+    }
+    
+    @IBAction func btClientsView(_ sender: UIButton) {
+    }
+    
 }
