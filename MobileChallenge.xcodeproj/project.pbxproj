@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		9E4DF6F4264C0A6500855E08 /* BankingBillet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF6F3264C0A6500855E08 /* BankingBillet.swift */; };
 		9E4DF702264C4BC300855E08 /* ClientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF701264C4BC300855E08 /* ClientsViewController.swift */; };
+		9E4DF708264D477200855E08 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF707264D477200855E08 /* Items.swift */; };
+		9E4DF70C264D48AF00855E08 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF70B264D48AF00855E08 /* ItemsViewController.swift */; };
+		9E4DF70F264D5D6E00855E08 /* SavedItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF70E264D5D6E00855E08 /* SavedItemsViewController.swift */; };
+		9E4DF712264D948300855E08 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF711264D948300855E08 /* AddItemViewController.swift */; };
 		9E692668264AF6BD009AE3B2 /* BakingBilletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E692667264AF6BD009AE3B2 /* BakingBilletViewController.swift */; };
 		9E88299B2649B8EE00683FFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88299A2649B8EE00683FFD /* AppDelegate.swift */; };
 		9E88299D2649B8EE00683FFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88299C2649B8EE00683FFD /* SceneDelegate.swift */; };
@@ -21,6 +25,10 @@
 /* Begin PBXFileReference section */
 		9E4DF6F3264C0A6500855E08 /* BankingBillet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankingBillet.swift; sourceTree = "<group>"; };
 		9E4DF701264C4BC300855E08 /* ClientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsViewController.swift; sourceTree = "<group>"; };
+		9E4DF707264D477200855E08 /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
+		9E4DF70B264D48AF00855E08 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
+		9E4DF70E264D5D6E00855E08 /* SavedItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItemsViewController.swift; sourceTree = "<group>"; };
+		9E4DF711264D948300855E08 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		9E692667264AF6BD009AE3B2 /* BakingBilletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakingBilletViewController.swift; sourceTree = "<group>"; };
 		9E8829972649B8EE00683FFD /* MobileChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E88299A2649B8EE00683FFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				9E4DF6F3264C0A6500855E08 /* BankingBillet.swift */,
+				9E4DF707264D477200855E08 /* Items.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -56,6 +65,9 @@
 			children = (
 				9E692667264AF6BD009AE3B2 /* BakingBilletViewController.swift */,
 				9E4DF701264C4BC300855E08 /* ClientsViewController.swift */,
+				9E4DF70B264D48AF00855E08 /* ItemsViewController.swift */,
+				9E4DF70E264D5D6E00855E08 /* SavedItemsViewController.swift */,
+				9E4DF711264D948300855E08 /* AddItemViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -170,10 +182,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E4DF708264D477200855E08 /* Items.swift in Sources */,
 				9E692668264AF6BD009AE3B2 /* BakingBilletViewController.swift in Sources */,
 				9E88299B2649B8EE00683FFD /* AppDelegate.swift in Sources */,
 				9E88299D2649B8EE00683FFD /* SceneDelegate.swift in Sources */,
 				9E4DF702264C4BC300855E08 /* ClientsViewController.swift in Sources */,
+				9E4DF712264D948300855E08 /* AddItemViewController.swift in Sources */,
+				9E4DF70F264D5D6E00855E08 /* SavedItemsViewController.swift in Sources */,
+				9E4DF70C264D48AF00855E08 /* ItemsViewController.swift in Sources */,
 				9E4DF6F4264C0A6500855E08 /* BankingBillet.swift in Sources */,
 				9E8829A52649B8EE00683FFD /* MobileChallenge.xcdatamodeld in Sources */,
 			);

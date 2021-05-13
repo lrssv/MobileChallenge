@@ -1,20 +1,28 @@
+//
+//  SavedItemsViewController.swift
+//  MobileChallenge
+//
+//  Created by Larissa Silva | Gerencianet on 13/05/21.
+//
+
 import UIKit
 
-class ClientsViewController: UIViewController {
+class SavedItemsViewController: UIViewController {
 
-    @IBOutlet weak var sbItem: UISearchBar!
+    @IBOutlet weak var searchItem: UISearchBar!
     @IBOutlet weak var tableview: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
 
+        // Do any additional setup after loading the view.
+    }
     
 
 }
 
-extension ClientsViewController: UITableViewDataSource{
+extension SavedItemsViewController: UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -29,6 +37,6 @@ extension ClientsViewController: UITableViewDataSource{
     }
 }
 
-extension ClientsViewController: UITableViewDelegate{
+extension SavedItemsViewController: UITableViewDelegate{
     
 }
