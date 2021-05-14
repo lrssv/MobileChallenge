@@ -1,6 +1,6 @@
 import UIKit
 
-class AddItemViewController: UIViewController {
+class AddItemViewController: BaseViewController {
     
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var tfValue: UITextField!

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SavedItemsViewController: UIViewController {
+class SavedItemsViewController: BaseViewController {
 
     @IBOutlet weak var searchItem: UISearchBar!
     @IBOutlet weak var tableview: UITableView!

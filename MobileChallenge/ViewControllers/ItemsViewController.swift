@@ -7,10 +7,11 @@
 
 import UIKit
 
-class ItemsViewController: UIViewController {
+class ItemsViewController: BaseViewController {
     
     var items: [Items]!
-
+    
+    
     @IBOutlet weak var tableview: UITableView!
     
     override func viewDidLoad() {
@@ -26,8 +27,10 @@ class ItemsViewController: UIViewController {
         
     }
     
-    @IBAction func searchItem(_ sender: UIButton) {
+    @IBAction func backToView(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
+    
     
 }
 

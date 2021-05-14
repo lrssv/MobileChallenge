@@ -7,7 +7,7 @@ class BankingBillet {
     let CPF: String
     let socialReason: String?
     let CNPJ: String?
-    let cellPhone: Int
+    let cellPhone: String
     let email: String
     let adress: String?
     let adressNumber: Int?
@@ -16,7 +16,7 @@ class BankingBillet {
     let CEP: String?
     let state: String?
     
-    init(personType: Int, name: String, CPF: String, socialReason: String?, CNPJ: String?, cellPhone: Int, email: String, adress: String?, adressNumber: Int?, adressComplement: String?, adressNeighborhood: String?, CEP: String?, state: String?){
+    init(personType: Int, name: String, CPF: String, socialReason: String?, CNPJ: String?, cellPhone: String, email: String, adress: String?, adressNumber: Int?, adressComplement: String?, adressNeighborhood: String?, CEP: String?, state: String?){
         self.personType = personType
         self.name = name
         self.CPF = CPF

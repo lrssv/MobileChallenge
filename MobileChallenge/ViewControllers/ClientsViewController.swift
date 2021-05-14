@@ -1,6 +1,6 @@
 import UIKit
 
-class ClientsViewController: UIViewController {
+class ClientsViewController: BaseViewController {
 
     @IBOutlet weak var sbItem: UISearchBar!
     @IBOutlet weak var tableview: UITableView!

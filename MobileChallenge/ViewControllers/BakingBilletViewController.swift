@@ -5,7 +5,7 @@ enum PersonType {
     case juridicalPerson
 }
 
-class BakingBilletViewController: UIViewController {
+class BankingBilletViewController: BaseViewController {
 
     @IBOutlet weak var scForWho: UISegmentedControl!
     @IBOutlet weak var btClients: UIButton!
@@ -35,11 +35,11 @@ class BakingBilletViewController: UIViewController {
     @IBOutlet weak var viewAddres: UIView!
     @IBOutlet weak var viewBt: UIView!
     
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       showAtrributes(for: .individualPerson)
+        showAtrributes(for: .individualPerson)
     }
     
     
@@ -61,8 +61,6 @@ class BakingBilletViewController: UIViewController {
     }
     
     @IBAction func chosedPerson(_ sender: Any) {
-        print(scForWho.selectedSegmentIndex)
-        
         switch scForWho.selectedSegmentIndex {
             case 0:
         showAtrributes(for: .individualPerson)
@@ -80,9 +78,17 @@ class BakingBilletViewController: UIViewController {
     }
     
     @IBAction func btNextView(_ sender: UIButton) {
+        bankingbillet = BankingBillet(personType: scForWho.selectedSegmentIndex, name: tfName.text!, CPF: tfCPF.text!, socialReason: tfSocialReason.text!, CNPJ: tfCNPJ.text!, cellPhone: tfCellPhone.text!, email: tfEmail.text!, adress: tfAddres.text!, adressNumber: Int(tfNumber.text!), adressComplement: tfComplement.text!, adressNeighborhood: tfNeighborhood.text!, CEP: tfCEP.text!, state: tfState.text!)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! ItemsViewController
+        vc.bankingbillet = bankingbillet
     }
     
     @IBAction func btClientsView(_ sender: UIButton) {
+        let client = storyboard?.instantiateViewController(identifier: "ClientsViewController") as! ClientsViewController
+        present(client, animated: true, completion: nil)
     }
     
 }

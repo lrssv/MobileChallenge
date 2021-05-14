@@ -13,6 +13,7 @@
 		9E4DF70C264D48AF00855E08 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF70B264D48AF00855E08 /* ItemsViewController.swift */; };
 		9E4DF70F264D5D6E00855E08 /* SavedItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF70E264D5D6E00855E08 /* SavedItemsViewController.swift */; };
 		9E4DF712264D948300855E08 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF711264D948300855E08 /* AddItemViewController.swift */; };
+		9E4DF715264EA3D900855E08 /* AddFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF714264EA3D900855E08 /* AddFieldsViewController.swift */; };
 		9E692668264AF6BD009AE3B2 /* BakingBilletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E692667264AF6BD009AE3B2 /* BakingBilletViewController.swift */; };
 		9E88299B2649B8EE00683FFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88299A2649B8EE00683FFD /* AppDelegate.swift */; };
 		9E88299D2649B8EE00683FFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88299C2649B8EE00683FFD /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 		9E8829A52649B8EE00683FFD /* MobileChallenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E8829A32649B8EE00683FFD /* MobileChallenge.xcdatamodeld */; };
 		9E8829A72649B8EF00683FFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E8829A62649B8EF00683FFD /* Assets.xcassets */; };
 		9E8829AA2649B8EF00683FFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E8829A82649B8EF00683FFD /* LaunchScreen.storyboard */; };
+		9EFAA5F0264EE18900E23E36 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFAA5EF264EE18900E23E36 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,7 @@
 		9E4DF70B264D48AF00855E08 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		9E4DF70E264D5D6E00855E08 /* SavedItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItemsViewController.swift; sourceTree = "<group>"; };
 		9E4DF711264D948300855E08 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		9E4DF714264EA3D900855E08 /* AddFieldsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFieldsViewController.swift; sourceTree = "<group>"; };
 		9E692667264AF6BD009AE3B2 /* BakingBilletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakingBilletViewController.swift; sourceTree = "<group>"; };
 		9E8829972649B8EE00683FFD /* MobileChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E88299A2649B8EE00683FFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +41,7 @@
 		9E8829A62649B8EF00683FFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E8829A92649B8EF00683FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E8829AB2649B8EF00683FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9EFAA5EF264EE18900E23E36 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,8 @@
 				9E4DF70B264D48AF00855E08 /* ItemsViewController.swift */,
 				9E4DF70E264D5D6E00855E08 /* SavedItemsViewController.swift */,
 				9E4DF711264D948300855E08 /* AddItemViewController.swift */,
+				9E4DF714264EA3D900855E08 /* AddFieldsViewController.swift */,
+				9EFAA5EF264EE18900E23E36 /* BaseViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -183,9 +189,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E4DF708264D477200855E08 /* Items.swift in Sources */,
+				9E4DF715264EA3D900855E08 /* AddFieldsViewController.swift in Sources */,
 				9E692668264AF6BD009AE3B2 /* BakingBilletViewController.swift in Sources */,
 				9E88299B2649B8EE00683FFD /* AppDelegate.swift in Sources */,
 				9E88299D2649B8EE00683FFD /* SceneDelegate.swift in Sources */,
+				9EFAA5F0264EE18900E23E36 /* BaseViewController.swift in Sources */,
 				9E4DF702264C4BC300855E08 /* ClientsViewController.swift in Sources */,
 				9E4DF712264D948300855E08 /* AddItemViewController.swift in Sources */,
 				9E4DF70F264D5D6E00855E08 /* SavedItemsViewController.swift in Sources */,
