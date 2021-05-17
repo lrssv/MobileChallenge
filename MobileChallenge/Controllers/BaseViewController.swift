@@ -10,6 +10,8 @@ import UIKit
 class BaseViewController: UIViewController {
     
     var bankingbillet: BankingBillet!
+    var item: Items!
+    var allItems: [Items] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

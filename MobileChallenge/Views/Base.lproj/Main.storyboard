@@ -643,7 +643,7 @@ para o cliente.</string>
                                     <constraint firstAttribute="height" constant="350" id="czB-gZ-6UH"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellProduct" rowHeight="130" id="aZb-it-VGY">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="130" id="aZb-it-VGY" customClass="ItemTableViewCell" customModule="MobileChallenge" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="384" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aZb-it-VGY" id="exr-Tc-yDa">
@@ -734,6 +734,12 @@ para o cliente.</string>
                                                 <constraint firstAttribute="bottom" secondItem="uM3-SF-oEp" secondAttribute="bottom" id="vrV-sb-ihq"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lbItemAmount" destination="wqL-pv-MJj" id="6Hs-x8-2FT"/>
+                                            <outlet property="lbItemName" destination="wCt-fH-FEl" id="8W5-Jd-Gpe"/>
+                                            <outlet property="lbItemValue" destination="Hbd-9F-Rzu" id="16L-Rn-A51"/>
+                                            <outlet property="lbTotal" destination="IGD-Bq-4LQ" id="0Gb-YG-rZH"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -798,7 +804,7 @@ para o cliente.</string>
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="aFf-va-Ke8" kind="show" id="DjI-df-BrN"/>
+                                    <action selector="searchItem:" destination="vBH-nL-rsh" eventType="touchUpInside" id="Bux-60-fjM"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1545,15 +1551,19 @@ para o cliente.</string>
         <!--MEUS ITENS-->
         <scene sceneID="uab-1E-Rgo">
             <objects>
-                <viewController id="aFf-va-Ke8" customClass="SavedItemsViewController" customModule="MobileChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SavedItemsViewController" id="aFf-va-Ke8" customClass="SavedItemsViewController" customModule="MobileChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O9s-WA-bC7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hcH-zE-bXC">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="barTintColor" red="0.95294117649999999" green="0.43529411759999997" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </textAttributes>
                                 <items>
-                                    <navigationItem title="Title" id="7bp-ZH-8nf"/>
+                                    <navigationItem title="Meus Itens" id="7bp-ZH-8nf"/>
                                 </items>
                             </navigationBar>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="gNX-FY-CAE">
@@ -1618,7 +1628,7 @@ para o cliente.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27Q-oH-nr0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2029" y="1540"/>
+            <point key="canvasLocation" x="2041" y="1540"/>
         </scene>
         <!--Add Item View Controller-->
         <scene sceneID="TFs-O4-qOd">
@@ -1665,7 +1675,7 @@ para o cliente.</string>
                                                     <constraint firstAttribute="height" constant="22" id="c4f-uJ-eL1"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qkT-3B-E9w">
                                                 <rect key="frame" x="12" y="173" width="120" height="1"/>
@@ -1685,6 +1695,9 @@ para o cliente.</string>
                                                 <state key="normal" title="-">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="removeAmount:" destination="A59-U4-QPB" eventType="touchUpInside" id="pnG-5Y-C3b"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNC-AN-xLm">
                                                 <rect key="frame" x="318" y="144" width="30" height="30"/>
@@ -1697,6 +1710,9 @@ para o cliente.</string>
                                                 <state key="normal" title="+">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="addAmount:" destination="A59-U4-QPB" eventType="touchUpInside" id="yBp-P1-c0T"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantidade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzh-rq-xRq">
                                                 <rect key="frame" x="218" y="121" width="75" height="16"/>
@@ -1704,17 +1720,9 @@ para o cliente.</string>
                                                 <color key="textColor" red="0.43137254899999999" green="0.43529411759999997" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEO-Et-g3t">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEO-Et-g3t">
                                                 <rect key="frame" x="248" y="144" width="70" height="30"/>
-                                                <attributedString key="attributedText">
-                                                    <fragment content="1">
-                                                        <attributes>
-                                                            <color key="NSColor" systemColor="labelColor"/>
-                                                            <font key="NSFont" metaFont="system" size="17"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAP-g6-C2y">
@@ -1742,32 +1750,61 @@ para o cliente.</string>
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="addItem:" destination="A59-U4-QPB" eventType="touchUpInside" id="0RZ-2J-FXK"/>
                                                     <action selector="btNextView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MDo-3D-P5w"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1We-eb-LWe">
+                                                <rect key="frame" x="12" y="56" width="38" height="16"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                <color key="textColor" red="0.43137254899999999" green="0.43529411759999997" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex.: Videogame" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dei-v2-Okn">
+                                                <rect key="frame" x="12" y="84" width="100.33333333333333" height="18.666666666666671"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iy1-Lm-lig">
+                                                <rect key="frame" x="12" y="104.66666666666669" width="120" height="1"/>
+                                                <color key="backgroundColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.60392156860000001" alpha="0.8980392157" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="qXN-Br-1mq"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="0HR-bI-BOK" secondAttribute="trailing" constant="14" id="00Y-F8-ek8"/>
+                                            <constraint firstItem="Dei-v2-Okn" firstAttribute="top" secondItem="1We-eb-LWe" secondAttribute="bottom" constant="12" id="1km-Wb-typ"/>
                                             <constraint firstAttribute="height" constant="270" id="68b-AB-jf9"/>
                                             <constraint firstItem="Vd3-SX-0Re" firstAttribute="leading" secondItem="nJU-wL-AcZ" secondAttribute="leading" constant="12" id="7BV-Jr-I9R"/>
+                                            <constraint firstItem="iy1-Lm-lig" firstAttribute="top" secondItem="Dei-v2-Okn" secondAttribute="bottom" constant="2" id="A6X-SC-2zs"/>
                                             <constraint firstItem="sC0-ao-E9M" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vd3-SX-0Re" secondAttribute="trailing" constant="8" symbolic="YES" id="Ans-Oi-BUs"/>
                                             <constraint firstItem="oEO-Et-g3t" firstAttribute="bottom" secondItem="sC0-ao-E9M" secondAttribute="bottom" id="CHB-P4-Ih8"/>
                                             <constraint firstItem="dzh-rq-xRq" firstAttribute="centerY" secondItem="bZW-Xf-vm0" secondAttribute="centerY" id="DJx-Zy-7tG"/>
+                                            <constraint firstAttribute="trailing" secondItem="iy1-Lm-lig" secondAttribute="trailing" constant="228" id="ERW-Bd-DSy"/>
                                             <constraint firstAttribute="bottom" secondItem="0HR-bI-BOK" secondAttribute="bottom" constant="12" id="F09-Es-6Pi"/>
                                             <constraint firstItem="oEO-Et-g3t" firstAttribute="top" secondItem="sC0-ao-E9M" secondAttribute="top" id="FtO-fG-hae"/>
                                             <constraint firstItem="qkT-3B-E9w" firstAttribute="leading" secondItem="Vd3-SX-0Re" secondAttribute="leading" id="Gsw-Y4-O1x"/>
+                                            <constraint firstAttribute="trailing" secondItem="Dei-v2-Okn" secondAttribute="trailing" constant="247.66666666666669" id="HDp-lt-So3"/>
                                             <constraint firstAttribute="bottom" secondItem="uAP-g6-C2y" secondAttribute="bottom" constant="12" id="HSD-Ls-XUh"/>
                                             <constraint firstItem="uAP-g6-C2y" firstAttribute="top" secondItem="qkT-3B-E9w" secondAttribute="bottom" constant="40" id="HTd-cb-bZ9"/>
                                             <constraint firstAttribute="trailing" secondItem="gNC-AN-xLm" secondAttribute="trailing" constant="12" id="K9Y-Yk-rsH"/>
                                             <constraint firstItem="0HR-bI-BOK" firstAttribute="top" secondItem="sC0-ao-E9M" secondAttribute="bottom" constant="40" id="OR1-hp-5yJ"/>
+                                            <constraint firstItem="1We-eb-LWe" firstAttribute="top" secondItem="AqZ-xK-iFn" secondAttribute="bottom" constant="12" id="PU4-zp-qy3"/>
+                                            <constraint firstItem="Dei-v2-Okn" firstAttribute="leading" secondItem="nJU-wL-AcZ" secondAttribute="leading" constant="12" id="QNa-v5-3wa"/>
                                             <constraint firstItem="AqZ-xK-iFn" firstAttribute="top" secondItem="nJU-wL-AcZ" secondAttribute="top" id="TKJ-ci-Hmk"/>
                                             <constraint firstItem="oEO-Et-g3t" firstAttribute="leading" secondItem="sC0-ao-E9M" secondAttribute="trailing" id="Ugl-fi-HEk"/>
+                                            <constraint firstAttribute="trailing" secondItem="1We-eb-LWe" secondAttribute="trailing" constant="310" id="VtD-dj-DE3"/>
                                             <constraint firstItem="AqZ-xK-iFn" firstAttribute="leading" secondItem="nJU-wL-AcZ" secondAttribute="leading" id="Wc6-Ty-gie"/>
+                                            <constraint firstItem="iy1-Lm-lig" firstAttribute="leading" secondItem="Dei-v2-Okn" secondAttribute="leading" id="YHU-dl-YgJ"/>
                                             <constraint firstItem="qkT-3B-E9w" firstAttribute="width" secondItem="Vd3-SX-0Re" secondAttribute="width" id="Ywt-O9-rqt"/>
                                             <constraint firstItem="0HR-bI-BOK" firstAttribute="leading" secondItem="uAP-g6-C2y" secondAttribute="trailing" priority="999" constant="8" id="bfj-Va-bqk"/>
                                             <constraint firstItem="qkT-3B-E9w" firstAttribute="top" secondItem="Vd3-SX-0Re" secondAttribute="bottom" constant="2" id="duR-P8-Px6"/>
                                             <constraint firstAttribute="trailing" secondItem="dzh-rq-xRq" secondAttribute="trailing" constant="67" id="e1g-ci-FCw"/>
+                                            <constraint firstItem="iy1-Lm-lig" firstAttribute="leading" secondItem="nJU-wL-AcZ" secondAttribute="leading" constant="12" id="eEq-Xm-C9a"/>
+                                            <constraint firstItem="1We-eb-LWe" firstAttribute="leading" secondItem="nJU-wL-AcZ" secondAttribute="leading" constant="12" id="eJk-WG-MYT"/>
                                             <constraint firstItem="dzh-rq-xRq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sC0-ao-E9M" secondAttribute="leading" id="eQB-m8-fQE"/>
                                             <constraint firstItem="gNC-AN-xLm" firstAttribute="centerY" secondItem="sC0-ao-E9M" secondAttribute="centerY" id="edX-Ny-9LW"/>
                                             <constraint firstAttribute="trailing" secondItem="AqZ-xK-iFn" secondAttribute="trailing" id="gIl-5A-Wiv"/>
@@ -1799,7 +1836,8 @@ para o cliente.</string>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tfName" destination="6ap-ay-0lc" id="IkA-Yz-Lhg"/>
+                        <outlet property="tfAmount" destination="oEO-Et-g3t" id="w8h-Jc-AF9"/>
+                        <outlet property="tfName" destination="Dei-v2-Okn" id="I08-eb-4OS"/>
                         <outlet property="tfValue" destination="Vd3-SX-0Re" id="aPl-Bc-qgT"/>
                     </connections>
                 </viewController>
@@ -1939,9 +1977,6 @@ para o cliente.</string>
         <image name="Share" width="17" height="17"/>
         <image name="addItem" width="23" height="24"/>
         <image name="searchItem" width="18" height="18"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

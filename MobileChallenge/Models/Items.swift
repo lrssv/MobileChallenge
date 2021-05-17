@@ -3,11 +3,11 @@ import Foundation
 class Items {
     
     let name: String
-    let value: Int
-    let amount: Double
+    let value: Double
+    let amount: Int
     let total: Double
     
-    init(name: String, value: Int, amount: Double, total: Double){
+    init(name: String, value: Double, amount: Int, total: Double){
         self.name = name
         self.value = value
         self.amount = amount
