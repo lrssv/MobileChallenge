@@ -24,8 +24,8 @@ class ItemTableViewCell: UITableViewCell {
     
     func prepare(with item: Items){
         lbItemName.text = item.name
-        lbItemValue.text = String(item.value)
-        lbItemAmount.text = String(item.value)
-        lbTotal.text = String(item.total)
+        lbItemValue.text = "R$ \(item.value)"
+        lbItemAmount.text = "\(item.amount)"
+        lbTotal.text = "R$ \(item.total)"
     }
 }

@@ -11,7 +11,9 @@ class BaseViewController: UIViewController {
     
     var bankingbillet: BankingBillet!
     var item: Items!
-    var allItems: [Items] = []
+    var items: [Items] = []
+    var addFields: AddFields!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

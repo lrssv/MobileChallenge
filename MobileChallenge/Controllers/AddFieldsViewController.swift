@@ -43,6 +43,16 @@ class AddFieldsViewController: BaseViewController {
         }
     }
     
+    @IBAction func issueBankingBillet(_ sender: UIButton) {
+        addFields = AddFields(date: tfDate.text!, shipping: tfShipping.text!, discount: Double(tfDiscount.text!)!, addDiscount: Double(tfDiscount.text!)!, dateShipping: tfDateShipping.text!, textObs: tfObs.text!, total: Double(tfTotal.text!)!)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! IssueBankingBilletViewController
+        vc.addFields = addFields
+    }
+    
+    
     @IBAction func backToView(_ sender: UIButton) {
             navigationController?.popViewController(animated: true)     
     }

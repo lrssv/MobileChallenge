@@ -40,6 +40,8 @@ class BankingBilletViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showAtrributes(for: .individualPerson)
+        let test = Authentication()
+        test.auth()
     }
     
     

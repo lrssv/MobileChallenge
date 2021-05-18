@@ -6,6 +6,7 @@ protocol AddItemDelegate: class {
 
 class AddItemViewController: BaseViewController {
     
+    // MARK: - Variables
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var tfValue: UITextField!
     @IBOutlet weak var tfAmount: UILabel!
@@ -15,7 +16,7 @@ class AddItemViewController: BaseViewController {
     var amount: Int = 0
     var totalItem: Double = 0
 
-    
+    // MARK: - Functions about the Add Items View
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -47,11 +48,4 @@ class AddItemViewController: BaseViewController {
     @IBAction func cancelItem(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! ItemsViewController
-        vc.allItems = allItems
-    }*/
-    
 }
