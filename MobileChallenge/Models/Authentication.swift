@@ -6,8 +6,9 @@ class Authentication {
     let json: [String: Any] = ["grant_type": "client_credentials"]
     let credentials: String = "Client_Id_5b2592a08221463b11e308f5e9144493d6041524:Client_Secret_b3affe351c8b1edb3753cd04b9f230f021847f0d"
     
+    var token: String = ""
     
-    func auth(){
+    func auth() {
         
         let utf8str = credentials.data(using: .utf8)
         let base64Encoded = utf8str?.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
@@ -29,12 +30,23 @@ class Authentication {
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
             
             if let responseJSON = responseJSON as? [String: Any] {
-                print(responseJSON)
+                self.token = responseJSON["access_token"] as? String ?? ""
+                self.access_toke(token: self.token)
             }
         }
         task.resume()
     }
+    
+    func access_toke(token: String){
+        print(token)
+    }
 }
+
+
+
+
+
+
 
 extension String {
     func fromBase64() -> String? {

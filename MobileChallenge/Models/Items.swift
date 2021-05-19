@@ -1,16 +1,15 @@
 import Foundation
 
-class Items {
+class Items: Codable {
     
     let name: String
     let value: Double
     let amount: Int
-    let total: Double
+    var total: Double?
     
-    init(name: String, value: Double, amount: Int, total: Double){
+    init(name: String, value: Double, amount: Int){
         self.name = name
         self.value = value
         self.amount = amount
-        self.total = total
     }
 }

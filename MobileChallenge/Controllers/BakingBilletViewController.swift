@@ -14,12 +14,12 @@ class BankingBilletViewController: BaseViewController {
     
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var tfCPF: UITextField!
-    @IBOutlet weak var tfSocialReason: UITextField!
+    @IBOutlet weak var tfCorporateName: UITextField!
     @IBOutlet weak var tfCNPJ: UITextField!
-    @IBOutlet weak var tfCellPhone: UITextField!
+    @IBOutlet weak var tfPhoneNumber: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
    
-    @IBOutlet weak var tfAddres: UITextField!
+    @IBOutlet weak var tfStreet: UITextField!
     @IBOutlet weak var tfNumber: UITextField!
     @IBOutlet weak var tfComplement: UITextField!
     @IBOutlet weak var tfNeighborhood: UITextField!
@@ -39,9 +39,11 @@ class BankingBilletViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         showAtrributes(for: .individualPerson)
-        let test = Authentication()
-        test.auth()
+        
+        let token = Authentication()
+        token.auth()
     }
     
     
@@ -80,12 +82,16 @@ class BankingBilletViewController: BaseViewController {
     }
     
     @IBAction func btNextView(_ sender: UIButton) {
-        bankingbillet = BankingBillet(personType: scForWho.selectedSegmentIndex, name: tfName.text!, CPF: tfCPF.text!, socialReason: tfSocialReason.text!, CNPJ: tfCNPJ.text!, cellPhone: tfCellPhone.text!, email: tfEmail.text!, adress: tfAddres.text!, adressNumber: Int(tfNumber.text!), adressComplement: tfComplement.text!, adressNeighborhood: tfNeighborhood.text!, CEP: tfCEP.text!, state: tfState.text!)
+        juridical_person = JuridicalPerson(corporate_name: tfCorporateName.text!, CPNJ: tfCNPJ.text!)
+        address = Address(street: tfStreet.text!, number: Int(tfNumber.text!)!, neighborhood: tfNeighborhood.text!, zipcode: tfCEP.text!, state: tfState.text!)
+        customer = Customer(name: tfName.text!, CPF: tfCPF.text!, phoneNumber: tfPhoneNumber.text!)
+        customer.address = address
+        customer.juridicalPerson = juridical_person
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! ItemsViewController
-        vc.bankingbillet = bankingbillet
+        vc.customer = customer
     }
     
     @IBAction func btClientsView(_ sender: UIButton) {

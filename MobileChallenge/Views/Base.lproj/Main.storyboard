@@ -575,18 +575,18 @@ para o cliente.</string>
                         <outlet property="btNext" destination="36K-em-7Cf" id="mCA-gd-RtG"/>
                         <outlet property="scForWho" destination="wy9-nx-3Os" id="ZKg-Aw-clI"/>
                         <outlet property="swAddFields" destination="hg4-Wl-toJ" id="L85-jx-Uqo"/>
-                        <outlet property="tfAddres" destination="Vae-mw-uNh" id="Ks1-iB-7aK"/>
                         <outlet property="tfCEP" destination="aaN-Y3-2uh" id="owG-LS-gzC"/>
                         <outlet property="tfCNPJ" destination="fzz-3W-mAx" id="zlc-AI-QLj"/>
                         <outlet property="tfCPF" destination="cTa-lX-LF2" id="om0-Fx-jlt"/>
-                        <outlet property="tfCellPhone" destination="xvZ-Dk-e1a" id="EXf-bw-t8V"/>
                         <outlet property="tfComplement" destination="qJd-lk-4g9" id="ZuI-gw-Bbo"/>
+                        <outlet property="tfCorporateName" destination="5Ou-Dq-7JX" id="jzY-oX-d7d"/>
                         <outlet property="tfEmail" destination="s3A-BQ-38S" id="1Ym-Mb-PLH"/>
                         <outlet property="tfName" destination="gNK-fI-K09" id="k0T-QO-Cim"/>
                         <outlet property="tfNeighborhood" destination="Dzv-NV-eR2" id="Rct-G6-gib"/>
                         <outlet property="tfNumber" destination="VL0-wn-Ixb" id="J8h-3Y-Zvm"/>
-                        <outlet property="tfSocialReason" destination="5Ou-Dq-7JX" id="jzY-oX-d7d"/>
+                        <outlet property="tfPhoneNumber" destination="xvZ-Dk-e1a" id="EXf-bw-t8V"/>
                         <outlet property="tfState" destination="Jbg-CO-Ok2" id="odi-zj-SEW"/>
+                        <outlet property="tfStreet" destination="Vae-mw-uNh" id="Ks1-iB-7aK"/>
                         <outlet property="viewAddFiels" destination="Vfk-O7-wl1" id="hM9-tm-njP"/>
                         <outlet property="viewAddres" destination="Y2v-JY-yvD" id="h5W-zQ-bAi"/>
                         <outlet property="viewBt" destination="wk0-wz-Buf" id="Dgu-zq-4eP"/>
@@ -1205,16 +1205,16 @@ para o cliente.</string>
                     </view>
                     <navigationItem key="navigationItem" title="EMISSÃO DE BOLETO" id="0dz-aF-TzB"/>
                     <connections>
-                        <outlet property="btAddShipping" destination="jzE-gP-Eec" id="rFq-jE-ECe"/>
                         <outlet property="btCalendar" destination="BYv-21-CFX" id="mzC-4d-PHc"/>
+                        <outlet property="btConditionalDiscount" destination="jzE-gP-Eec" id="rFq-jE-ECe"/>
                         <outlet property="btDateShipping" destination="GjA-87-wUy" id="igP-v7-y2w"/>
                         <outlet property="btDiscount" destination="Wx1-fe-joI" id="GXf-lC-bRR"/>
                         <outlet property="swAddFields" destination="p91-Iu-0Xf" id="CLp-d4-H92"/>
-                        <outlet property="tfAddShipping" destination="k8p-af-mhd" id="KxO-uH-o98"/>
+                        <outlet property="tfConditionalDiscount" destination="k8p-af-mhd" id="KxO-uH-o98"/>
                         <outlet property="tfDate" destination="6ap-ay-0lc" id="WFE-ZI-4ey"/>
                         <outlet property="tfDateShipping" destination="uiZ-oI-2nR" id="LZL-vl-u8D"/>
                         <outlet property="tfDiscount" destination="4xg-Gr-e8b" id="M1t-zS-I6P"/>
-                        <outlet property="tfObs" destination="Y3S-eb-BEb" id="IEQ-Ir-2wJ"/>
+                        <outlet property="tfMessage" destination="Y3S-eb-BEb" id="IEQ-Ir-2wJ"/>
                         <outlet property="tfShipping" destination="6MU-Bk-r2M" id="TPg-me-afp"/>
                         <outlet property="tfTotal" destination="eDp-kO-JdV" id="c6t-0a-hwV"/>
                         <outlet property="viewAddFields" destination="A6e-di-zZw" id="EZF-Ko-cgZ"/>

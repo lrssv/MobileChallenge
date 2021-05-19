@@ -38,7 +38,8 @@ class AddItemViewController: BaseViewController {
         guard let valueItem = Double(tfValue.text!) else { return }
         
         totalItem = valueItem * Double(amount)
-        item = Items(name: itemName, value: valueItem, amount: amount, total: totalItem)
+        item = Items(name: itemName, value: valueItem, amount: amount)
+        item.total = totalItem
 
         delegate?.prepareItems(added: item)
         

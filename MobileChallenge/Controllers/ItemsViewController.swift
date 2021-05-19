@@ -37,6 +37,7 @@ class ItemsViewController: BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! AddFieldsViewController
         vc.items = items
+        vc.customer = customer
     }
 }
 
