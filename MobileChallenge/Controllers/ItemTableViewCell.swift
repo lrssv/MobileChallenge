@@ -26,6 +26,6 @@ class ItemTableViewCell: UITableViewCell {
         lbItemName.text = item.name
         lbItemValue.text = "R$ \(item.value)"
         lbItemAmount.text = "\(item.amount)"
-        lbTotal.text = "R$ \(item.total)"
+        lbTotal.text = "R$ \(item.total!)"
     }
 }

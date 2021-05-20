@@ -1,7 +1,7 @@
 import Foundation
 
 protocol AuthenticationDelagate {
-    func authDelegate(auth: Authentication, token: String)
+    func authDelegate(auth: Authentication, token: String) 
 }
 
 class Authentication {

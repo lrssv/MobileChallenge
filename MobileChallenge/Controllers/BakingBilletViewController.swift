@@ -5,7 +5,8 @@ enum PersonType {
     case juridicalPerson
 }
 
-class BankingBilletViewController: BaseViewController {
+
+class BankingBilletViewController: BaseViewController, UITextFieldDelegate {
 
     @IBOutlet weak var scForWho: UISegmentedControl!
     @IBOutlet weak var btClients: UIButton!
@@ -35,13 +36,16 @@ class BankingBilletViewController: BaseViewController {
     @IBOutlet weak var viewAddres: UIView!
     @IBOutlet weak var viewBt: UIView!
     
-    var oi: Token?
+    @IBOutlet weak var viewTextFieldName: UIView!
+    @IBOutlet weak var viewTextFieldCPF: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         showAtrributes(for: .individualPerson)
         
     }
+
     
     
     func showAtrributes(for person: PersonType){
@@ -78,13 +82,51 @@ class BankingBilletViewController: BaseViewController {
         }
     }
     
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let validate = ValidateFieldsBankingBillet()
+        
+        if let name = tfName.text {
+            if textField == tfName {
+                if validate.validateField(field: name, type: .name){
+                    viewTextFieldName.backgroundColor = .systemGreen
+                } else {
+                    viewTextFieldName.backgroundColor = .systemRed
+                }
+            }
+        }
+        
+        if let cpf = tfCPF.text {
+            if textField == tfCPF {
+                if validate.validateField(field: cpf, type: .cpf) {
+                    viewTextFieldCPF.backgroundColor = .systemGreen
+                } else {
+                    viewTextFieldCPF.backgroundColor = .systemRed
+                }
+            }
+        }
+        
+        
+        return true
+    }
+    
+    
     @IBAction func btNextView(_ sender: UIButton) {
-        juridical_person = JuridicalPerson(corporate_name: tfCorporateName.text!, CPNJ: tfCNPJ.text!)
+        
+
+        /*
+        guard let corporate_name = tfCorporateName.text else { return }
+        guard let cnpj = tfCNPJ.text else { return }
+        guard let street = tfStreet.text else { return }
+        let number = Int(tfNumber.text ?? return )
+        */
+        
+        juridical_person = JuridicalPerson(corporate_name: tfCorporateName.text!, cnpj: tfCNPJ.text!)
         address = Address(street: tfStreet.text!, number: Int(tfNumber.text!)!, neighborhood: tfNeighborhood.text!, zipcode: tfCEP.text!, state: tfState.text!)
         customer = Customer(name: tfName.text!, CPF: tfCPF.text!, phoneNumber: tfPhoneNumber.text!)
         
-        if address != nil { customer.address = address } else { return }
-        if juridical_person != nil { customer.juridicalPerson = juridical_person } else { return }
+        customer.address = address
+        customer.juridicalPerson = juridical_person
         
     }
     
@@ -99,3 +141,6 @@ class BankingBilletViewController: BaseViewController {
     }
     
 }
+
+
+

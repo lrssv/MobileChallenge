@@ -70,7 +70,17 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="00W-oZ-eBs"/>
+                                                        </connections>
                                                     </textField>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jnb-qz-aar">
+                                                        <rect key="frame" x="17.666666666666657" y="199" width="379" height="1"/>
+                                                        <color key="backgroundColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="OSC-st-8Dy"/>
+                                                        </constraints>
+                                                    </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CPF" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhX-og-sHw">
                                                         <rect key="frame" x="18" y="231" width="26" height="15.666666666666657"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -84,6 +94,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="jhg-eR-3kG"/>
+                                                        </connections>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9sj-kR-gcK">
                                                         <rect key="frame" x="17.666666666666657" y="287.66666666666669" width="379" height="1"/>
@@ -100,13 +113,6 @@
                                                             <action selector="btClientsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sgt-yN-ccy"/>
                                                         </connections>
                                                     </button>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jnb-qz-aar">
-                                                        <rect key="frame" x="17.666666666666657" y="199" width="379" height="1"/>
-                                                        <color key="backgroundColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="1" id="OSC-st-8Dy"/>
-                                                        </constraints>
-                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
@@ -175,6 +181,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="gcU-de-RYb"/>
+                                                        </connections>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A2A-Nk-Zqa">
                                                         <rect key="frame" x="17.666666666666657" y="145.33333333333331" width="379" height="1"/>
@@ -196,6 +205,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="APw-Ou-Hvt"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -237,6 +249,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="Lnt-cK-ndj"/>
+                                                        </connections>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WoH-qc-fuk">
                                                         <rect key="frame" x="17.666666666666657" y="56.666666666666629" width="379" height="1"/>
@@ -258,6 +273,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="u7h-oR-Idi"/>
+                                                        </connections>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHk-Jz-wWS">
                                                         <rect key="frame" x="17.666666666666657" y="144.33333333333337" width="379" height="1"/>
@@ -334,6 +352,9 @@ para o cliente.</string>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="9zi-mQ-vAX"/>
+                                                        </connections>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNV-jX-sfi">
                                                         <rect key="frame" x="17.666666666666657" y="55.666666666666629" width="379" height="1"/>
@@ -356,6 +377,9 @@ para o cliente.</string>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="r8w-lB-ucW"/>
+                                                        </connections>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Complemento" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhJ-df-MeK">
                                                         <rect key="frame" x="158" y="87.666666666666629" width="90.666666666666686" height="15.666666666666671"/>
@@ -370,6 +394,9 @@ para o cliente.</string>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="kbx-2b-IeK"/>
+                                                        </connections>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8a-qQ-3Fc">
                                                         <rect key="frame" x="157.66666666666663" y="143.33333333333337" width="239" height="1"/>
@@ -392,6 +419,9 @@ para o cliente.</string>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="hOf-hA-4qL"/>
+                                                        </connections>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ny-d1-e23">
                                                         <rect key="frame" x="17.666666666666671" y="231" width="82" height="1"/>
@@ -413,6 +443,9 @@ para o cliente.</string>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="8aY-i8-l9x"/>
+                                                        </connections>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jiJ-95-kZX">
                                                         <rect key="frame" x="157.66666666666663" y="231" width="239" height="1"/>
@@ -434,6 +467,9 @@ para o cliente.</string>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <textInputTraits key="textInputTraits" textContentType="address-level1"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="HrI-sU-0kz"/>
+                                                        </connections>
                                                     </textField>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H7z-la-uny">
                                                         <rect key="frame" x="17.666666666666671" y="143.33333333333337" width="82" height="1"/>
@@ -592,6 +628,8 @@ para o cliente.</string>
                         <outlet property="viewBt" destination="wk0-wz-Buf" id="Dgu-zq-4eP"/>
                         <outlet property="viewForWho" destination="Afi-jY-Iek" id="cb7-Xv-X7Z"/>
                         <outlet property="viewLegalPerson" destination="0be-iD-0Vt" id="HkD-aL-U8N"/>
+                        <outlet property="viewTextFieldCPF" destination="9sj-kR-gcK" id="TY1-dd-ZOg"/>
+                        <outlet property="viewTextFieldName" destination="Jnb-qz-aar" id="ZUC-pb-iEc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

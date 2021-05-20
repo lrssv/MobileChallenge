@@ -51,13 +51,11 @@ class AddFieldsViewController: BaseViewController {
         discount = Discount(type: "percentage", value: Int(tfDiscount.text!)!)
         conditional_discount = ConditionalDiscount(type: "percentage", value: Int(tfConditionalDiscount.text!)!, until_date: tfDateShipping.text!)
         
-        bankingbillet = BankingBillet()
         
-        bankingbillet.customer = customer
-        bankingbillet.expire_at = tfDate.text!
-        bankingbillet.discount = discount
-        bankingbillet.conditional_discount = conditional_discount
-        bankingbillet.message = tfMessage.text!
+        guard let expire_at = tfDate.text else { return }
+        guard let message = tfMessage.text else { return }
+        
+        bankingbillet = BankingBillet(customer: customer, expire_at: expire_at, discount: discount, conditional_discount: conditional_discount, message: message)
     
     }
     
