@@ -7,12 +7,20 @@
 
 import UIKit
 
-class IssueBankingBilletViewController: BaseViewController {
-    
+class IssueBankingBilletViewController: BaseViewController, AuthenticationDelagate {
+
     let route = URL(string: "https://sandbox.gerencianet.com.br/v1/charge/one-step")!
+    
+    var authentication = Authentication()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        authentication.delegate = self
+        authentication.auth()
+    }
+    
+    func authDelegate(auth: Authentication, token: String) {
+        print(token)
     }
     
     func chargeCreate(){
@@ -23,7 +31,8 @@ class IssueBankingBilletViewController: BaseViewController {
     }
     
     func chargeRequest(){
-  
+        
+        
     }
     
 }

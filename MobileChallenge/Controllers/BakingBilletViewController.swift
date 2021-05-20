@@ -35,15 +35,12 @@ class BankingBilletViewController: BaseViewController {
     @IBOutlet weak var viewAddres: UIView!
     @IBOutlet weak var viewBt: UIView!
     
-
+    var oi: Token?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         showAtrributes(for: .individualPerson)
         
-        let token = Authentication()
-        token.auth()
     }
     
     
@@ -85,8 +82,10 @@ class BankingBilletViewController: BaseViewController {
         juridical_person = JuridicalPerson(corporate_name: tfCorporateName.text!, CPNJ: tfCNPJ.text!)
         address = Address(street: tfStreet.text!, number: Int(tfNumber.text!)!, neighborhood: tfNeighborhood.text!, zipcode: tfCEP.text!, state: tfState.text!)
         customer = Customer(name: tfName.text!, CPF: tfCPF.text!, phoneNumber: tfPhoneNumber.text!)
-        customer.address = address
-        customer.juridicalPerson = juridical_person
+        
+        if address != nil { customer.address = address } else { return }
+        if juridical_person != nil { customer.juridicalPerson = juridical_person } else { return }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

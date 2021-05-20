@@ -31,6 +31,7 @@
 		9EB748B326557D5100C20215 /* Shippings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB748B226557D5100C20215 /* Shippings.swift */; };
 		9EB748B62655866100C20215 /* Discount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB748B52655866100C20215 /* Discount.swift */; };
 		9EB748BD2655B87E00C20215 /* ConditionalDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB748BC2655B87E00C20215 /* ConditionalDiscount.swift */; };
+		9EB748C12656A2DC00C20215 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB748C02656A2DC00C20215 /* Token.swift */; };
 		9ED90BB42652D3E2005DC194 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED90BB32652D3E2005DC194 /* ItemTableViewCell.swift */; };
 		9EFAA5F0264EE18900E23E36 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFAA5EF264EE18900E23E36 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		9EB748B226557D5100C20215 /* Shippings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shippings.swift; sourceTree = "<group>"; };
 		9EB748B52655866100C20215 /* Discount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discount.swift; sourceTree = "<group>"; };
 		9EB748BC2655B87E00C20215 /* ConditionalDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalDiscount.swift; sourceTree = "<group>"; };
+		9EB748C02656A2DC00C20215 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		9ED90BB32652D3E2005DC194 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		9EFAA5EF264EE18900E23E36 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +93,7 @@
 				9EB748B226557D5100C20215 /* Shippings.swift */,
 				9EB748B52655866100C20215 /* Discount.swift */,
 				9EB748BC2655B87E00C20215 /* ConditionalDiscount.swift */,
+				9EB748C02656A2DC00C20215 /* Token.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				9ED90BB42652D3E2005DC194 /* ItemTableViewCell.swift in Sources */,
 				9E4DF702264C4BC300855E08 /* ClientsViewController.swift in Sources */,
 				9E4DF712264D948300855E08 /* AddItemViewController.swift in Sources */,
+				9EB748C12656A2DC00C20215 /* Token.swift in Sources */,
 				9E4DF70F264D5D6E00855E08 /* SavedItemsViewController.swift in Sources */,
 				9EB748AD26557ADB00C20215 /* Address.swift in Sources */,
 				9EB748B026557C9400C20215 /* Customer.swift in Sources */,

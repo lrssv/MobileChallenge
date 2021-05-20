@@ -2,9 +2,9 @@ import Foundation
 
 class Customer: Codable {
     
-    let name: String
-    let CPF: String
-    let phoneNumber: String
+    let name: String?
+    let CPF: String?
+    let phoneNumber: String?
     
     var email: String?
     var address: Address?
@@ -16,3 +16,4 @@ class Customer: Codable {
         self.phoneNumber = phoneNumber
     }
 }
+ 

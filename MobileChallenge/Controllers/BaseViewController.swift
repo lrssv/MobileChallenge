@@ -9,6 +9,7 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+
     var customer: Customer!
     var juridical_person: JuridicalPerson!
     var address: Address!
@@ -25,7 +26,4 @@ class BaseViewController: UIViewController {
     var items: [Items] = []
  
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 }

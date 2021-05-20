@@ -33,6 +33,7 @@ class AddFieldsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewAddFields.isHidden = true
+  
     }
     
     @IBAction func addFields(_ sender: UISwitch) {
@@ -44,15 +45,20 @@ class AddFieldsViewController: BaseViewController {
     }
     
     @IBAction func issueBankingBillet(_ sender: UIButton) {
+        
         shipping = Shippings(value: Int(tfShipping.text!)!)
         shippings.append(shipping)
         discount = Discount(type: "percentage", value: Int(tfDiscount.text!)!)
         conditional_discount = ConditionalDiscount(type: "percentage", value: Int(tfConditionalDiscount.text!)!, until_date: tfDateShipping.text!)
         
+        bankingbillet = BankingBillet()
+        
+        bankingbillet.customer = customer
         bankingbillet.expire_at = tfDate.text!
-        bankingbillet.message = tfMessage.text!
         bankingbillet.discount = discount
         bankingbillet.conditional_discount = conditional_discount
+        bankingbillet.message = tfMessage.text!
+    
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
