@@ -11,6 +11,7 @@ class ItemsViewController: BaseViewController {
     // MARK: - Functions about the Items View
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
     }
     
