@@ -1,6 +1,6 @@
 import UIKit
 
-class AddFieldsViewController: BaseViewController {
+class AddFieldsViewController: BaseViewController, UITextFieldDelegate {
     
     // MARK: - Views that make up the stack view
     @IBOutlet weak var viewDate: UIView!
@@ -13,16 +13,32 @@ class AddFieldsViewController: BaseViewController {
     @IBOutlet weak var btDateShipping: UIButton!
     @IBOutlet weak var btDiscount: UITextField!
     @IBOutlet weak var btConditionalDiscount: UITextField!
+    @IBOutlet weak var btNext: UIButton!
+    
     
     // MARK: - Text field variables
     @IBOutlet weak var tfDate: UITextField!
     @IBOutlet weak var tfShipping: UITextField!
     @IBOutlet weak var tfDiscount: UITextField!
     @IBOutlet weak var tfConditionalDiscount: UITextField!
-    @IBOutlet weak var tfDateShipping: UITextField!
+    @IBOutlet weak var tfUntilDate: UITextField!
     @IBOutlet weak var tfMessage: UITextField!
     @IBOutlet weak var tfTotal: UILabel!
     
+    // MARK: - Views and variables for Text Field validation
+    
+    @IBOutlet weak var viewTFDate: ValidateFieldsAddFields!
+    @IBOutlet weak var viewTFShipping: ValidateFieldsAddFields!
+    @IBOutlet weak var viewBTDiscount: ValidateFieldsAddFields!
+    @IBOutlet weak var viewTFDiscount: ValidateFieldsAddFields!
+    @IBOutlet weak var viewBTConditionalDiscount: ValidateFieldsAddFields!
+    @IBOutlet weak var viewTFConditionalDiscount: ValidateFieldsAddFields!
+    @IBOutlet weak var viewTFUntilDate: ValidateFieldsAddFields!
+    
+    let validate = ValidateFieldsAddFields()
+    
+    var dateValidated = false, shippingValidated = false, btDiscountValidated = false, discountValidated = false, btConditionalDiscountValidated = false, conditionalDiscountValidated = false, untilDateValidated = false, messageValidated = true
+        
     // MARK: - Elements of Date Picker
     let datePickerDate = UIDatePicker()
     let datePickerShipping = UIDatePicker()
@@ -57,7 +73,10 @@ class AddFieldsViewController: BaseViewController {
         datePickerDateShipping()
         
         createPickerView()
+        
+        btNext.isEnabled = false
     }
+    
     
     @IBAction func addFields(_ sender: UISwitch) {
         if sender.isOn {
@@ -67,12 +86,103 @@ class AddFieldsViewController: BaseViewController {
         }
     }
     
+    @IBAction func validateDate(_ textField: UITextField) {
+        if let date = tfDate.text {
+            if textField == tfDate {
+                dateValidated = validate.validateField(field: date, type: .date)
+                validate.changeColorView(response: dateValidated, view: viewTFDate)
+            }
+        }
+        realeaseButton(field: .date)
+    }
+    
+    
+    @IBAction func validateAddFields(_ textField: UITextField) {
+        if let shipping = tfShipping.text {
+            if textField == tfShipping {
+                shippingValidated = validate.validateField(field: shipping, type: .shipping)
+                validate.changeColorView(response: shippingValidated, view: viewTFShipping)
+            }
+        }
+        
+        if let btdiscount = btDiscount.text {
+            if textField == btDiscount {
+                btDiscountValidated = validate.validateField(field: btdiscount, type: .typeOf_discount)
+                validate.changeColorView(response: btDiscountValidated, view: viewBTDiscount)
+            }
+        }
+        
+        if let discount = tfDiscount.text {
+            if textField == tfDiscount {
+                discountValidated = validate.validateField(field: discount, type: .discount)
+                validate.changeColorView(response: discountValidated, view: viewTFDiscount)
+            }
+        }
+        
+        if let conditional_discount = tfConditionalDiscount.text {
+            if textField == tfConditionalDiscount {
+                conditionalDiscountValidated  = validate.validateField(field: conditional_discount, type: .typeOf_conditional_discount)
+                validate.changeColorView(response: conditionalDiscountValidated, view: viewTFConditionalDiscount)
+            }
+        }
+        
+        if let btconditional_discount = btConditionalDiscount.text {
+            if textField == btConditionalDiscount {
+                btConditionalDiscountValidated = validate.validateField(field: btconditional_discount, type: .conditional_discount)
+                validate.changeColorView(response: btDiscountValidated, view: viewBTConditionalDiscount)
+            }
+        }
+        
+        if let until_date = tfUntilDate.text {
+            if textField == tfUntilDate {
+                untilDateValidated = validate.validateField(field: until_date, type: .until_date)
+                validate.changeColorView(response: untilDateValidated, view: viewTFUntilDate)
+            }
+        }
+        
+        if let message = tfMessage.text {
+            if textField == tfMessage {
+                messageValidated = validate.validateField(field: message, type: .message)
+                if messageValidated {
+                    tfMessage.textColor = .gray
+                } else {
+                    tfMessage.textColor = .red
+                }
+            }
+        }
+        
+        realeaseButton(field: .addFields)
+    }
+    
+    func realeaseButton(field type: FieldsType){
+        switch type {
+        case .date:
+            if dateValidated {
+                btNext.backgroundColor = UIColor(hexString: "#F36F36")
+                btNext.isEnabled = true
+            } else {
+                btNext.backgroundColor = .lightGray
+                btNext.isEnabled = false
+            }
+        case .addFields:
+            if shippingValidated && discountValidated && btDiscountValidated && conditionalDiscountValidated && btConditionalDiscountValidated && untilDateValidated {
+                btNext.backgroundColor = UIColor(hexString: "#F36F36")
+                btNext.isEnabled = true
+            } else {
+                btNext.backgroundColor = .lightGray
+                btNext.isEnabled = false
+            }
+        default:
+            btNext.backgroundColor = .lightGray
+            btNext.isEnabled = false
+        }
+    }
     
     @IBAction func issueBankingBillet(_ sender: UIButton) {
         shipping = Shippings(value: Int(tfShipping.text!)!)
         shippings.append(shipping)
         discount = Discount(type: "percentage", value: Int(tfDiscount.text!)!)
-        conditional_discount = ConditionalDiscount(type: "percentage", value: Int(tfConditionalDiscount.text!)!, until_date: tfDateShipping.text!)
+        conditional_discount = ConditionalDiscount(type: "percentage", value: Int(tfConditionalDiscount.text!)!, until_date: tfUntilDate.text!)
         
         guard let expire_at = tfDate.text else { return }
         guard let message = tfMessage.text else { return }
@@ -93,7 +203,12 @@ class AddFieldsViewController: BaseViewController {
     }
     
     
-    //MARK: - Create Pickers View
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    //MARK: - Create Picker Views
     func createPickerView(){
         let toolbarDiscount = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
         toolbarDiscount.tintColor = UIColor(named: "main")
@@ -156,9 +271,12 @@ class AddFieldsViewController: BaseViewController {
         toolbarDate.translatesAutoresizingMaskIntoConstraints = false
         toolbarDate.sizeToFit()
         
+        
+        let btFlexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let btCancelDate = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelDate))
         let doneBtnDate = UIBarButtonItem(barButtonSystemItem: .done , target: nil, action: #selector(donePressedDate))
         
-        toolbarDate.setItems([doneBtnDate], animated: true)
+        toolbarDate.setItems([doneBtnDate, btFlexibleSpace, btCancelDate], animated: true)
         
         tfDate.inputAccessoryView = toolbarDate
         tfDate.inputView = datePickerDate
@@ -176,6 +294,10 @@ class AddFieldsViewController: BaseViewController {
         self.view.endEditing(true)
     }
     
+    @objc func cancelDate() {
+        tfDate.resignFirstResponder()
+    }
+    
     func datePickerDateShipping(){
         if #available(iOS 13.4, *) {
             datePickerShipping.preferredDatePickerStyle = .wheels
@@ -190,12 +312,14 @@ class AddFieldsViewController: BaseViewController {
         toolbarShipping.translatesAutoresizingMaskIntoConstraints = false
         toolbarShipping.sizeToFit()
         
+        let btFlexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let btCancelDateShipping = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelDateShipping))
         let doneBtnDateShipping = UIBarButtonItem(barButtonSystemItem: .done , target: nil, action: #selector(donePressedDateShipping))
         
-        toolbarShipping.setItems([doneBtnDateShipping], animated: true)
+        toolbarShipping.setItems([doneBtnDateShipping, btFlexibleSpace, btCancelDateShipping], animated: true)
         
-        tfDateShipping.inputAccessoryView = toolbarShipping
-        tfDateShipping.inputView = datePickerShipping
+        tfUntilDate.inputAccessoryView = toolbarShipping
+        tfUntilDate.inputView = datePickerShipping
         
         datePickerShipping.datePickerMode = .date
     }
@@ -205,9 +329,13 @@ class AddFieldsViewController: BaseViewController {
         formatter.timeStyle = .none
         formatter.dateFormat = "dd/MM/yyyy"
 
-        tfDateShipping.text = formatter.string(from: datePickerShipping.date)
+        tfUntilDate.text = formatter.string(from: datePickerShipping.date)
         
         self.view.endEditing(true)
+    }
+    
+    @objc func cancelDateShipping() {
+        tfUntilDate.resignFirstResponder()
     }
     
 }
@@ -227,3 +355,4 @@ extension AddFieldsViewController: UIPickerViewDelegate, UIPickerViewDataSource 
         return type[row]
     }
 }
+

@@ -1,22 +1,6 @@
 import Foundation
 import UIKit
 
-enum InputType{
-    case name
-    case cpf
-    case phone_number
-    case email
-    case street
-    case number
-    case neighborhood
-    case zipcode
-    case city
-    case complement
-    case corporate_name
-    case cnpj
-    case value
-}
-
 class ValidateFieldsBankingBillet: UIView {
     
     var result: Bool = false
@@ -47,9 +31,10 @@ class ValidateFieldsBankingBillet: UIView {
             if field.count > 1 { result = true } else { result = false }
         case .corporate_name:
             if field.count > 1 && field.count <= 255 { result = true } else { result = false }
-        default:
+        case .cep:
             if field.count == 14 { result = true } else { result = false }
-        
+        default:
+            return false
         }
         
         return result

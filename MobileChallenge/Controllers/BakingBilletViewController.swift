@@ -5,13 +5,6 @@ enum PersonType {
     case juridicalPerson
 }
 
-enum FieldsType{
-    case binding
-    case juridicalPerson
-    case addedFields
-    case buttonNotEnable
-}
-
 
 class BankingBilletViewController: BaseViewController, UITextFieldDelegate {
     
@@ -210,7 +203,7 @@ class BankingBilletViewController: BaseViewController, UITextFieldDelegate {
         
         switch type {
         case .binding:
-            if nameValidated && cpfValidated && phone_numberValidated && emailValidated {
+            if nameValidated && cpfValidated && phone_numberValidated  {
                 btNext.backgroundColor = UIColor(hexString: "#F36F36")
                 btNext.isEnabled = true
                 choosen = true
