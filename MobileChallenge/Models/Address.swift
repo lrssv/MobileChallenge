@@ -2,7 +2,7 @@ import Foundation
 
 class Address: Codable {
     let street: String
-    let numberInt: Int
+    let number: Int
     let neighborhood: String
     let zipcode: String
     var city: String = ""
@@ -15,7 +15,6 @@ class Address: Codable {
         self.neighborhood = neighborhood
         self.zipcode = zipcode
         self.state = state
-        
-        self.numberInt = Int(number) ?? 0
+        self.number = Int(number) ?? 0
     }
 }

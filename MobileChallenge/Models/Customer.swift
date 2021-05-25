@@ -3,17 +3,17 @@ import Foundation
 class Customer: Codable {
     
     let name: String?
-    let CPF: String?
-    let phoneNumber: String?
+    let cpf: String?
+    let phone_number: String?
     
     var email: String?
     var address: Address?
-    var juridicalPerson: JuridicalPerson?
+    var juridical_person: JuridicalPerson?
     
-    init(name: String, CPF: String, phoneNumber: String ){
+    init(name: String, cpf: String, phone_number: String ){
         self.name = name
-        self.CPF = CPF
-        self.phoneNumber = phoneNumber
+        self.cpf = cpf
+        self.phone_number = phone_number
     }
 }
  

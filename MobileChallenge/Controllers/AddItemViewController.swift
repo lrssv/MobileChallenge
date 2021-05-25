@@ -80,16 +80,16 @@ class AddItemViewController: BaseViewController, UITextFieldDelegate {
     
     @IBAction func addItem(_ sender: UIButton) {
         guard let itemName = tfName.text else { return }
-        //guard let valueItem = Double(tfValue.text!) else { return }
+        guard let valueItem = tfValue.text else { return }
         
-        guard var valueItemRequest = tfValue.text else { return }
-        valueItemRequest = valueItemRequest.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
-        valueItemRequest = valueItemRequest.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
+        var valueItemRequest = valueItem.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
+        valueItemRequest = valueItem.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
         
-        totalItem = Double(valueItemRequest)! * Double(amount)
+        totalItem = Double(valueItem)! * Double(amount)
         
         item = Items(name: itemName, value: Int(valueItemRequest)!, amount: amount)
         item.total = totalItem
+        item.valueShow = valueItem
 
         delegate?.prepareItems(added: item)
         

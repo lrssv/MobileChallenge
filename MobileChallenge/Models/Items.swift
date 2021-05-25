@@ -6,6 +6,7 @@ class Items: Codable {
     let value: Int
     let amount: Int
     var total: Double?
+    var valueShow: String?
     
     init(name: String, value: Int, amount: Int){
         self.name = name

@@ -239,14 +239,12 @@ class BankingBilletViewController: BaseViewController, UITextFieldDelegate {
     
     
     @IBAction func btNextView(_ sender: UIButton) {
-        if scForWho.selectedSegmentIndex == 1 {
-            juridical_person = JuridicalPerson(corporate_name: tfCorporateName.text!, cnpj: tfCNPJ.text!)
-            customer.juridicalPerson = juridical_person
-        }
-        
         address = Address(street: tfStreet.text!, number: tfNumber.text!, neighborhood: tfNeighborhood.text!, zipcode: tfCEP.text!, state: tfState.text!)
-        customer = Customer(name: tfName.text!, CPF: tfCPF.text!, phoneNumber: tfPhoneNumber.text!)
+        customer = Customer(name: tfName.text!, cpf: tfCPF.text!, phone_number: tfPhoneNumber.text!)
         customer.address = address
+        
+        if juridical_person != nil {customer.juridical_person = juridical_person} else { return }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -23,6 +23,7 @@
 		9E8829AA2649B8EF00683FFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E8829A82649B8EF00683FFD /* LaunchScreen.storyboard */; };
 		9EA06445265704B700BF3197 /* ValidateFieldsBankingBillet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA06444265704B700BF3197 /* ValidateFieldsBankingBillet.swift */; };
 		9EA26482265C25EB00F22D19 /* ValidateFieldsItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA26481265C25EB00F22D19 /* ValidateFieldsItems.swift */; };
+		9EA26485265C41AF00F22D19 /* RequestChargeOneStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA26484265C41AF00F22D19 /* RequestChargeOneStep.swift */; };
 		9EB7489E2653F6E900C20215 /* IssueBankingBilletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB7489D2653F6E900C20215 /* IssueBankingBilletViewController.swift */; };
 		9EB748A126542C4100C20215 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB748A026542C4100C20215 /* Authentication.swift */; };
 		9EB748A4265538CF00C20215 /* CreateChargeOneStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB748A3265538CF00C20215 /* CreateChargeOneStep.swift */; };
@@ -56,6 +57,7 @@
 		9E8829AB2649B8EF00683FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9EA06444265704B700BF3197 /* ValidateFieldsBankingBillet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateFieldsBankingBillet.swift; sourceTree = "<group>"; };
 		9EA26481265C25EB00F22D19 /* ValidateFieldsItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateFieldsItems.swift; sourceTree = "<group>"; };
+		9EA26484265C41AF00F22D19 /* RequestChargeOneStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestChargeOneStep.swift; sourceTree = "<group>"; };
 		9EB7489D2653F6E900C20215 /* IssueBankingBilletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBankingBilletViewController.swift; sourceTree = "<group>"; };
 		9EB748A026542C4100C20215 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		9EB748A3265538CF00C20215 /* CreateChargeOneStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChargeOneStep.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				9EB748BC2655B87E00C20215 /* ConditionalDiscount.swift */,
 				9EA06444265704B700BF3197 /* ValidateFieldsBankingBillet.swift */,
 				9EA26481265C25EB00F22D19 /* ValidateFieldsItems.swift */,
+				9EA26484265C41AF00F22D19 /* RequestChargeOneStep.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				9EB748AD26557ADB00C20215 /* Address.swift in Sources */,
 				9EA26482265C25EB00F22D19 /* ValidateFieldsItems.swift in Sources */,
 				9EB748B026557C9400C20215 /* Customer.swift in Sources */,
+				9EA26485265C41AF00F22D19 /* RequestChargeOneStep.swift in Sources */,
 				9E4DF70C264D48AF00855E08 /* ItemsViewController.swift in Sources */,
 				9E4DF6F4264C0A6500855E08 /* BankingBillet.swift in Sources */,
 				9E8829A52649B8EE00683FFD /* MobileChallenge.xcdatamodeld in Sources */,
