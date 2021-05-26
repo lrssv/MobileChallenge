@@ -4,7 +4,7 @@ protocol AddItemDelegate: class {
     func prepareItems(added item: Items)
 }
 
-class AddItemViewController: BaseViewController, UITextFieldDelegate {
+class AddItemViewController: BaseViewController {
     
     // MARK: - Variables
     @IBOutlet weak var tfName: UITextField!
@@ -82,14 +82,13 @@ class AddItemViewController: BaseViewController, UITextFieldDelegate {
         guard let itemName = tfName.text else { return }
         guard let valueItem = tfValue.text else { return }
         
-        var valueItemRequest = valueItem.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
-        valueItemRequest = valueItem.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
+        var valueItemRequest = valueItem
+        valueItemRequest = valueItemRequest.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
+        valueItemRequest = valueItemRequest.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
         
         totalItem = Double(valueItem)! * Double(amount)
         
         item = Items(name: itemName, value: Int(valueItemRequest)!, amount: amount)
-        item.total = totalItem
-        item.valueShow = valueItem
 
         delegate?.prepareItems(added: item)
         

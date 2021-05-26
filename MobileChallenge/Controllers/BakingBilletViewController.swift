@@ -5,9 +5,8 @@ enum PersonType {
     case juridicalPerson
 }
 
+class BankingBilletViewController: BaseViewController {
 
-class BankingBilletViewController: BaseViewController, UITextFieldDelegate {
-    
     // MARK: - Elements with action
     
     @IBOutlet weak var scForWho: UISegmentedControl!
@@ -61,14 +60,17 @@ class BankingBilletViewController: BaseViewController, UITextFieldDelegate {
     let validate = ValidateFieldsBankingBillet()
     var nameValidated = false, cpfValidated = false, phone_numberValidated = false, emailValidated = false, corporate_nameValidated = false, cnpjValidated = false, streetValidated = false, numberValidated = false, complementValidated = false, neighboorhoodValidated = false, cepValidated = false
     
+    var addFieldsIsOn: Bool = false
     
     // MARK: - Functions about Banking Billet View
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         showAtrributes(for: .individualPerson)
         btNext.isEnabled = true
     }
+    
     
     func showAtrributes(for person: PersonType){
         switch person {
@@ -103,6 +105,7 @@ class BankingBilletViewController: BaseViewController, UITextFieldDelegate {
     @IBAction func swAddFields(_ sender: UISwitch) {
         if sender.isOn {
             viewAddres.isHidden = false
+            addFieldsIsOn = true
         } else {
             viewAddres.isHidden = true
         }
@@ -232,12 +235,31 @@ class BankingBilletViewController: BaseViewController, UITextFieldDelegate {
     
     
     @IBAction func btNextView(_ sender: UIButton) {
-        address = Address(street: tfStreet.text!, number: tfNumber.text!, neighborhood: tfNeighborhood.text!, zipcode: tfCEP.text!, state: tfState.text!)
-        customer = Customer(name: tfName.text!, cpf: tfCPF.text!, phone_number: tfPhoneNumber.text!)
-        customer.address = address
+        var cpfString = tfCPF.text!
+        cpfString = cpfString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
+        cpfString = cpfString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
         
-        if juridical_person != nil {customer.juridical_person = juridical_person} else { return }
+        var phoneNumberString = tfPhoneNumber.text!
+        phoneNumberString = phoneNumberString.replacingOccurrences(of: "(", with: "", options: NSString.CompareOptions.literal, range: nil)
+        phoneNumberString = phoneNumberString.replacingOccurrences(of: ")", with: "", options: NSString.CompareOptions.literal, range: nil)
+        phoneNumberString = phoneNumberString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
+        phoneNumberString = phoneNumberString.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
         
+        var cepString = tfCPF.text!
+        cepString = cepString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
+        cepString = cepString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
+        
+        customer = Customer(name: tfName.text!, cpf: cpfString, phone_number: phoneNumberString)
+        
+        if addFieldsIsOn {
+            address = Address(street: tfStreet.text!, number: tfNumber.text!, neighborhood: tfNeighborhood.text!, zipcode: cepString, state: tfState.text!)
+            customer.address = address
+        }
+        
+        if scForWho.selectedSegmentIndex == 1 {
+            juridical_person = JuridicalPerson(corporate_name: tfCorporateName.text!, cnpj: tfCNPJ.text!)
+            customer.juridical_person = juridical_person
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -249,7 +271,6 @@ class BankingBilletViewController: BaseViewController, UITextFieldDelegate {
         let client = storyboard?.instantiateViewController(identifier: "ClientsViewController") as! ClientsViewController
         present(client, animated: true, completion: nil)
     }
-    
 }
 
 // MARK: - Extensions

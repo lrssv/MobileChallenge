@@ -7,23 +7,23 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
-    
 
+class BaseViewController: UIViewController, UITextFieldDelegate {
+    
     var customer: Customer!
     var juridical_person: JuridicalPerson!
     var address: Address!
     var shipping: Shippings!
-    var shippings: [Shippings] = []
+    var shippings: [Shippings]!
     var discount: Discount!
     var conditional_discount: ConditionalDiscount!
     var payment: Payment!
     var chargeOneStep: CreateChargeOneStep!
     
-    
     var bankingbillet: BankingBillet!
     var item: Items!
     var items: [Items] = []
+    
     
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     
@@ -48,5 +48,18 @@ class BaseViewController: UIViewController {
     @objc func keyboardWillHide(sender: NSNotification) {
          self.view.frame.origin.y = 0 // Move view to original position
     }
+    
+
+    /*
+    func replaceDot(textField field: UITextField) -> String {
+        let valueItemDot = field.text!.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
+        return valueItemDot
+    }
+    
+    func replaceComma(textField field: UITextField) -> String {
+        let valueItemComma = field.text!.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
+        return valueItemComma
+    }*/
+    
 }
 

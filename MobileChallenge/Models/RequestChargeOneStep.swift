@@ -1,8 +1,22 @@
 import Foundation
 
-class RequestChargeOneStep {
-    /*
-    func chargeRequest(access_token: String){
+class RequestChargeOneStep: BaseViewController, AuthenticationDelagate {
+    
+    var access_token: String!
+    var authentication = Authentication()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        authentication.delegate = self
+        authentication.auth()
+    }
+    
+    func authDelegate(auth: Authentication, token: String) {
+        access_token = token
+    }
+    
+    func chargeRequest(body: CreateChargeOneStep){
+        let route = URL(string: "https://sandbox.gerencianet.com.br/v1/charge/one-step")!
         
         var request = URLRequest(url: route)
         
@@ -31,5 +45,5 @@ class RequestChargeOneStep {
         }
         
         task.resume()
-    }*/
+    }
 }

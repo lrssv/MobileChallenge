@@ -1,6 +1,6 @@
 import UIKit
 
-class AddFieldsViewController: BaseViewController, UITextFieldDelegate {
+class AddFieldsViewController: BaseViewController {
     
     // MARK: - Views that make up the stack view
     @IBOutlet weak var viewDate: UIView!
@@ -35,6 +35,8 @@ class AddFieldsViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var viewTFConditionalDiscount: ValidateFieldsAddFields!
     @IBOutlet weak var viewTFUntilDate: ValidateFieldsAddFields!
     
+    var addFieldsIsOn: Bool = false
+    
     let validate = ValidateFieldsAddFields()
     
     var dateValidated = false, shippingValidated = false, btDiscountValidated = false, discountValidated = false, btConditionalDiscountValidated = false, conditionalDiscountValidated = false, untilDateValidated = false, messageValidated = true
@@ -42,7 +44,11 @@ class AddFieldsViewController: BaseViewController, UITextFieldDelegate {
     // MARK: - Elements of Date Picker
     let datePickerDate = UIDatePicker()
     let datePickerShipping = UIDatePicker()
-    let formatter = DateFormatter()
+    let formatterForShow = DateFormatter()
+    let formatterAPI = DateFormatter()
+    
+    var dateChosen: String?
+    var untilDateChosen: String?
     
     // MARK: - Elements of Picker View
     
@@ -60,7 +66,9 @@ class AddFieldsViewController: BaseViewController, UITextFieldDelegate {
         return pickerViewConditionalDiscount
     }()
     
-    let type = ["%", "R$"]
+    let typeOfDiscount = ["%", "R$"]
+    var discountChosen: String?
+    var conditionalDiscountChosen: String?
     
     
     // MARK: - Functions about Additional Fields View
@@ -69,20 +77,24 @@ class AddFieldsViewController: BaseViewController, UITextFieldDelegate {
         super.viewDidLoad()
         viewAddFields.isHidden = true
         
+        totalPayment()
+        
         datePickerDueDate()
         datePickerDateShipping()
         
         createPickerView()
         
-        btNext.isEnabled = false
+        btNext.isEnabled = true
     }
     
     
     @IBAction func addFields(_ sender: UISwitch) {
         if sender.isOn {
             viewAddFields.isHidden = false
+            addFieldsIsOn = true
         } else {
             viewAddFields.isHidden = true
+            addFieldsIsOn = false
         }
     }
     
@@ -128,7 +140,7 @@ class AddFieldsViewController: BaseViewController, UITextFieldDelegate {
         
         if let btconditional_discount = btConditionalDiscount.text {
             if textField == btConditionalDiscount {
-                btConditionalDiscountValidated = validate.validateField(field: btconditional_discount, type: .conditional_discount)
+                btConditionalDiscountValidated = validate.validateField(field: btconditional_discount, type: .typeOf_conditional_discount)
                 validate.changeColorView(response: btDiscountValidated, view: viewBTConditionalDiscount)
             }
         }
@@ -178,16 +190,52 @@ class AddFieldsViewController: BaseViewController, UITextFieldDelegate {
         }
     }
     
+    
+    func totalPayment() {
+        var totalBankingBillet: Double = 0
+        
+        for i in items {
+            totalBankingBillet += Double(i.valueShow)!
+        }
+        
+        tfTotal.text = "R$ \(totalBankingBillet)"
+    }
+    
+    
     @IBAction func issueBankingBillet(_ sender: UIButton) {
-        shipping = Shippings(value: Int(tfShipping.text!)!)
-        shippings.append(shipping)
-        discount = Discount(type: "percentage", value: Int(tfDiscount.text!)!)
-        conditional_discount = ConditionalDiscount(type: "percentage", value: Int(tfConditionalDiscount.text!)!, until_date: tfUntilDate.text!)
+        var shippingString = tfShipping.text!
+        shippingString = shippingString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
+        shippingString = shippingString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
         
-        guard let expire_at = tfDate.text else { return }
-        guard let message = tfMessage.text else { return }
+        var discountString = tfDiscount.text!
+        discountString = discountString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
+        discountString  = discountString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
         
-        bankingbillet = BankingBillet(customer: customer, expire_at: expire_at, discount: discount, conditional_discount: conditional_discount, message: message)
+        var conditionalDiscountString = tfConditionalDiscount.text!
+        conditionalDiscountString = conditionalDiscountString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
+        conditionalDiscountString = conditionalDiscountString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
+        
+        bankingbillet = BankingBillet(customer: customer, expire_at: dateChosen!)
+        
+        if addFieldsIsOn {
+            shipping = Shippings(value: Int(shippingString)!)
+            shippings.append(shipping)
+            
+            if discountChosen == "%" {
+                discount = Discount(type: "percentage", value: Int(discountString)!)
+            } else {
+                discount = Discount(type: "currency", value: Int(discountString)!)
+            }
+            
+            if conditionalDiscountChosen == "%" {
+                conditional_discount = ConditionalDiscount(type: "percentage", value: Int(conditionalDiscountString)!, until_date: untilDateChosen!)
+            } else {
+                conditional_discount = ConditionalDiscount(type: "currency", value: Int(conditionalDiscountString)!, until_date: untilDateChosen!)
+            }
+            bankingbillet.discount = discount
+            bankingbillet.conditional_discount = conditional_discount
+            bankingbillet.message = tfMessage.text!
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -218,11 +266,11 @@ class AddFieldsViewController: BaseViewController, UITextFieldDelegate {
         
         let btFlexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
-        let btCancelDiscount = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelDiscount))
+        let btCancelDiscount = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         let btDoneDiscount = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDiscount))
         toolbarDiscount.items = [btCancelDiscount, btFlexibleSpace, btDoneDiscount]
         
-        let btCancelConditionalDiscount = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelConditionalDiscount))
+        let btCancelConditionalDiscount = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         let btDoneConditionalDiscount = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneConditionalDiscount))
         toolbarConditionalDiscount.items = [btCancelConditionalDiscount, btFlexibleSpace, btDoneConditionalDiscount]
         
@@ -235,26 +283,22 @@ class AddFieldsViewController: BaseViewController, UITextFieldDelegate {
         btConditionalDiscount.tintColor = UIColor.clear
     }
     
-    @objc func cancelDiscount() {
+    @objc func cancel() {
         btDiscount.resignFirstResponder()
         btConditionalDiscount.resignFirstResponder()
     }
     
     @objc func doneDiscount() {
-        btDiscount.text = type[pickerViewDiscount.selectedRow(inComponent: 0)]
-        cancelDiscount()
+        discountChosen = typeOfDiscount[pickerViewDiscount.selectedRow(inComponent: 0)]
+        btDiscount.text = discountChosen
+        cancel()
     }
     
     @objc func doneConditionalDiscount() {
-        btConditionalDiscount.text = type[pickerViewConditionalDiscount.selectedRow(inComponent: 0)]
-        cancelConditionalDiscount()
+        conditionalDiscountChosen = typeOfDiscount[pickerViewConditionalDiscount.selectedRow(inComponent: 0)]
+        btConditionalDiscount.text = conditionalDiscountChosen
+        cancel()
     }
-    
-    @objc func cancelConditionalDiscount() {
-        btDiscount.resignFirstResponder()
-        btConditionalDiscount.resignFirstResponder()
-    }
-    
     
     // MARK: - Create Date Pickers
     func datePickerDueDate(){
@@ -285,11 +329,14 @@ class AddFieldsViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @objc func donePressedDate(){
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        formatter.dateFormat = "dd/MM/yyyy"
+        formatterForShow.dateStyle = .medium
+        formatterForShow.timeStyle = .none
+        formatterForShow.dateFormat = "dd/MM/yyyy"
         
-        tfDate.text = formatter.string(from: datePickerDate.date)
+        tfDate.text = formatterForShow.string(from: datePickerDate.date)
+        
+        formatterAPI.dateFormat = "YYYY-MM-dd"
+        dateChosen = formatterAPI.string(from: datePickerDate.date)
         
         self.view.endEditing(true)
     }
@@ -325,11 +372,14 @@ class AddFieldsViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @objc func donePressedDateShipping(){
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        formatter.dateFormat = "dd/MM/yyyy"
+        formatterForShow.dateStyle = .medium
+        formatterForShow.timeStyle = .none
+        formatterForShow.dateFormat = "dd/MM/yyyy"
 
-        tfUntilDate.text = formatter.string(from: datePickerShipping.date)
+        tfUntilDate.text = formatterForShow.string(from: datePickerShipping.date)
+        
+        formatterAPI.dateFormat = "YYYY-MM-dd"
+        untilDateChosen = formatterAPI.string(from: datePickerDate.date)
         
         self.view.endEditing(true)
     }
@@ -352,7 +402,7 @@ extension AddFieldsViewController: UIPickerViewDelegate, UIPickerViewDataSource 
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return type[row]
+        return typeOfDiscount[row]
     }
 }
 

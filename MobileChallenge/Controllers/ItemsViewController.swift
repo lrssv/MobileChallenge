@@ -5,7 +5,6 @@ class ItemsViewController: BaseViewController {
     // MARK: - Variables
     
     @IBOutlet weak var tableview: UITableView!
-    
     var numberOfRows: Int = 0
     
     // MARK: - Functions about the Items View
