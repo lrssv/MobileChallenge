@@ -42,6 +42,11 @@ class ValidateFieldsBankingBillet: UIView {
             if field.count > 1 { result = true } else { result = false }
         case .corporate_name:
             if field.count > 1 && field.count <= 255 { result = true } else { result = false }
+        case .cnpj:
+            var cnpjValidated = field
+            cnpjValidated = cnpjValidated.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
+            cnpjValidated = cnpjValidated.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
+            if cnpjValidated.count == 14 { result = true } else { result = false }
         default:
             return false
         }

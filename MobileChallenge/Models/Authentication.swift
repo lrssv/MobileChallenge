@@ -36,7 +36,7 @@ class Authentication {
             }
             
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]
-            
+          
             self.token = responseJSON!["access_token"] as? String ?? ""
             self.token_type = responseJSON!["token_type"] as? String ?? ""
             

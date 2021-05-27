@@ -227,13 +227,6 @@ class BankingBilletViewController: BaseViewController {
         }
     }
     
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    
     @IBAction func btNextView(_ sender: UIButton) {
         var cpfString = tfCPF.text!
         cpfString = cpfString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
@@ -245,7 +238,7 @@ class BankingBilletViewController: BaseViewController {
         phoneNumberString = phoneNumberString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
         phoneNumberString = phoneNumberString.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
         
-        var cepString = tfCPF.text!
+        var cepString = tfCEP.text!
         cepString = cepString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
         cepString = cepString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
         
@@ -270,6 +263,11 @@ class BankingBilletViewController: BaseViewController {
     @IBAction func btClientsView(_ sender: UIButton) {
         let client = storyboard?.instantiateViewController(identifier: "ClientsViewController") as! ClientsViewController
         present(client, animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 

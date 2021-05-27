@@ -192,8 +192,6 @@ class AddFieldsViewController: BaseViewController {
     
     
     func totalPayment() {
-        var totalBankingBillet: Double = 0
-        
         for i in items {
             totalBankingBillet += Double(i.valueShow)!
         }
@@ -215,10 +213,13 @@ class AddFieldsViewController: BaseViewController {
         conditionalDiscountString = conditionalDiscountString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
         conditionalDiscountString = conditionalDiscountString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
         
-        bankingbillet = BankingBillet(customer: customer, expire_at: dateChosen!)
+        guard let dateChosen = dateChosen else { return }
+        
+        bankingbillet = BankingBillet(customer: customer, expire_at: dateChosen)
         
         if addFieldsIsOn {
             shipping = Shippings(value: Int(shippingString)!)
+            
             shippings.append(shipping)
             
             if discountChosen == "%" {
@@ -243,6 +244,7 @@ class AddFieldsViewController: BaseViewController {
         vc.items = items
         vc.bankingbillet = bankingbillet
         vc.shippings = shippings
+        vc.totalBankingBillet = totalBankingBillet
     }
     
     
@@ -300,6 +302,9 @@ class AddFieldsViewController: BaseViewController {
         cancel()
     }
     
+    @objc override func keyboardWillShow(sender: NSNotification) {
+         self.view.frame.origin.y = -50 // Move view 150 points upward
+    }
     // MARK: - Create Date Pickers
     func datePickerDueDate(){
         if #available(iOS 13.4, *) {

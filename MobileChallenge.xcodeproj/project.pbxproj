@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E06ACA2265FE07A00EF43E6 /* FailRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E06ACA1265FE07A00EF43E6 /* FailRequestViewController.swift */; };
 		9E4DF6F4264C0A6500855E08 /* BankingBillet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF6F3264C0A6500855E08 /* BankingBillet.swift */; };
 		9E4DF702264C4BC300855E08 /* ClientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF701264C4BC300855E08 /* ClientsViewController.swift */; };
 		9E4DF708264D477200855E08 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF707264D477200855E08 /* Items.swift */; };
@@ -36,10 +37,12 @@
 		9EB748B62655866100C20215 /* Discount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB748B52655866100C20215 /* Discount.swift */; };
 		9EB748BD2655B87E00C20215 /* ConditionalDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB748BC2655B87E00C20215 /* ConditionalDiscount.swift */; };
 		9ED90BB42652D3E2005DC194 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED90BB32652D3E2005DC194 /* ItemTableViewCell.swift */; };
+		9EEDCE54265FE71B00C3DBCE /* ShowBankingBilletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEDCE53265FE71B00C3DBCE /* ShowBankingBilletViewController.swift */; };
 		9EFAA5F0264EE18900E23E36 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFAA5EF264EE18900E23E36 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E06ACA1265FE07A00EF43E6 /* FailRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailRequestViewController.swift; sourceTree = "<group>"; };
 		9E4DF6F3264C0A6500855E08 /* BankingBillet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankingBillet.swift; sourceTree = "<group>"; };
 		9E4DF701264C4BC300855E08 /* ClientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsViewController.swift; sourceTree = "<group>"; };
 		9E4DF707264D477200855E08 /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
@@ -71,6 +74,7 @@
 		9EB748B52655866100C20215 /* Discount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discount.swift; sourceTree = "<group>"; };
 		9EB748BC2655B87E00C20215 /* ConditionalDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalDiscount.swift; sourceTree = "<group>"; };
 		9ED90BB32652D3E2005DC194 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		9EEDCE53265FE71B00C3DBCE /* ShowBankingBilletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBankingBilletViewController.swift; sourceTree = "<group>"; };
 		9EFAA5EF264EE18900E23E36 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +114,7 @@
 		9E69266A264AF722009AE3B2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9E06ACA1265FE07A00EF43E6 /* FailRequestViewController.swift */,
 				9E692667264AF6BD009AE3B2 /* BakingBilletViewController.swift */,
 				9E4DF701264C4BC300855E08 /* ClientsViewController.swift */,
 				9E4DF70B264D48AF00855E08 /* ItemsViewController.swift */,
@@ -119,6 +124,7 @@
 				9EFAA5EF264EE18900E23E36 /* BaseViewController.swift */,
 				9ED90BB32652D3E2005DC194 /* ItemTableViewCell.swift */,
 				9EB7489D2653F6E900C20215 /* IssueBankingBilletViewController.swift */,
+				9EEDCE53265FE71B00C3DBCE /* ShowBankingBilletViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -240,6 +246,7 @@
 				9EB748B62655866100C20215 /* Discount.swift in Sources */,
 				9E692668264AF6BD009AE3B2 /* BakingBilletViewController.swift in Sources */,
 				9EB748A4265538CF00C20215 /* CreateChargeOneStep.swift in Sources */,
+				9E06ACA2265FE07A00EF43E6 /* FailRequestViewController.swift in Sources */,
 				9E88299B2649B8EE00683FFD /* AppDelegate.swift in Sources */,
 				9E88299D2649B8EE00683FFD /* SceneDelegate.swift in Sources */,
 				9EB748BD2655B87E00C20215 /* ConditionalDiscount.swift in Sources */,
@@ -251,6 +258,7 @@
 				9E4DF702264C4BC300855E08 /* ClientsViewController.swift in Sources */,
 				9E4DF712264D948300855E08 /* AddItemViewController.swift in Sources */,
 				9E4DF70F264D5D6E00855E08 /* SavedItemsViewController.swift in Sources */,
+				9EEDCE54265FE71B00C3DBCE /* ShowBankingBilletViewController.swift in Sources */,
 				9EB748AD26557ADB00C20215 /* Address.swift in Sources */,
 				9EA26482265C25EB00F22D19 /* ValidateFieldsItems.swift in Sources */,
 				9EB748B026557C9400C20215 /* Customer.swift in Sources */,
@@ -416,7 +424,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gerencianet.MobileChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -435,7 +443,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gerencianet.MobileChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

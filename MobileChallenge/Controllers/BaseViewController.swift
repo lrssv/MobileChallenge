@@ -14,7 +14,7 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
     var juridical_person: JuridicalPerson!
     var address: Address!
     var shipping: Shippings!
-    var shippings: [Shippings]!
+    var shippings: [Shippings] = []
     var discount: Discount!
     var conditional_discount: ConditionalDiscount!
     var payment: Payment!
@@ -24,6 +24,10 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
     var item: Items!
     var items: [Items] = []
     
+    var totalBankingBillet: Double = 0
+    
+    var barcode: String = ""
+    var link: String = ""
     
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     
@@ -42,7 +46,7 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func keyboardWillShow(sender: NSNotification) {
-         self.view.frame.origin.y = -150 // Move view 150 points upward
+         self.view.frame.origin.y = -140 // Move view 150 points upward
     }
 
     @objc func keyboardWillHide(sender: NSNotification) {
