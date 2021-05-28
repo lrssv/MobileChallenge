@@ -12,7 +12,8 @@ class ValidateFieldsItems: UIView {
         case .name:
             if field.count > 1 && field.count <= 255 { result = true } else { result = false }
         case .value:
-            if field.count >= 1 && field.isInt { result = true } else { result = false }
+            guard let minValue = Int(field) else { return false}
+            if minValue >= 500 && field.isInt { result = true } else { result = false }
         default:
             return false
         }

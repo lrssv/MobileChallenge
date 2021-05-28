@@ -56,26 +56,26 @@ class AddItemViewController: BaseViewController {
         
         if let value = tfValue.text {
             if textField == tfValue {
-                //tfValue.text = value.replacingOccurrences(of: "." , with: ",", options: NSString.CompareOptions.literal, range: nil)
-                
                 if value.count == 1 {
                     let aux = "00\(value)"
-                    let aux2 = formatterNumber(number: aux)
-                    tfValue.text = aux2
+                    let valueAux = formatterNumber(number: aux)
+                    tfValue.text = valueAux
+                    
+                    validate.changeColorView(response: false, view: viewTfValue)
                 } else {
-                    var valueItem = tfValue.text!
+                    valueItem = value
                     valueItem = valueItem.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
                     valueItem = valueItem.replacingOccurrences(of: "R$", with: "", options: NSString.CompareOptions.literal, range: nil)
                     
                     valueItem = valueItem.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
-                    let sliced = valueItem.dropFirst()
-                    let aux2 = formatterNumber(number:String(sliced))
-                    tfValue.text = aux2
+                    valueItem = String(valueItem.dropFirst())
+                    
+                    let aux = formatterNumber(number: valueItem)
+                    tfValue.text = aux
+                    
+                    valueValidated = validate.validateField(field: valueItem, type: .value)
+                    validate.changeColorView(response: valueValidated, view: viewTfValue)
                 }
-                
-                
-                //valueValidated = validate.validateField(field: valueItem, type: .value)
-                //validate.changeColorView(response: valueValidated, view: viewTfValue)
             }
         }
         
@@ -98,13 +98,19 @@ class AddItemViewController: BaseViewController {
     }
     
     
-    @IBAction func formatValue(_ textField: UITextField) {
-        /*
-        if textField == tfValue {
-            tfValue.text = "R$"
-        }*/
+    @IBAction func addItem(_ sender: UIButton) {
+        guard let itemName = tfName.text else { return }
+        
+        item = Items(name: itemName, value: Int(valueItem)!, amount: amount)
+        
+        delegate?.prepareItems(added: item)
+        
+        dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func cancelItem(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
     
     func formatterNumber(number: String) -> String {
         let formatter = NumberFormatter()
@@ -122,20 +128,4 @@ class AddItemViewController: BaseViewController {
             return ""
         }
     }
-    
-    
-    @IBAction func addItem(_ sender: UIButton) {
-        guard let itemName = tfName.text else { return }
-        
-        item = Items(name: itemName, value: Int(valueItem)!, amount: amount)
-        
-        delegate?.prepareItems(added: item)
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func cancelItem(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
-    
 }

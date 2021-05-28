@@ -78,7 +78,6 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
          self.view.frame.origin.y = 0 // Move view to original position
     }
     
- 
     
 
     /*

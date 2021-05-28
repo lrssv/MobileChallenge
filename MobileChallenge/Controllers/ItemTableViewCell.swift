@@ -1,6 +1,6 @@
 import UIKit
 
-class ItemTableViewCell: UITableViewCell {
+class ItemTableViewCell: UITableViewCell{
     
     @IBOutlet weak var lbItemName: UILabel!
     @IBOutlet weak var lbItemValue: UILabel!
@@ -16,13 +16,34 @@ class ItemTableViewCell: UITableViewCell {
     }
     
     func prepare(with item: Items){
+        let formatter = NumberFormatter()
         
-        let value = Double(item.value)/100
-        let valueShow = String(format: "%.2f", value)
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "pt_BR")
         
         lbItemName.text = item.name
-        lbItemValue.text = "R$ \(valueShow)"
+        lbItemValue.text = formatterNumber(number: String(item.value))
         lbItemAmount.text = "\(item.amount)"
-        lbTotal.text = "R$ \(item.total)"
+        lbTotal.text = formatterNumber(number: String(item.total))
+    }
+    
+    func formatterNumber(number: String) -> String {
+        let formatter = NumberFormatter()
+        
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "pt_BR")
+        
+
+        let value = Double(number)!/100
+        
+        if let price = formatter.string(from: NSNumber(value: value)) {
+            return price
+        } else {
+            return ""
+        }
     }
 }
+
+

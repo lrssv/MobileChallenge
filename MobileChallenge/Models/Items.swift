@@ -6,9 +6,8 @@ class Items: Codable {
     let value: Int
     let amount: Int
     var total: String {
-        var total = Double(self.value) * Double(self.amount)
-        total = total/100
-        return String(format: "%.2f", total)
+        let total = Double(self.value) * Double(self.amount)
+        return String(total)
     }
     
     init(name: String, value: Int, amount: Int){

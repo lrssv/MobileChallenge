@@ -1859,7 +1859,6 @@ para o cliente.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 <connections>
-                                                    <action selector="formatValue:" destination="A59-U4-QPB" eventType="editingDidBegin" id="A9V-uy-O4M"/>
                                                     <action selector="verifyFields:" destination="A59-U4-QPB" eventType="editingChanged" id="9y2-Le-RbY"/>
                                                 </connections>
                                             </textField>
