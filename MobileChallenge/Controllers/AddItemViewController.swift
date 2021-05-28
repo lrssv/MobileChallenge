@@ -19,6 +19,7 @@ class AddItemViewController: BaseViewController {
     weak var delegate: AddItemDelegate?
     
     var amount: Int = 1
+    var valueItem: String = ""
     var totalItem: Double = 0
     
     let validate = ValidateFieldsItems()
@@ -46,17 +47,35 @@ class AddItemViewController: BaseViewController {
     }
     
     @IBAction func verifyFields(_ textField: UITextField) {
-        if tfName.text != nil {
-            if textField == tfName{
-                nameValidated = validate.validateField(field: tfName, type: .name)
+        if let name = tfName.text {
+            if textField == tfName {
+                nameValidated = validate.validateField(field: name, type: .name)
                 validate.changeColorView(response: nameValidated, view: viewTfName)
             }
         }
         
-        if tfValue.text != nil {
+        if let value = tfValue.text {
             if textField == tfValue {
-                valueValidated = validate.validateField(field: tfValue, type: .value)
-                validate.changeColorView(response: valueValidated, view: viewTfValue)
+                //tfValue.text = value.replacingOccurrences(of: "." , with: ",", options: NSString.CompareOptions.literal, range: nil)
+                
+                if value.count == 1 {
+                    let aux = "00\(value)"
+                    let aux2 = formatterNumber(number: aux)
+                    tfValue.text = aux2
+                } else {
+                    var valueItem = tfValue.text!
+                    valueItem = valueItem.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
+                    valueItem = valueItem.replacingOccurrences(of: "R$", with: "", options: NSString.CompareOptions.literal, range: nil)
+                    
+                    valueItem = valueItem.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
+                    let sliced = valueItem.dropFirst()
+                    let aux2 = formatterNumber(number:String(sliced))
+                    tfValue.text = aux2
+                }
+                
+                
+                //valueValidated = validate.validateField(field: valueItem, type: .value)
+                //validate.changeColorView(response: valueValidated, view: viewTfValue)
             }
         }
         
@@ -78,18 +97,38 @@ class AddItemViewController: BaseViewController {
         return true
     }
     
+    
+    @IBAction func formatValue(_ textField: UITextField) {
+        /*
+        if textField == tfValue {
+            tfValue.text = "R$"
+        }*/
+    }
+    
+    
+    func formatterNumber(number: String) -> String {
+        let formatter = NumberFormatter()
+        
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "pt_BR")
+        
+
+        let value = Double(number)!/100
+        
+        if let price = formatter.string(from: NSNumber(value: value)) {
+            return price
+        } else {
+            return ""
+        }
+    }
+    
+    
     @IBAction func addItem(_ sender: UIButton) {
         guard let itemName = tfName.text else { return }
-        guard let valueItem = tfValue.text else { return }
         
-        var valueItemRequest = valueItem
-        valueItemRequest = valueItemRequest.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
-        valueItemRequest = valueItemRequest.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
+        item = Items(name: itemName, value: Int(valueItem)!, amount: amount)
         
-        totalItem = Double(valueItem)! * Double(amount)
-        
-        item = Items(name: itemName, value: Int(valueItemRequest)!, amount: amount)
-
         delegate?.prepareItems(added: item)
         
         dismiss(animated: true, completion: nil)
@@ -98,6 +137,5 @@ class AddItemViewController: BaseViewController {
     @IBAction func cancelItem(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
     
 }

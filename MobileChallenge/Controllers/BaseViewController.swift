@@ -1,15 +1,9 @@
-//
-//  BaseViewController.swift
-//  MobileChallenge
-//
-//  Created by Larissa Silva | Gerencianet on 14/05/21.
-//
-
 import UIKit
 
 
 class BaseViewController: UIViewController, UITextFieldDelegate {
     
+    // MARK: - Objects for building the request json
     var customer: Customer!
     var juridical_person: JuridicalPerson!
     var address: Address!
@@ -19,8 +13,38 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
     var conditional_discount: ConditionalDiscount!
     var payment: Payment!
     var chargeOneStep: CreateChargeOneStep!
-    
     var bankingbillet: BankingBillet!
+    
+    let states = [
+        "AC": "Acre",
+        "AL": "Alagoas",
+        "AP": "Amapá",
+        "AM": "Amazonas",
+        "BA": "Bahia",
+        "CE": "Ceará",
+        "DF": "Distrito Federal",
+        "ES": "Espírito Santo",
+        "GO": "Goiás",
+        "MA": "Maranhão",
+        "MT": "Mato Grosso",
+        "MS": "Mato Grosso do Sul",
+        "MG": "Minas Gerais",
+        "PA": "Pará",
+        "PB": "Paraíba",
+        "PR": "Paraná",
+        "PE": "Pernambuco",
+        "PI": "Piauí",
+        "RJ": "Rio de Janeiro",
+        "RN": "Rio Grande do Norte",
+        "RS": "Rio Grande do Sul",
+        "RO": "Rondônia",
+        "RR": "Roraima",
+        "SC": "Santa Catarina",
+        "SP": "São Paulo",
+        "SE": "Sergipe",
+        "TO": "Tocantins",
+    ]
+    
     var item: Items!
     var items: [Items] = []
     
@@ -29,6 +53,7 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
     var barcode: String = ""
     var link: String = ""
     
+    // MARK: - Keyboard configuration
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
@@ -52,6 +77,8 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
     @objc func keyboardWillHide(sender: NSNotification) {
          self.view.frame.origin.y = 0 // Move view to original position
     }
+    
+ 
     
 
     /*

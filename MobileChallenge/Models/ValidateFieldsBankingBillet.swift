@@ -9,13 +9,10 @@ class ValidateFieldsBankingBillet: UIView {
     func validateField(field: String, type: InputType) -> Bool {
         switch type {
         case .name:
-            hasLastName = field.contains(" ")
-            if field.count > 1 && field.count <= 255 && hasLastName { result = true } else { result = false }
+            let hasLastName = field.components(separatedBy: " ")
+            if field.count > 1 && field.count <= 255 && (hasLastName.count > 1 && hasLastName[1] != "") { result = true } else { result = false }
         case .cpf:
-            var cpfValidated = field
-            cpfValidated = cpfValidated.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
-            cpfValidated = cpfValidated.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
-            if cpfValidated.isCPF && cpfValidated.count == 11 { result = true } else { result = false }
+            if field.isCPF { result = true } else { result = false }
         case .phone_number:
             var phone_numberValidated = field
             phone_numberValidated = phone_numberValidated.replacingOccurrences(of: "(", with: "", options: NSString.CompareOptions.literal, range: nil)
@@ -40,13 +37,12 @@ class ValidateFieldsBankingBillet: UIView {
             if field.count > 1 { result = true } else { result = false }
         case .complement:
             if field.count > 1 { result = true } else { result = false }
+        case .state:
+            if field.count > 1 { result = true } else { result = false }
         case .corporate_name:
             if field.count > 1 && field.count <= 255 { result = true } else { result = false }
         case .cnpj:
-            var cnpjValidated = field
-            cnpjValidated = cnpjValidated.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
-            cnpjValidated = cnpjValidated.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
-            if cnpjValidated.count == 14 { result = true } else { result = false }
+            if field.isCNPJ { result = true } else { result = false }
         default:
             return false
         }
@@ -65,7 +61,10 @@ class ValidateFieldsBankingBillet: UIView {
 
 
 extension String {
-  var isCPF: Bool {
+    
+    var isInt: Bool { return Int(self) != nil }
+    
+    var isCPF: Bool {
       let numbers = self.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
       guard numbers.count == 11 else { return false }
 
@@ -98,11 +97,26 @@ extension String {
 
       return temp1 == d1 && temp2 == d2
   }
+    
+    var isCNPJ: Bool {
+            let numbers = compactMap({ Int(String($0)) })
+            guard numbers.count == 14 && Set(numbers).count != 1 else { return false }
+            func digitCalculator(_ slice: ArraySlice<Int>) -> Int {
+                var number = 1
+                let digit = 11 - slice.reversed().reduce(into: 0) {
+                    number += 1
+                    $0 += $1 * number
+                    if number == 9 { number = 1 }
+                } % 11
+                return digit > 9 ? 0 : digit
+            }
+            let dv1 = digitCalculator(numbers.prefix(12))
+            let dv2 = digitCalculator(numbers.prefix(13))
+            return dv1 == numbers[12] && dv2 == numbers[13]
+    }
+}
   
-  var isInt: Bool {
-      return Int(self) != nil
-  }
-  
+    /*
   func mask(type: String, character: Character) -> String {
       let num = self.replacingOccurrences(of: "[ˆ0-9]", with: "" ,options: .regularExpression)
       for n in 0..<type.count{
@@ -114,10 +128,4 @@ extension String {
           guard char != character else { continue }
       }
       return num
-  }
-}
-
-
-
-
-
+  }*/

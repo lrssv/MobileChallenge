@@ -70,7 +70,6 @@ class AddFieldsViewController: BaseViewController {
     var discountChosen: String?
     var conditionalDiscountChosen: String?
     
-    
     // MARK: - Functions about Additional Fields View
     
     override func viewDidLoad() {
@@ -193,7 +192,7 @@ class AddFieldsViewController: BaseViewController {
     
     func totalPayment() {
         for i in items {
-            totalBankingBillet += Double(i.valueShow)!
+            totalBankingBillet += Double(i.total)!
         }
         
         tfTotal.text = "R$ \(totalBankingBillet)"
@@ -303,7 +302,7 @@ class AddFieldsViewController: BaseViewController {
     }
     
     @objc override func keyboardWillShow(sender: NSNotification) {
-         self.view.frame.origin.y = -50 // Move view 150 points upward
+         self.view.frame.origin.y = -50 
     }
     // MARK: - Create Date Pickers
     func datePickerDueDate(){

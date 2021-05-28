@@ -5,16 +5,22 @@ class ItemsViewController: BaseViewController {
     // MARK: - Variables
     
     @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var btNext: UIButton!
+    
     var numberOfRows: Int = 0
     
     // MARK: - Functions about the Items View
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        btNext.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         tableview.reloadData()
+        realeaseButton()
     }
     
     @IBAction func addItem(_ sender: UIButton) {
@@ -22,6 +28,16 @@ class ItemsViewController: BaseViewController {
         addItem.modalPresentationStyle = .fullScreen
         addItem.delegate = self
         present(addItem, animated: true, completion: nil)
+    }
+    
+    func realeaseButton(){
+        if items.count >= 1 {
+            btNext.backgroundColor = UIColor(hexString: "#F36F36")
+            btNext.isEnabled = true
+        } else {
+            btNext.backgroundColor = .lightGray
+            btNext.isEnabled = false
+        }
     }
     
     @IBAction func backToView(_ sender: Any) {

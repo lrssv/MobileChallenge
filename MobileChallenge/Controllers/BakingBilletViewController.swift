@@ -58,9 +58,23 @@ class BankingBilletViewController: BaseViewController {
     @IBOutlet weak var viewTfState: ValidateFieldsBankingBillet!
     
     let validate = ValidateFieldsBankingBillet()
-    var nameValidated = false, cpfValidated = false, phone_numberValidated = false, emailValidated = false, corporate_nameValidated = false, cnpjValidated = false, streetValidated = false, numberValidated = false, complementValidated = false, neighboorhoodValidated = false, cepValidated = false
+    var nameValidated = false, cpfValidated = false, phone_numberValidated = false, emailValidated = true, corporate_nameValidated = false, cnpjValidated = false, streetValidated = false, numberValidated = false, complementValidated = false, neighboorhoodValidated = false, cepValidated = false, stateValidated = false
     
+    var choosen: Bool = false
     var addFieldsIsOn: Bool = false
+    
+    //MARK: - Elements of Picker View
+    
+    lazy var pickerViewStates: UIPickerView  = {
+        let pickerViewStates = UIPickerView()
+        pickerViewStates.delegate  = self
+        pickerViewStates.dataSource = self
+        return pickerViewStates
+    }()
+    
+    var stateName: [String] = []
+    var stateChosen: String?
+    var stateInitials: String?
     
     // MARK: - Functions about Banking Billet View
     
@@ -68,6 +82,9 @@ class BankingBilletViewController: BaseViewController {
         super.viewDidLoad()
         
         showAtrributes(for: .individualPerson)
+        
+        createPickerView()
+        
         btNext.isEnabled = true
     }
     
@@ -93,7 +110,6 @@ class BankingBilletViewController: BaseViewController {
         switch scForWho.selectedSegmentIndex {
         case 0:
             showAtrributes(for: .individualPerson)
-            realeaseButton(field: .buttonNotEnable)
             swAddFields.isOn = false
         default:
             showAtrributes(for: .juridicalPerson)
@@ -128,6 +144,7 @@ class BankingBilletViewController: BaseViewController {
         
         if let phone_number = tfPhoneNumber.text {
             if textField == tfPhoneNumber {
+                tfPhoneNumber.text = formatPhone(phone_number)
                 phone_numberValidated = validate.validateField(field: phone_number, type: .phone_number)
                 validate.changeColorView(response: phone_numberValidated, view: viewTfPhoneNumber)
             }
@@ -197,16 +214,21 @@ class BankingBilletViewController: BaseViewController {
             }
         }
         
+        if let state = tfState.text {
+            if textField == tfState {
+                stateValidated = validate.validateField(field: state, type: .state)
+                validate.changeColorView(response: stateValidated, view: viewTfState)
+            }
+        }
+        
         realeaseButton(field: .addedFields)
     }
     
   
     func realeaseButton(field type: FieldsType){
-        var choosen: Bool = false
-        
         switch type {
         case .binding:
-            if nameValidated && cpfValidated && phone_numberValidated  {
+            if nameValidated && cpfValidated && phone_numberValidated && emailValidated && scForWho.selectedSegmentIndex == 0 {
                 btNext.backgroundColor = UIColor(hexString: "#F36F36")
                 btNext.isEnabled = true
                 choosen = true
@@ -217,7 +239,7 @@ class BankingBilletViewController: BaseViewController {
                 btNext.isEnabled = true
             }
         case .addedFields:
-            if choosen && streetValidated && numberValidated && complementValidated && neighboorhoodValidated && cepValidated {
+            if choosen && streetValidated && numberValidated && complementValidated && neighboorhoodValidated && cepValidated && stateValidated && emailValidated  {
                 btNext.backgroundColor = UIColor(hexString: "#F36F36")
                 btNext.isEnabled = true
             }
@@ -245,7 +267,7 @@ class BankingBilletViewController: BaseViewController {
         customer = Customer(name: tfName.text!, cpf: cpfString, phone_number: phoneNumberString)
         
         if addFieldsIsOn {
-            address = Address(street: tfStreet.text!, number: tfNumber.text!, neighborhood: tfNeighborhood.text!, zipcode: cepString, state: tfState.text!)
+            address = Address(street: tfStreet.text!, number: tfNumber.text!, neighborhood: tfNeighborhood.text!, zipcode: cepString, state: stateInitials!)
             customer.address = address
         }
         
@@ -260,19 +282,75 @@ class BankingBilletViewController: BaseViewController {
         vc.customer = customer
     }
     
+    
     @IBAction func btClientsView(_ sender: UIButton) {
         let client = storyboard?.instantiateViewController(identifier: "ClientsViewController") as! ClientsViewController
         present(client, animated: true, completion: nil)
     }
     
+    func formatPhone(_ number: String) -> String {
+        let cleanNumber = number.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        let format: [Character] = ["(", "X", "X", ")", " ", "X", " ", "X", "X", "X", "X", "-", "X", "X", "X", "X"]
+
+        var result = ""
+        var index = cleanNumber.startIndex
+        for ch in format {
+            if index == cleanNumber.endIndex {
+                break
+            }
+            if ch == "X" {
+                result.append(cleanNumber[index])
+                index = cleanNumber.index(after: index)
+            } else {
+                result.append(ch)
+            }
+        }
+        return result
+    }
+    
+    // MARK: - Keyboard configuration
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    
+    // MARK: - States Picker View
+    func createPickerView(){
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+        toolbar.tintColor = UIColor(named: "main")
+        
+        let btFlexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        let btCancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        let btDone = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDiscount))
+        toolbar.items = [btCancel, btFlexibleSpace, btDone]
+        
+        tfState.inputAccessoryView = toolbar
+        tfState.inputView = pickerViewStates
+        tfState.tintColor = UIColor.clear
+    }
+    
+    @objc func cancel() {
+        tfState.resignFirstResponder()
+    }
+    
+    @objc func doneDiscount() {
+        stateChosen = stateName[pickerViewStates.selectedRow(inComponent: 0)]
+        tfState.text = stateChosen
+        
+        for (key, value) in states {
+            if value == stateChosen {
+                stateInitials = key
+            }
+        }
+
+        cancel()
+    }
+    
 }
 
-// MARK: - Extensions
 
+// MARK: - Extensions
 extension UIColor {
     convenience init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
@@ -292,3 +370,23 @@ extension UIColor {
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 }
+
+extension BankingBilletViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return states.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        for i in states {
+            stateName.append(i.value)
+        }
+        
+        return stateName[row]
+    }
+}
+
+

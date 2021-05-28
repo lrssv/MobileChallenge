@@ -64,7 +64,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex.: João Paulo Oliveira" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gNK-fI-K09">
-                                                        <rect key="frame" x="18" y="171" width="131.66666666666666" height="22"/>
+                                                        <rect key="frame" x="18" y="171" width="332" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="TZA-r5-WZW"/>
                                                         </constraints>
@@ -120,7 +120,6 @@
                                                 <constraints>
                                                     <constraint firstItem="9hY-HJ-boU" firstAttribute="height" secondItem="0Ge-QO-01B" secondAttribute="height" id="0UT-iU-gLa"/>
                                                     <constraint firstItem="cTa-lX-LF2" firstAttribute="leading" secondItem="Afi-jY-Iek" secondAttribute="leading" constant="18" id="1qO-pk-Z9d"/>
-                                                    <constraint firstItem="IJ9-QR-1ZT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gNK-fI-K09" secondAttribute="trailing" constant="8" symbolic="YES" id="1uL-OT-eKi"/>
                                                     <constraint firstItem="59F-83-VRH" firstAttribute="leading" secondItem="Afi-jY-Iek" secondAttribute="leading" constant="17" id="2iW-U8-NbB"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zhX-og-sHw" secondAttribute="trailing" constant="20" symbolic="YES" id="3lR-4u-vR5"/>
                                                     <constraint firstAttribute="trailing" secondItem="9sj-kR-gcK" secondAttribute="trailing" constant="17.5" id="460-g9-dLG"/>
@@ -156,6 +155,7 @@
                                                     <constraint firstItem="zhX-og-sHw" firstAttribute="top" secondItem="Jnb-qz-aar" secondAttribute="bottom" constant="31" id="tsX-5B-WDY"/>
                                                     <constraint firstItem="cTa-lX-LF2" firstAttribute="top" secondItem="zhX-og-sHw" secondAttribute="bottom" constant="13" id="ud3-Iu-U7L"/>
                                                     <constraint firstItem="d3d-th-rvw" firstAttribute="leading" secondItem="9hY-HJ-boU" secondAttribute="trailing" constant="8.25" id="y1N-cM-HaQ"/>
+                                                    <constraint firstItem="IJ9-QR-1ZT" firstAttribute="leading" secondItem="gNK-fI-K09" secondAttribute="trailing" constant="20" id="ySE-rw-f9f"/>
                                                     <constraint firstAttribute="trailing" secondItem="wy9-nx-3Os" secondAttribute="trailing" constant="16" id="ygc-nO-33i"/>
                                                     <constraint firstItem="9hY-HJ-boU" firstAttribute="width" secondItem="0Ge-QO-01B" secondAttribute="width" id="zas-Df-kMx"/>
                                                 </constraints>
@@ -897,6 +897,7 @@ para o cliente.</string>
                     </view>
                     <navigationItem key="navigationItem" title="EMISSAO DE BOLETO" largeTitleDisplayMode="never" id="nFC-Vd-mnb"/>
                     <connections>
+                        <outlet property="btNext" destination="t6S-Ev-3Zh" id="i3z-8V-iAN"/>
                         <outlet property="tableview" destination="dFV-Ih-UzC" id="yaR-WA-ECm"/>
                     </connections>
                 </viewController>
@@ -1856,9 +1857,10 @@ para o cliente.</string>
                                                     <constraint firstAttribute="height" constant="22" id="c4f-uJ-eL1"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 <connections>
-                                                    <action selector="verifyFields:" destination="A59-U4-QPB" eventType="editingChanged" id="tXc-js-axK"/>
+                                                    <action selector="formatValue:" destination="A59-U4-QPB" eventType="editingDidBegin" id="A9V-uy-O4M"/>
+                                                    <action selector="verifyFields:" destination="A59-U4-QPB" eventType="editingChanged" id="9y2-Le-RbY"/>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qkT-3B-E9w" customClass="ValidateFieldsItems" customModule="MobileChallenge" customModuleProvider="target">

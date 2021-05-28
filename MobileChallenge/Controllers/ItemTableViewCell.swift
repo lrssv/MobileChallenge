@@ -1,10 +1,3 @@
-//
-//  ItemTableViewCell.swift
-//  MobileChallenge
-//
-//  Created by Larissa Silva | Gerencianet on 17/05/21.
-//
-
 import UIKit
 
 class ItemTableViewCell: UITableViewCell {
@@ -23,9 +16,13 @@ class ItemTableViewCell: UITableViewCell {
     }
     
     func prepare(with item: Items){
+        
+        let value = Double(item.value)/100
+        let valueShow = String(format: "%.2f", value)
+        
         lbItemName.text = item.name
-        lbItemValue.text = "R$ \(item.value)"
+        lbItemValue.text = "R$ \(valueShow)"
         lbItemAmount.text = "\(item.amount)"
-        lbTotal.text = "R$ \(item.valueShow)"
+        lbTotal.text = "R$ \(item.total)"
     }
 }

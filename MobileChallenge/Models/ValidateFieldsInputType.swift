@@ -13,6 +13,7 @@ enum InputType {
     case zipcode
     case city
     case complement
+    case state
     case corporate_name
     case cnpj
     
