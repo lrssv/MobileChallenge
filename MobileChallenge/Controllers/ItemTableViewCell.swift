@@ -34,7 +34,6 @@ class ItemTableViewCell: UITableViewCell{
         formatter.usesGroupingSeparator = true
         formatter.numberStyle = .currency
         formatter.locale = Locale(identifier: "pt_BR")
-        
 
         let value = Double(number)!/100
         

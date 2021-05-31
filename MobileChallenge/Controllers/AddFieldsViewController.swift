@@ -36,6 +36,7 @@ class AddFieldsViewController: BaseViewController {
     @IBOutlet weak var viewTFUntilDate: ValidateFieldsAddFields!
     
     var addFieldsIsOn: Bool = false
+    var valueItem: String = ""
     
     let validate = ValidateFieldsAddFields()
     
@@ -111,8 +112,26 @@ class AddFieldsViewController: BaseViewController {
     @IBAction func validateAddFields(_ textField: UITextField) {
         if let shipping = tfShipping.text {
             if textField == tfShipping {
-                shippingValidated = validate.validateField(field: shipping, type: .shipping)
-                validate.changeColorView(response: shippingValidated, view: viewTFShipping)
+                if shipping.count == 1 {
+                    let aux = "00\(shipping)"
+                    let valueAux = formatterNumber(number: aux)
+                    tfShipping.text = valueAux
+                    
+                    validate.changeColorView(response: false, view: viewTFShipping)
+                } else {
+                    valueItem = shipping
+                    valueItem = valueItem.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
+                    valueItem = valueItem.replacingOccurrences(of: "R$", with: "", options: NSString.CompareOptions.literal, range: nil)
+                    
+                    valueItem = valueItem.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
+                    valueItem = String(valueItem.dropFirst())
+                    
+                    let aux = formatterNumber(number: valueItem)
+                    tfShipping.text = aux
+                    
+                    shippingValidated = validate.validateField(field: valueItem, type: .shipping)
+                    validate.changeColorView(response: shippingValidated, view: viewTFShipping)
+                }
             }
         }
         
@@ -125,13 +144,15 @@ class AddFieldsViewController: BaseViewController {
         
         if let discount = tfDiscount.text {
             if textField == tfDiscount {
-                discountValidated = validate.validateField(field: discount, type: .discount)
+                tfDiscount.text! = discount.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
+                discountValidated  = validate.validateField(field: discount, type: .typeOf_conditional_discount)
                 validate.changeColorView(response: discountValidated, view: viewTFDiscount)
             }
         }
         
         if let conditional_discount = tfConditionalDiscount.text {
             if textField == tfConditionalDiscount {
+                tfConditionalDiscount.text! = conditional_discount.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
                 conditionalDiscountValidated  = validate.validateField(field: conditional_discount, type: .typeOf_conditional_discount)
                 validate.changeColorView(response: conditionalDiscountValidated, view: viewTFConditionalDiscount)
             }
@@ -189,13 +210,14 @@ class AddFieldsViewController: BaseViewController {
         }
     }
     
-    
     func totalPayment() {
         for i in items {
             totalBankingBillet += Double(i.total)!
         }
         
-        tfTotal.text = "R$ \(totalBankingBillet)"
+        let total = formatterNumber(number: String(totalBankingBillet))
+            
+        tfTotal.text = total
     }
     
     
@@ -246,6 +268,21 @@ class AddFieldsViewController: BaseViewController {
         vc.totalBankingBillet = totalBankingBillet
     }
     
+    func formatterNumber(number: String) -> String {
+        let formatter = NumberFormatter()
+        
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "pt_BR")
+
+        let value = Double(number)!/100
+        
+        if let price = formatter.string(from: NSNumber(value: value)) {
+            return price
+        } else {
+            return ""
+        }
+    }
     
     @IBAction func backToView(_ sender: UIButton) {
             navigationController?.popViewController(animated: true)     

@@ -13,7 +13,7 @@ class ItemsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        btNext.isEnabled = false
+        btNext.isEnabled = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
