@@ -15,10 +15,7 @@ class SavedItemsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
-    
 
 }
 
@@ -28,12 +25,23 @@ extension SavedItemsViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if let rows = config.getItem() {
+            return rows.count
+        }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SavedItemsTableViewCell
+        
+        if let savedItems = config.getItem() {
+            let thisItem = savedItems[indexPath.row]
+            cell.prepare(with: thisItem)
+            
+            return cell
+        }
         return cell
+        
     }
 }
 

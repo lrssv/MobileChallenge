@@ -9,10 +9,6 @@ class ClientsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-    
-    
-
 }
 
 extension ClientsViewController: UITableViewDataSource{
@@ -36,7 +32,6 @@ extension ClientsViewController: UITableViewDataSource{
             return cell
         }
         return cell
-        
     }
 }
 

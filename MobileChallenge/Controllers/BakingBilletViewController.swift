@@ -292,7 +292,7 @@ class BankingBilletViewController: BaseViewController {
     
     @IBAction func btClientsView(_ sender: UIButton) {
         let client = storyboard?.instantiateViewController(identifier: "ClientsViewController") as! ClientsViewController
-        present(client, animated: true, completion: nil)
+        show(client, sender: self)
     }
     
     func formatterField(_ number: String, _ type: String) -> String {

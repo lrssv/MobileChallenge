@@ -46,7 +46,7 @@ class ItemsViewController: BaseViewController {
     
     @IBAction func searchItem(_ sender: UIButton) {
         let client = storyboard?.instantiateViewController(identifier: "SavedItemsViewController") as! SavedItemsViewController
-        present(client, animated: true, completion: nil)
+        show(client, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -16,6 +16,7 @@
 		9E4DF712264D948300855E08 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF711264D948300855E08 /* AddItemViewController.swift */; };
 		9E4DF715264EA3D900855E08 /* AddFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF714264EA3D900855E08 /* AddFieldsViewController.swift */; };
 		9E692668264AF6BD009AE3B2 /* BakingBilletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E692667264AF6BD009AE3B2 /* BakingBilletViewController.swift */; };
+		9E6A647226657D2900FE2BF8 /* SavedItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6A647126657D2900FE2BF8 /* SavedItemsTableViewCell.swift */; };
 		9E88299B2649B8EE00683FFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88299A2649B8EE00683FFD /* AppDelegate.swift */; };
 		9E88299D2649B8EE00683FFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88299C2649B8EE00683FFD /* SceneDelegate.swift */; };
 		9E8829A22649B8EE00683FFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E8829A02649B8EE00683FFD /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 		9E4DF711264D948300855E08 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		9E4DF714264EA3D900855E08 /* AddFieldsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFieldsViewController.swift; sourceTree = "<group>"; };
 		9E692667264AF6BD009AE3B2 /* BakingBilletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakingBilletViewController.swift; sourceTree = "<group>"; };
+		9E6A647126657D2900FE2BF8 /* SavedItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItemsTableViewCell.swift; sourceTree = "<group>"; };
 		9E8829972649B8EE00683FFD /* MobileChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E88299A2649B8EE00683FFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E88299C2649B8EE00683FFD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				9EB7489D2653F6E900C20215 /* IssueBankingBilletViewController.swift */,
 				9EEDCE53265FE71B00C3DBCE /* ShowBankingBilletViewController.swift */,
 				9EE94F6E2665191B000E1AD9 /* ClientsTableViewCell.swift */,
+				9E6A647126657D2900FE2BF8 /* SavedItemsTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				9EA06445265704B700BF3197 /* ValidateFieldsBankingBillet.swift in Sources */,
 				9EFAA5F0264EE18900E23E36 /* BaseViewController.swift in Sources */,
 				9EB748B326557D5100C20215 /* Shippings.swift in Sources */,
+				9E6A647226657D2900FE2BF8 /* SavedItemsTableViewCell.swift in Sources */,
 				9EB748AA26557A0C00C20215 /* JuridicalPerson.swift in Sources */,
 				9ED90BB42652D3E2005DC194 /* ItemTableViewCell.swift in Sources */,
 				9E4DF702264C4BC300855E08 /* ClientsViewController.swift in Sources */,

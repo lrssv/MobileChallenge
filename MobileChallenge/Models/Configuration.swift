@@ -19,7 +19,6 @@ class Configuration {
     
     let userDefaults = UserDefaults.standard
     static var shared: Configuration = Configuration()
-    var myArray: [String] = []
     
     func setCustomer(customer: Customer){
         if let data = UserDefaults.standard.value(forKey:"customers") as? Data {
@@ -43,58 +42,26 @@ class Configuration {
         return nil
     }
     
-    
-    
-    
-    
-    /*
-    func setClientsName(name: String) {
-        myDict = defaults.dictionary(forKey: "clients")
-        defaults.
-    }
-    
-    func getClientsName() -> [String]{
-        return myArray
-    }*/
-    
-    /*
-    var clientName: String {
-        get {
-            return defaults.string(forKey: UserDefaultsKeys.clientDocument.rawValue)!
-        }
-        set {
-            defaults.set(newValue, forKey: UserDefaultsKeys.clientDocument.rawValue)
-        }
-    }
- 
-    
-    var clientDocument: String {
-        get {
-            return defaults.string(forKey: UserDefaultsKeys.clientDocument.rawValue)!
-        }
-        set {
-            defaults.set(newValue, forKey: UserDefaultsKeys.clientDocument.rawValue)
+    func setItem(item: Items){
+        if let data = UserDefaults.standard.value(forKey:"items") as? Data {
+            do {
+                var items = try PropertyListDecoder().decode(Array<Items>.self, from: data)
+                items.append(item)
+                UserDefaults.standard.set(try PropertyListEncoder().encode(items), forKey:"items")
+            } catch {
+                print("error")
+            }
+        } else {
+            UserDefaults.standard.set(try? PropertyListEncoder().encode([item]), forKey:"items")
         }
     }
     
-
-    
-    var itemName: String {
-        get {
-            return defaults.string(forKey: UserDefaultsKeys.itemName.rawValue)!
+    func getItem() -> [Items]? {
+        if let data = UserDefaults.standard.value(forKey:"items") as? Data {
+            let items = try? PropertyListDecoder().decode(Array<Items>.self, from: data)
+            return items
         }
-        set {
-            defaults.set(newValue, forKey: UserDefaultsKeys.itemName.rawValue)
-        }
+        return nil
     }
-    
-    var itemValue: String {
-        get {
-            return defaults.string(forKey: UserDefaultsKeys.itemValue.rawValue)!
-        }
-        set {
-            defaults.set(newValue, forKey: UserDefaultsKeys.itemValue.rawValue)
-        }
-    }*/
 }
 

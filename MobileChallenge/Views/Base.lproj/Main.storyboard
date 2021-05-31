@@ -824,8 +824,7 @@ para o cliente.</string>
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="btNextView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qer-QJ-r9t"/>
-                                    <segue destination="juE-Vm-GtY" kind="show" identifier="ShowAddFields" id="BFV-dZ-U3b"/>
+                                    <segue destination="juE-Vm-GtY" kind="show" id="5wU-aV-f5y"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmy-4Y-49D">
@@ -1733,30 +1732,20 @@ para o cliente.</string>
         <!--MEUS ITENS-->
         <scene sceneID="uab-1E-Rgo">
             <objects>
-                <viewController storyboardIdentifier="SavedItemsViewController" id="aFf-va-Ke8" customClass="SavedItemsViewController" customModule="MobileChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SavedItemsViewController" modalPresentationStyle="fullScreen" id="aFf-va-Ke8" customClass="SavedItemsViewController" customModule="MobileChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O9s-WA-bC7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hcH-zE-bXC">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <color key="barTintColor" red="0.95294117649999999" green="0.43529411759999997" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Meus Itens" id="7bp-ZH-8nf"/>
-                                </items>
-                            </navigationBar>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="gNX-FY-CAE">
-                                <rect key="frame" x="0.0" y="60" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ILJ-Ua-IyR">
-                                <rect key="frame" x="0.0" y="142.66666666666669" width="414" height="593.33333333333326"/>
+                                <rect key="frame" x="0.0" y="62" width="414" height="674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="bAd-78-FZ5" detailTextLabel="2pl-et-0Fc" rowHeight="81" style="IBUITableViewCellStyleSubtitle" id="9SL-7Y-gPX">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="bAd-78-FZ5" detailTextLabel="2pl-et-0Fc" rowHeight="81" style="IBUITableViewCellStyleSubtitle" id="9SL-7Y-gPX" customClass="SavedItemsTableViewCell" customModule="MobileChallenge" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9SL-7Y-gPX" id="NFz-dU-dVH">
@@ -1779,6 +1768,10 @@ para o cliente.</string>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="tfName" destination="bAd-78-FZ5" id="uvc-pZ-Lq3"/>
+                                            <outlet property="tfValue" destination="2pl-et-0Fc" id="blA-Yd-Tpc"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1790,15 +1783,12 @@ para o cliente.</string>
                         <viewLayoutGuide key="safeArea" id="fWh-4d-M6Z"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gNX-FY-CAE" firstAttribute="top" secondItem="hcH-zE-bXC" secondAttribute="bottom" constant="16" id="87W-O3-eDH"/>
                             <constraint firstItem="ILJ-Ua-IyR" firstAttribute="leading" secondItem="fWh-4d-M6Z" secondAttribute="leading" id="Ag6-Mp-Qio"/>
                             <constraint firstItem="gNX-FY-CAE" firstAttribute="trailing" secondItem="fWh-4d-M6Z" secondAttribute="trailing" id="BVI-uj-kBy"/>
-                            <constraint firstAttribute="trailing" secondItem="hcH-zE-bXC" secondAttribute="trailing" id="J61-9L-Gjj"/>
+                            <constraint firstItem="gNX-FY-CAE" firstAttribute="top" secondItem="fWh-4d-M6Z" secondAttribute="top" id="Jnp-gG-12n"/>
                             <constraint firstItem="ILJ-Ua-IyR" firstAttribute="bottom" secondItem="fWh-4d-M6Z" secondAttribute="bottom" id="lhA-Km-1a6"/>
-                            <constraint firstItem="hcH-zE-bXC" firstAttribute="leading" secondItem="O9s-WA-bC7" secondAttribute="leading" id="mmi-qZ-G5q"/>
                             <constraint firstItem="gNX-FY-CAE" firstAttribute="leading" secondItem="fWh-4d-M6Z" secondAttribute="leading" id="vBg-mv-5AO"/>
-                            <constraint firstItem="hcH-zE-bXC" firstAttribute="top" secondItem="O9s-WA-bC7" secondAttribute="top" id="vrS-NJ-FaZ"/>
-                            <constraint firstItem="ILJ-Ua-IyR" firstAttribute="top" secondItem="gNX-FY-CAE" secondAttribute="bottom" constant="26.5" id="wFY-JR-y2T"/>
+                            <constraint firstItem="ILJ-Ua-IyR" firstAttribute="top" secondItem="gNX-FY-CAE" secondAttribute="bottom" constant="6" id="wFY-JR-y2T"/>
                             <constraint firstItem="ILJ-Ua-IyR" firstAttribute="trailing" secondItem="fWh-4d-M6Z" secondAttribute="trailing" id="zNX-VY-Yzg"/>
                         </constraints>
                     </view>
@@ -2046,11 +2036,11 @@ para o cliente.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" text="" placeholder="Pesquise por item" translatesAutoresizingMaskIntoConstraints="NO" id="bDz-Ln-cQe">
-                                <rect key="frame" x="0.0" y="16" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="scC-Ro-qHq">
-                                <rect key="frame" x="0.0" y="74" width="414" height="662"/>
+                                <rect key="frame" x="0.0" y="58" width="414" height="678"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="64" id="Wai-V7-eBJ" customClass="ClientsTableViewCell" customModule="MobileChallenge" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="64"/>
@@ -2121,7 +2111,7 @@ para o cliente.</string>
                             <constraint firstItem="bDz-Ln-cQe" firstAttribute="trailing" secondItem="aFY-mC-y14" secondAttribute="trailing" id="aF7-s3-QCk"/>
                             <constraint firstItem="bDz-Ln-cQe" firstAttribute="leading" secondItem="aFY-mC-y14" secondAttribute="leading" id="gn2-V6-BFB"/>
                             <constraint firstItem="scC-Ro-qHq" firstAttribute="bottom" secondItem="aFY-mC-y14" secondAttribute="bottom" id="iab-WQ-WhC"/>
-                            <constraint firstItem="bDz-Ln-cQe" firstAttribute="top" secondItem="aFY-mC-y14" secondAttribute="top" constant="16" id="nDH-qj-CBh"/>
+                            <constraint firstItem="bDz-Ln-cQe" firstAttribute="top" secondItem="aFY-mC-y14" secondAttribute="top" id="nDH-qj-CBh"/>
                             <constraint firstItem="scC-Ro-qHq" firstAttribute="trailing" secondItem="aFY-mC-y14" secondAttribute="trailing" id="tve-5M-hxI"/>
                         </constraints>
                     </view>

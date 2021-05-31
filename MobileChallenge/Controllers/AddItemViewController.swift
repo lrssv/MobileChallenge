@@ -105,6 +105,8 @@ class AddItemViewController: BaseViewController {
         
         delegate?.prepareItems(added: item)
         
+        config.setItem(item: item)
+        
         dismiss(animated: true, completion: nil)
     }
     
