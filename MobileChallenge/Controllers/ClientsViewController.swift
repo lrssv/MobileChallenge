@@ -11,6 +11,7 @@ class ClientsViewController: BaseViewController {
     }
 
     
+    
 
 }
 
@@ -20,12 +21,22 @@ extension ClientsViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if let rows = config.getCustomer() {
+            return rows.count
+        }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ClientsTableViewCell
+        
+        if let savedCustomers = config.getCustomer() {
+            let thisCustomer = savedCustomers[indexPath.row]
+            cell.prepare(with: thisCustomer)
+            return cell
+        }
         return cell
+        
     }
 }
 

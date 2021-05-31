@@ -37,6 +37,8 @@
 		9EB748B62655866100C20215 /* Discount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB748B52655866100C20215 /* Discount.swift */; };
 		9EB748BD2655B87E00C20215 /* ConditionalDiscount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB748BC2655B87E00C20215 /* ConditionalDiscount.swift */; };
 		9ED90BB42652D3E2005DC194 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED90BB32652D3E2005DC194 /* ItemTableViewCell.swift */; };
+		9EE94F6C26651581000E1AD9 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE94F6B26651581000E1AD9 /* Configuration.swift */; };
+		9EE94F6F2665191B000E1AD9 /* ClientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE94F6E2665191B000E1AD9 /* ClientsTableViewCell.swift */; };
 		9EEDCE54265FE71B00C3DBCE /* ShowBankingBilletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEDCE53265FE71B00C3DBCE /* ShowBankingBilletViewController.swift */; };
 		9EFAA5F0264EE18900E23E36 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFAA5EF264EE18900E23E36 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
@@ -74,6 +76,8 @@
 		9EB748B52655866100C20215 /* Discount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discount.swift; sourceTree = "<group>"; };
 		9EB748BC2655B87E00C20215 /* ConditionalDiscount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalDiscount.swift; sourceTree = "<group>"; };
 		9ED90BB32652D3E2005DC194 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		9EE94F6B26651581000E1AD9 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		9EE94F6E2665191B000E1AD9 /* ClientsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsTableViewCell.swift; sourceTree = "<group>"; };
 		9EEDCE53265FE71B00C3DBCE /* ShowBankingBilletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowBankingBilletViewController.swift; sourceTree = "<group>"; };
 		9EFAA5EF264EE18900E23E36 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +111,7 @@
 				9EA26481265C25EB00F22D19 /* ValidateFieldsItems.swift */,
 				9EA26487265D648C00F22D19 /* ValidateFieldsAddFields.swift */,
 				9EA2648A265D672C00F22D19 /* ValidateFieldsInputType.swift */,
+				9EE94F6B26651581000E1AD9 /* Configuration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 				9ED90BB32652D3E2005DC194 /* ItemTableViewCell.swift */,
 				9EB7489D2653F6E900C20215 /* IssueBankingBilletViewController.swift */,
 				9EEDCE53265FE71B00C3DBCE /* ShowBankingBilletViewController.swift */,
+				9EE94F6E2665191B000E1AD9 /* ClientsTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -242,9 +248,11 @@
 				9E4DF708264D477200855E08 /* Items.swift in Sources */,
 				9EA26488265D648C00F22D19 /* ValidateFieldsAddFields.swift in Sources */,
 				9E4DF715264EA3D900855E08 /* AddFieldsViewController.swift in Sources */,
+				9EE94F6F2665191B000E1AD9 /* ClientsTableViewCell.swift in Sources */,
 				9EB7489E2653F6E900C20215 /* IssueBankingBilletViewController.swift in Sources */,
 				9EB748B62655866100C20215 /* Discount.swift in Sources */,
 				9E692668264AF6BD009AE3B2 /* BakingBilletViewController.swift in Sources */,
+				9EE94F6C26651581000E1AD9 /* Configuration.swift in Sources */,
 				9EB748A4265538CF00C20215 /* CreateChargeOneStep.swift in Sources */,
 				9E06ACA2265FE07A00EF43E6 /* FailRequestViewController.swift in Sources */,
 				9E88299B2649B8EE00683FFD /* AppDelegate.swift in Sources */,

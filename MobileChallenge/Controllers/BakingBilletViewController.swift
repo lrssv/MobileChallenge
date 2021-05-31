@@ -76,6 +76,7 @@ class BankingBilletViewController: BaseViewController {
     var stateChosen: String?
     var stateInitials: String?
     
+    
     // MARK: - Functions about Banking Billet View
     
     override func viewDidLoad() {
@@ -84,7 +85,8 @@ class BankingBilletViewController: BaseViewController {
         showAtrributes(for: .individualPerson)
         
         createPickerView()
-        
+        btBack.layer.borderWidth = 1
+        btBack.layer.borderColor = UIColor.orange.cgColor
         btNext.isEnabled = true
     }
     
@@ -137,6 +139,7 @@ class BankingBilletViewController: BaseViewController {
         
         if let cpf = tfCPF.text {
             if textField == tfCPF {
+                tfCPF.text = formatterField(cpf, "cpf")
                 cpfValidated = validate.validateField(field: cpf, type: .cpf)
                 validate.changeColorView(response: cpfValidated, view: viewTfCPF)
             }
@@ -144,7 +147,7 @@ class BankingBilletViewController: BaseViewController {
         
         if let phone_number = tfPhoneNumber.text {
             if textField == tfPhoneNumber {
-                tfPhoneNumber.text = formatPhone(phone_number)
+                tfPhoneNumber.text = formatterField(phone_number, "phoneNumber")
                 phone_numberValidated = validate.validateField(field: phone_number, type: .phone_number)
                 validate.changeColorView(response: phone_numberValidated, view: viewTfPhoneNumber)
             }
@@ -170,6 +173,7 @@ class BankingBilletViewController: BaseViewController {
         
         if let cnpj = tfCNPJ.text {
             if textField == tfCNPJ {
+                tfCNPJ.text = formatterField(cnpj, "cnpj")
                 cnpjValidated = validate.validateField(field: cnpj, type: .cnpj)
                 validate.changeColorView(response: cnpjValidated, view: viewTfCNPJ)
             }
@@ -275,6 +279,9 @@ class BankingBilletViewController: BaseViewController {
             juridical_person = JuridicalPerson(corporate_name: tfCorporateName.text!, cnpj: tfCNPJ.text!)
             customer.juridical_person = juridical_person
         }
+        
+        config.setCustomer(customer: customer)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -288,10 +295,21 @@ class BankingBilletViewController: BaseViewController {
         present(client, animated: true, completion: nil)
     }
     
-    func formatPhone(_ number: String) -> String {
+    func formatterField(_ number: String, _ type: String) -> String {
         let cleanNumber = number.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-        let format: [Character] = ["(", "X", "X", ")", " ", "X", " ", "X", "X", "X", "X", "-", "X", "X", "X", "X"]
-
+        var format: [Character]
+        
+        switch type {
+        case "phoneNumber":
+            format = ["(", "X", "X", ")", " ", "X", " ", "X", "X", "X", "X", "-", "X", "X", "X", "X"]
+        case "cpf":
+            format = ["X", "X", "X", ".", "X", "X", "X", ".", "X", "X", "X", "-", "X", "X"]
+        case "cnpj":
+            format = ["X", "X", ".", "X", "X", "X", ".", "X", "X", "X", "/", "X", "X", "X", "X", "-", "X", "X"]
+        default:
+            return ""
+        }
+        
         var result = ""
         var index = cleanNumber.startIndex
         for ch in format {

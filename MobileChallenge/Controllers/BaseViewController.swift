@@ -15,6 +15,8 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
     var chargeOneStep: CreateChargeOneStep!
     var bankingbillet: BankingBillet!
     
+    let config = Configuration.shared
+    
     let states = [
         "AC": "Acre",
         "AL": "Alagoas",
