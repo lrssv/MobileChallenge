@@ -14,7 +14,7 @@ class AddFieldsViewController: BaseViewController {
     @IBOutlet weak var btDiscount: UITextField!
     @IBOutlet weak var btConditionalDiscount: UITextField!
     @IBOutlet weak var btNext: UIButton!
-    
+    @IBOutlet weak var btBack: UIButton!
     
     // MARK: - Text field variables
     @IBOutlet weak var tfDate: UITextField!
@@ -84,6 +84,8 @@ class AddFieldsViewController: BaseViewController {
         
         createPickerView()
         
+        btBack.layer.borderWidth = 1
+        btBack.layer.borderColor = UIColor(hexString: "#F36F36").cgColor
         btNext.isEnabled = true
     }
     

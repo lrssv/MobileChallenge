@@ -1,6 +1,6 @@
 import UIKit
 
-class ClientsViewController: UIViewController {
+class ClientsViewController: UIViewController{
 
     @IBOutlet weak var sbItem: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -12,7 +12,7 @@ class ClientsViewController: UIViewController {
     }
 }
 
-extension ClientsViewController: UITableViewDataSource, UITableViewDelegate  {
+extension ClientsViewController: UITableViewDataSource  {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -34,15 +34,28 @@ extension ClientsViewController: UITableViewDataSource, UITableViewDelegate  {
         }
         return cell
     }
-    
+}
+
+extension ClientsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let savedCustomers = config.getCustomer() {
             let thisCustomer = savedCustomers[indexPath.row]
             
-            let showCustomer = storyboard?.instantiateViewController(identifier: "BankingBilletViewController") as? BankingBilletViewController
-            showCustomer?.name = thisCustomer.name
-            self.navigationController?.pushViewController(showCustomer!, animated: true)
+            let showCustomer = storyboard?.instantiateViewController(identifier: "BankingBilletViewController") as! BankingBilletViewController
+            show(showCustomer, sender: self)
+            showCustomer.client_name = thisCustomer.name
+            showCustomer.client_cpf = thisCustomer.cpf
+            showCustomer.client_phone_number = thisCustomer.phone_number
+            
+
+            if thisCustomer.juridical_person != nil {
+                showCustomer.client_cnpj = thisCustomer.juridical_person!.cnpj
+                showCustomer.client_corporate_name = thisCustomer.juridical_person!.corporate_name
+                showCustomer.client_type = .juridicalPerson
+                showCustomer.client_showFields = 1
+            }
         }
     }
 }
+
 

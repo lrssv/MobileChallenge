@@ -1,22 +1,17 @@
-//
-//  SavedItemsViewController.swift
-//  MobileChallenge
-//
-//  Created by Larissa Silva | Gerencianet on 13/05/21.
-//
-
 import UIKit
 
-class SavedItemsViewController: BaseViewController {
+class SavedItemsViewController: UIViewController {
 
     @IBOutlet weak var searchItem: UISearchBar!
     @IBOutlet weak var tableview: UITableView!
     
+    let config = Configuration.shared
+    
+    weak var delegate: AddItemDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
 }
 
 extension SavedItemsViewController: UITableViewDataSource{
@@ -46,5 +41,14 @@ extension SavedItemsViewController: UITableViewDataSource{
 }
 
 extension SavedItemsViewController: UITableViewDelegate{
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let savedItems = config.getItem() {
+            let thisItem = savedItems[indexPath.row]
+            
+            delegate?.prepareItems(added: thisItem)
+            
+            dismiss(animated: true, completion: nil)
+        }
+    }
 }
+

@@ -76,9 +76,15 @@ class BankingBilletViewController: BaseViewController {
     var stateChosen: String?
     var stateInitials: String?
     
+    // MARK: - Variables for Customers Table View
     
-    var name = ""
-    
+    var client_name = ""
+    var client_cpf = ""
+    var client_cnpj = ""
+    var client_phone_number = ""
+    var client_corporate_name = ""
+    var client_type: PersonType = .individualPerson
+    var client_showFields = 0
     
     // MARK: - Functions about Banking Billet View
     
@@ -89,12 +95,43 @@ class BankingBilletViewController: BaseViewController {
         
         createPickerView()
         btBack.layer.borderWidth = 1
-        btBack.layer.borderColor = UIColor.orange.cgColor
-        btNext.isEnabled = true
-        
-        tfName.text = name
+        btBack.layer.borderColor = UIColor(hexString: "#F36F36").cgColor
+        btNext.isEnabled = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tfName.text = client_name
+        tfCPF.text = formatterField(client_cpf, "cpf")
+        tfCNPJ.text = formatterField(client_cnpj, "cnpj")
+        tfCorporateName.text = client_corporate_name
+        tfPhoneNumber.text = formatterField(client_phone_number, "phoneNumber")
+        
+        scForWho.selectedSegmentIndex = client_showFields
+        showAtrributes(for: client_type)
+        
+        
+        if client_name != "" {
+            nameValidated = true
+            cpfValidated = true
+            phone_numberValidated = true
+            validate.changeColorView(response: nameValidated, view: viewTfName)
+            validate.changeColorView(response: cpfValidated, view: viewTfCPF)
+            validate.changeColorView(response: phone_numberValidated, view: viewTfPhoneNumber)
+            
+            realeaseButton(field: .binding)
+        }
+        
+        if client_cnpj != "" {
+            cnpjValidated = true
+            corporate_nameValidated = true
+            validate.changeColorView(response: cnpjValidated, view: viewTfCNPJ)
+            validate.changeColorView(response: corporate_nameValidated, view: viewTfCorporateName)
+            
+            realeaseButton(field: .juridicalPerson)
+        }
+    }
  
     
     func showAtrributes(for person: PersonType){
@@ -244,7 +281,7 @@ class BankingBilletViewController: BaseViewController {
                 choosen = true
             }
         case .juridicalPerson:
-            if nameValidated && cpfValidated && phone_numberValidated && emailValidated && corporate_nameValidated && cnpjValidated {
+            if nameValidated && cpfValidated && phone_numberValidated && corporate_nameValidated && cnpjValidated {
                 btNext.backgroundColor = UIColor(hexString: "#F36F36")
                 btNext.isEnabled = true
             }
@@ -274,6 +311,11 @@ class BankingBilletViewController: BaseViewController {
         cepString = cepString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
         cepString = cepString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
         
+        var cnpjString = tfCNPJ.text!
+        cnpjString = cnpjString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
+        cnpjString = cnpjString.replacingOccurrences(of: "/", with: "", options: NSString.CompareOptions.literal, range: nil)
+        cnpjString = cnpjString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
+        
         customer = Customer(name: tfName.text!, cpf: cpfString, phone_number: phoneNumberString)
         
         if addFieldsIsOn {
@@ -282,7 +324,7 @@ class BankingBilletViewController: BaseViewController {
         }
         
         if scForWho.selectedSegmentIndex == 1 {
-            juridical_person = JuridicalPerson(corporate_name: tfCorporateName.text!, cnpj: tfCNPJ.text!)
+            juridical_person = JuridicalPerson(corporate_name: tfCorporateName.text!, cnpj: cnpjString)
             customer.juridical_person = juridical_person
         }
         

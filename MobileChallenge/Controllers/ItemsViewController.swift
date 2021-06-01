@@ -6,6 +6,7 @@ class ItemsViewController: BaseViewController {
     
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var btNext: UIButton!
+    @IBOutlet weak var btBack: UIButton!
     
     var numberOfRows: Int = 0
     
@@ -13,12 +14,14 @@ class ItemsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        btNext.isEnabled = true
+        btBack.layer.borderWidth = 1
+        btBack.layer.borderColor = UIColor(hexString: "#F36F36").cgColor
+        btNext.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         tableview.reloadData()
         realeaseButton()
     }
@@ -45,8 +48,10 @@ class ItemsViewController: BaseViewController {
     }
     
     @IBAction func searchItem(_ sender: UIButton) {
-        let client = storyboard?.instantiateViewController(identifier: "SavedItemsViewController") as! SavedItemsViewController
-        show(client, sender: self)
+        let addItem = storyboard?.instantiateViewController(identifier: "SavedItemsViewController") as! SavedItemsViewController
+        addItem.modalPresentationStyle = .fullScreen
+        addItem.delegate = self
+        present(addItem, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

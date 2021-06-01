@@ -35,3 +35,4 @@ class SavedItemsTableViewCell: UITableViewCell {
         }
     }
 }
+

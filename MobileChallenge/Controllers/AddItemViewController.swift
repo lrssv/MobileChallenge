@@ -15,6 +15,7 @@ class AddItemViewController: BaseViewController {
     @IBOutlet weak var viewTfValue: ValidateFieldsItems!
     
     @IBOutlet weak var btNext: UIButton!
+    @IBOutlet weak var btBack: UIButton!
     
     weak var delegate: AddItemDelegate?
     
@@ -29,9 +30,10 @@ class AddItemViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        btBack.layer.borderWidth = 1
+        btBack.layer.borderColor = UIColor(hexString: "#F36F36").cgColor
         btNext.isEnabled = false
-        self.tfName.delegate = self
-        self.tfValue.delegate = self
     }
     
     @IBAction func removeAmount(_ sender: UIButton) {
@@ -131,3 +133,4 @@ class AddItemViewController: BaseViewController {
         }
     }
 }
+

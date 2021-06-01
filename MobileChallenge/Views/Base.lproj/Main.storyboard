@@ -660,7 +660,7 @@ para o cliente.</string>
         <!--EMISSAO DE BOLETO-->
         <scene sceneID="LHv-ft-d75">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="vBH-nL-rsh" customClass="ItemsViewController" customModule="MobileChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ItemsViewController" modalPresentationStyle="fullScreen" id="vBH-nL-rsh" customClass="ItemsViewController" customModule="MobileChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vKU-9N-Tqk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -896,6 +896,7 @@ para o cliente.</string>
                     </view>
                     <navigationItem key="navigationItem" title="EMISSAO DE BOLETO" largeTitleDisplayMode="never" id="nFC-Vd-mnb"/>
                     <connections>
+                        <outlet property="btBack" destination="ePA-3L-0lO" id="EOy-eR-HYs"/>
                         <outlet property="btNext" destination="t6S-Ev-3Zh" id="i3z-8V-iAN"/>
                         <outlet property="tableview" destination="dFV-Ih-UzC" id="yaR-WA-ECm"/>
                     </connections>
@@ -1318,6 +1319,7 @@ para o cliente.</string>
                     </view>
                     <navigationItem key="navigationItem" title="EMISSÃO DE BOLETO" id="0dz-aF-TzB"/>
                     <connections>
+                        <outlet property="btBack" destination="lWI-Hv-4is" id="dB2-PN-ptn"/>
                         <outlet property="btCalendar" destination="BYv-21-CFX" id="mzC-4d-PHc"/>
                         <outlet property="btConditionalDiscount" destination="jzE-gP-Eec" id="rFq-jE-ECe"/>
                         <outlet property="btDateShipping" destination="GjA-87-wUy" id="igP-v7-y2w"/>
@@ -1738,11 +1740,11 @@ para o cliente.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="gNX-FY-CAE">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ILJ-Ua-IyR">
-                                <rect key="frame" x="0.0" y="62" width="414" height="674"/>
+                                <rect key="frame" x="0.0" y="112" width="414" height="575"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="bAd-78-FZ5" detailTextLabel="2pl-et-0Fc" rowHeight="81" style="IBUITableViewCellStyleSubtitle" id="9SL-7Y-gPX" customClass="SavedItemsTableViewCell" customModule="MobileChallenge" customModuleProvider="target">
@@ -1779,20 +1781,36 @@ para o cliente.</string>
                                     <outlet property="delegate" destination="aFf-va-Ke8" id="HtO-CB-olN"/>
                                 </connections>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eNj-ID-Z2s">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="barTintColor" red="0.95294117649999999" green="0.43529411759999997" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="21"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="MEUS ITENS" id="sLS-ky-gdj"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fWh-4d-M6Z"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ILJ-Ua-IyR" firstAttribute="leading" secondItem="fWh-4d-M6Z" secondAttribute="leading" id="Ag6-Mp-Qio"/>
                             <constraint firstItem="gNX-FY-CAE" firstAttribute="trailing" secondItem="fWh-4d-M6Z" secondAttribute="trailing" id="BVI-uj-kBy"/>
-                            <constraint firstItem="gNX-FY-CAE" firstAttribute="top" secondItem="fWh-4d-M6Z" secondAttribute="top" id="Jnp-gG-12n"/>
+                            <constraint firstItem="eNj-ID-Z2s" firstAttribute="leading" secondItem="fWh-4d-M6Z" secondAttribute="leading" id="EfP-fr-Al0"/>
+                            <constraint firstItem="eNj-ID-Z2s" firstAttribute="trailing" secondItem="fWh-4d-M6Z" secondAttribute="trailing" id="Gi7-2P-qac"/>
+                            <constraint firstItem="gNX-FY-CAE" firstAttribute="top" secondItem="eNj-ID-Z2s" secondAttribute="bottom" constant="6" id="HN5-Vo-vTg"/>
                             <constraint firstItem="ILJ-Ua-IyR" firstAttribute="bottom" secondItem="fWh-4d-M6Z" secondAttribute="bottom" id="lhA-Km-1a6"/>
                             <constraint firstItem="gNX-FY-CAE" firstAttribute="leading" secondItem="fWh-4d-M6Z" secondAttribute="leading" id="vBg-mv-5AO"/>
+                            <constraint firstItem="eNj-ID-Z2s" firstAttribute="top" secondItem="fWh-4d-M6Z" secondAttribute="top" id="w30-Nc-aDr"/>
                             <constraint firstItem="ILJ-Ua-IyR" firstAttribute="top" secondItem="gNX-FY-CAE" secondAttribute="bottom" constant="6" id="wFY-JR-y2T"/>
                             <constraint firstItem="ILJ-Ua-IyR" firstAttribute="trailing" secondItem="fWh-4d-M6Z" secondAttribute="trailing" id="zNX-VY-Yzg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="MEUS ITENS" id="oEr-7y-Y6Y"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchItem" destination="gNX-FY-CAE" id="rET-JF-bJO"/>
                         <outlet property="tableview" destination="ILJ-Ua-IyR" id="r9G-uj-Dcg"/>
@@ -1800,7 +1818,7 @@ para o cliente.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27Q-oH-nr0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2041" y="1540"/>
+            <point key="canvasLocation" x="2040.5797101449277" y="1539.9456521739132"/>
         </scene>
         <!--Add Item View Controller-->
         <scene sceneID="TFs-O4-qOd">
@@ -2015,6 +2033,7 @@ para o cliente.</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btBack" destination="uAP-g6-C2y" id="7c1-nz-vKp"/>
                         <outlet property="btNext" destination="0HR-bI-BOK" id="LOd-Ix-1Kz"/>
                         <outlet property="tfAmount" destination="oEO-Et-g3t" id="w8h-Jc-AF9"/>
                         <outlet property="tfName" destination="Dei-v2-Okn" id="I08-eb-4OS"/>
