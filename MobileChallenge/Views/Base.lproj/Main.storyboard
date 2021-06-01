@@ -11,7 +11,7 @@
         <!--EMISSÃO DE BOLETO-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="BankingBilletViewController" customModule="MobileChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BankingBilletViewController" id="BYZ-38-t0r" customClass="BankingBilletViewController" customModule="MobileChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2042,7 +2042,7 @@ para o cliente.</string>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="scC-Ro-qHq">
                                 <rect key="frame" x="0.0" y="58" width="414" height="678"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="64" id="Wai-V7-eBJ" customClass="ClientsTableViewCell" customModule="MobileChallenge" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="clientsCell" rowHeight="64" id="Wai-V7-eBJ" customClass="ClientsTableViewCell" customModule="MobileChallenge" customModuleProvider="target" propertyAccessControl="none">
                                         <rect key="frame" x="0.0" y="28" width="414" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wai-V7-eBJ" id="vPE-hC-lcz">
@@ -2052,7 +2052,6 @@ para o cliente.</string>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Elipse" translatesAutoresizingMaskIntoConstraints="NO" id="oni-Y6-A6U">
                                                     <rect key="frame" x="26" y="4" width="49" height="56"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="49" id="YFv-5Q-rVx"/>
                                                         <constraint firstAttribute="width" constant="49" id="jYG-sQ-CfN"/>
                                                     </constraints>
                                                 </imageView>
@@ -2089,6 +2088,9 @@ para o cliente.</string>
                                                 <constraint firstAttribute="bottom" secondItem="7JU-ba-SXs" secondAttribute="bottom" constant="8" id="xOZ-gh-22W"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" selected="YES"/>
+                                        </accessibility>
                                         <connections>
                                             <outlet property="tfDocument" destination="7JU-ba-SXs" id="4c6-sQ-yc8"/>
                                             <outlet property="tfInitials" destination="EdX-WK-oQm" id="DTM-dd-HOF"/>
@@ -2098,8 +2100,8 @@ para o cliente.</string>
                                 </prototypes>
                                 <sections/>
                                 <connections>
-                                    <outlet property="dataSource" destination="hGi-8E-WKb" id="DFH-N4-sxi"/>
-                                    <outlet property="delegate" destination="hGi-8E-WKb" id="VZy-nC-Cgi"/>
+                                    <outlet property="dataSource" destination="hGi-8E-WKb" id="Nag-iQ-KZs"/>
+                                    <outlet property="delegate" destination="hGi-8E-WKb" id="VS8-qd-zPh"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -2118,7 +2120,7 @@ para o cliente.</string>
                     <navigationItem key="navigationItem" title="MEUS CLIENTES" id="Q8g-RH-tk7"/>
                     <connections>
                         <outlet property="sbItem" destination="bDz-Ln-cQe" id="sgo-FR-t0Q"/>
-                        <outlet property="tableview" destination="scC-Ro-qHq" id="Iwx-qB-dCl"/>
+                        <outlet property="tableView" destination="scC-Ro-qHq" id="Iwx-qB-dCl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLf-tP-htX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

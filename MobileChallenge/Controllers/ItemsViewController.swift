@@ -85,5 +85,8 @@ extension ItemsViewController: UITableViewDataSource {
 }
 
 extension ItemsViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         print("row: \(indexPath.row)")
+     }
 }
 

@@ -337,10 +337,10 @@ class AddFieldsViewController: BaseViewController {
         btConditionalDiscount.text = conditionalDiscountChosen
         cancel()
     }
-    
+    /*
     @objc override func keyboardWillShow(sender: NSNotification) {
          self.view.frame.origin.y = -50 
-    }
+    }*/
     // MARK: - Create Date Pickers
     func datePickerDueDate(){
         if #available(iOS 13.4, *) {

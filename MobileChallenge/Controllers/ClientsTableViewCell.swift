@@ -1,10 +1,3 @@
-//
-//  ClientsTableViewCell.swift
-//  MobileChallenge
-//
-//  Created by Larissa Silva | Gerencianet on 31/05/21.
-//
-
 import UIKit
 
 class ClientsTableViewCell: UITableViewCell {
@@ -30,15 +23,16 @@ class ClientsTableViewCell: UITableViewCell {
         let first_name = name.components(separatedBy: " ")[0]
         let last_name = name.components(separatedBy: " ").last
         
-        tfInitials.text = first_name.first!.uppercased() + (last_name?.first!.uppercased())!
+        guard let first_name_initial = first_name.first?.uppercased() else { return }
+        guard let last_name_initial = last_name?.first?.uppercased() else { return }
+        
+        tfInitials.text = first_name_initial + last_name_initial
         
         if let customerCPNJ = customer.juridical_person?.cnpj {
             tfDocument.text = formatterString(customerCPNJ,"cnpj")
         } else {
             tfDocument.text = formatterString(customer.cpf, "cpf")
         }
-        
-        
     }
     
     func formatterString(_ number: String, _ type: String) -> String {

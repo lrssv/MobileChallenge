@@ -17,3 +17,8 @@ class Customer: Codable {
     }
 }
  
+extension Customer: Equatable {
+    static func ==(lhs:Customer,rhs:Customer) -> Bool {
+        return lhs.cpf == rhs.cpf
+    }
+}

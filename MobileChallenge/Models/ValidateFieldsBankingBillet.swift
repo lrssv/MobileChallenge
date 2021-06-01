@@ -9,8 +9,11 @@ class ValidateFieldsBankingBillet: UIView {
     func validateField(field: String, type: InputType) -> Bool {
         switch type {
         case .name:
-            let hasLastName = field.components(separatedBy: " ")
-            if field.count > 1 && field.count <= 255 && (hasLastName.count > 1 && hasLastName[1] != "") { result = true } else { result = false }
+            var completeName: [String] = []
+            for name in field.components(separatedBy: " ") {
+                if name != "" { completeName.append(name) }
+            }
+            if field.count > 1 && field.count <= 255 && completeName.count > 1 { result = true } else { result = false }
         case .cpf:
             if field.isCPF { result = true } else { result = false }
         case .phone_number:

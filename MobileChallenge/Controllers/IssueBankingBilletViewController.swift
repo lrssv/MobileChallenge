@@ -1,16 +1,9 @@
 import UIKit
 
-protocol IssueBankingBilletDelagate {
-    func chargeOneStepData(from: IssueBankingBilletViewController, barcode: String, link: String)
-}
-
 class IssueBankingBilletViewController: BaseViewController, AuthenticationDelagate {
     
     var authentication = Authentication()
     var access_token: String = ""
-    
-    
-    var delegateBankingBillet: IssueBankingBilletDelagate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
