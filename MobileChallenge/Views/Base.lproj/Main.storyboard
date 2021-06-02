@@ -2056,7 +2056,10 @@ para o cliente.</string>
                         <subviews>
                             <searchBar contentMode="redraw" text="" placeholder="Pesquise por item" translatesAutoresizingMaskIntoConstraints="NO" id="bDz-Ln-cQe">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="hGi-8E-WKb" id="5le-Zb-bdC"/>
+                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="scC-Ro-qHq">
                                 <rect key="frame" x="0.0" y="58" width="414" height="678"/>
@@ -2138,7 +2141,7 @@ para o cliente.</string>
                     </view>
                     <navigationItem key="navigationItem" title="MEUS CLIENTES" id="Q8g-RH-tk7"/>
                     <connections>
-                        <outlet property="sbItem" destination="bDz-Ln-cQe" id="sgo-FR-t0Q"/>
+                        <outlet property="searchBar" destination="bDz-Ln-cQe" id="sgo-FR-t0Q"/>
                         <outlet property="tableView" destination="scC-Ro-qHq" id="Iwx-qB-dCl"/>
                     </connections>
                 </viewController>
