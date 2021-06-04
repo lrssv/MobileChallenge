@@ -17,6 +17,47 @@ class ItemsViewController: BaseViewController {
         btBack.layer.borderWidth = 1
         btBack.layer.borderColor = UIColor(hexString: "#F36F36").cgColor
         btNext.isEnabled = false
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
+        tableview.addGestureRecognizer(longPress)
+    }
+    
+    @objc private func handleLongPress(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            let touchPoint = sender.location(in: tableview)
+            if let indexPath = tableview.indexPathForRow(at: touchPoint) {
+                let index = indexPath[1]
+                
+                let options = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                
+                let edit = UIAlertAction(title: "Editar", style: .default, handler: { (action) in
+                    let editItem = self.storyboard?.instantiateViewController(identifier: "AddItemViewController") as! AddItemViewController
+                    editItem.modalPresentationStyle = .fullScreen
+                    
+                    editItem.delegate = self
+                    
+                    editItem.titleItem = "Atualizar um item"
+                    editItem.buttonTitle = "ATUALIZAR"
+                    editItem.nameItem = self.items[index].name
+                    editItem.valueItem = String(self.items[index].value)
+                    
+                    self.items.remove(at: index)
+                    self.present(editItem, animated: true, completion: nil)
+                })
+                options.addAction(edit)
+                
+                let remove = UIAlertAction(title: "Remover", style: .destructive, handler: { (action) in
+                    self.items.remove(at: index)
+                    self.tableview.reloadData()
+                })
+                options.addAction(remove)
+                
+                let cancel = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+                options.addAction(cancel)
+                
+                present(options, animated: true, completion: nil)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,7 +107,6 @@ class ItemsViewController: BaseViewController {
 extension ItemsViewController: AddItemDelegate {
     func prepareItems(added item: Items) {
         items.append(item)
-        numberOfRows = items.count
     }
 }
 
@@ -76,15 +116,16 @@ extension ItemsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfRows
+        return items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ItemTableViewCell
         
-        let itemCell = items[indexPath.row]
-        cell.prepare(with: itemCell)
-        
+        if items.count != 0 {
+            let itemCell = items[indexPath.row]
+            cell.prepare(with: itemCell)
+        }
         return cell
     }
 }

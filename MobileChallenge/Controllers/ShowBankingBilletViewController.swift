@@ -22,9 +22,18 @@ class ShowBankingBilletViewController: BaseViewController {
         showData()
     }
     
+    func convertDateFormater(_ date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "yyyy-MM-dd"
+        let date = dateFormatter.date(from: date)
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        
+        return  dateFormatter.string(from: date!)
+    }
+    
     func showData(){
-        lbDate.text = payment.banking_billet.expire_at
-        lbValue.text = "R$ \(totalBankingBillet)"
+        lbDate.text = convertDateFormater(payment.banking_billet.expire_at)
+        lbValue.text = formatterNumber(number: String(totalBankingBillet))
         lbName.text = payment.banking_billet.customer.name
         lbPaycode.text = barcode
     }
@@ -35,4 +44,7 @@ class ShowBankingBilletViewController: BaseViewController {
             self.navigationController?.popToViewController(vc, animated: true)
         }
     }
+    
+    
 }
+

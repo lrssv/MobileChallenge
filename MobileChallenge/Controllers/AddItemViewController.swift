@@ -11,6 +11,8 @@ class AddItemViewController: BaseViewController {
     @IBOutlet weak var tfValue: UITextField!
     @IBOutlet weak var tfAmount: UILabel!
     
+    @IBOutlet weak var lbAddItem: UILabel!
+    
     @IBOutlet weak var viewTfName: ValidateFieldsItems!
     @IBOutlet weak var viewTfValue: ValidateFieldsItems!
     
@@ -19,9 +21,12 @@ class AddItemViewController: BaseViewController {
     
     weak var delegate: AddItemDelegate?
     
-    var amount: Int = 1
+    var titleItem: String = "Adicionar um item"
+    var buttonTitle: String = "ADICIONAR"
+    var nameItem: String = ""
     var valueItem: String = ""
     var totalItem: Double = 0
+    var amount: Int = 1
     
     let validate = ValidateFieldsItems()
     var nameValidated = false, valueValidated = false
@@ -34,6 +39,28 @@ class AddItemViewController: BaseViewController {
         btBack.layer.borderWidth = 1
         btBack.layer.borderColor = UIColor(hexString: "#F36F36").cgColor
         btNext.isEnabled = false
+        
+        lbAddItem.text = titleItem
+        tfName.text = nameItem
+        tfValue.text = valueItem
+        btNext.setTitle(buttonTitle, for: .normal)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if nameItem != "" {
+            nameValidated = true
+            validateName()
+        }
+        
+        if valueItem != "" {
+            tfValue.text = formatterNumber(number: valueItem)
+            valueValidated = true
+            validateItem()
+        }
+        
+        realeaseButton()
     }
     
     @IBAction func removeAmount(_ sender: UIButton) {
@@ -48,39 +75,43 @@ class AddItemViewController: BaseViewController {
         tfAmount.text = String(amount)
     }
     
+    func validateName(){
+        guard let name = tfName.text else { return }
+        
+        nameValidated = validate.validateField(field: name, type: .name)
+        validate.changeColorView(response: nameValidated, view: viewTfName)
+    }
+    
+    func validateItem(){
+        guard let value = tfValue.text else { return }
+        
+        if value.count == 1 {
+            let aux = "00\(value)"
+            let valueAux = formatterNumber(number: aux)
+            tfValue.text = valueAux
+            
+            validate.changeColorView(response: false, view: viewTfValue)
+        } else {
+            valueItem = value
+            valueItem = valueItem.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
+            valueItem = valueItem.replacingOccurrences(of: "R$", with: "", options: NSString.CompareOptions.literal, range: nil)
+            
+            valueItem = valueItem.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
+            valueItem = String(valueItem.dropFirst())
+            
+            let aux = formatterNumber(number: valueItem)
+            tfValue.text = aux
+            
+            valueValidated = validate.validateField(field: valueItem, type: .value)
+            validate.changeColorView(response: valueValidated, view: viewTfValue)
+        }
+    }
+    
     @IBAction func verifyFields(_ textField: UITextField) {
-        if let name = tfName.text {
-            if textField == tfName {
-                nameValidated = validate.validateField(field: name, type: .name)
-                validate.changeColorView(response: nameValidated, view: viewTfName)
-            }
-        }
-        
-        if let value = tfValue.text {
-            if textField == tfValue {
-                if value.count == 1 {
-                    let aux = "00\(value)"
-                    let valueAux = formatterNumber(number: aux)
-                    tfValue.text = valueAux
-                    
-                    validate.changeColorView(response: false, view: viewTfValue)
-                } else {
-                    valueItem = value
-                    valueItem = valueItem.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
-                    valueItem = valueItem.replacingOccurrences(of: "R$", with: "", options: NSString.CompareOptions.literal, range: nil)
-                    
-                    valueItem = valueItem.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
-                    valueItem = String(valueItem.dropFirst())
-                    
-                    let aux = formatterNumber(number: valueItem)
-                    tfValue.text = aux
-                    
-                    valueValidated = validate.validateField(field: valueItem, type: .value)
-                    validate.changeColorView(response: valueValidated, view: viewTfValue)
-                }
-            }
-        }
-        
+        if textField == tfName {validateName()}
+
+        if textField == tfValue {validateItem()}
+            
         realeaseButton()
     }
     
@@ -107,7 +138,8 @@ class AddItemViewController: BaseViewController {
         
         delegate?.prepareItems(added: item)
         
-        config.setItem(item: item)
+        let itemForSave = Items(name: itemName, value: Int(valueItem)!, amount: 1)
+        config.setItem(item: itemForSave)
         
         dismiss(animated: true, completion: nil)
     }
@@ -116,21 +148,5 @@ class AddItemViewController: BaseViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func formatterNumber(number: String) -> String {
-        let formatter = NumberFormatter()
-        
-        formatter.usesGroupingSeparator = true
-        formatter.numberStyle = .currency
-        formatter.locale = Locale(identifier: "pt_BR")
-        
-
-        let value = Double(number)!/100
-        
-        if let price = formatter.string(from: NSNumber(value: value)) {
-            return price
-        } else {
-            return ""
-        }
-    }
 }
 

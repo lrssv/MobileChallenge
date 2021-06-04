@@ -81,7 +81,22 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
          self.view.frame.origin.y = 0 // Move view to original position
     }
     
-    
+    func formatterNumber(number: String) -> String {
+        let formatter = NumberFormatter()
+        
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "pt_BR")
+        
+
+        let value = Double(number)!/100
+        
+        if let price = formatter.string(from: NSNumber(value: value)) {
+            return price
+        } else {
+            return ""
+        }
+    }
 
     /*
     func replaceDot(textField field: UITextField) -> String {

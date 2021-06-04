@@ -764,6 +764,12 @@ para o cliente.</string>
                                                     <color key="textColor" red="0.43137254901960786" green="0.43529411764705883" blue="0.44313725490196076" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit" translatesAutoresizingMaskIntoConstraints="NO" id="PWv-MG-yCe">
+                                                    <rect key="frame" x="358" y="11" width="16" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="16" id="Kt7-th-AWm"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="RgQ-cA-bQj" firstAttribute="leading" secondItem="JnO-NR-5Zk" secondAttribute="leading" id="5wM-86-31Z"/>
@@ -771,6 +777,8 @@ para o cliente.</string>
                                                 <constraint firstItem="JnO-NR-5Zk" firstAttribute="top" secondItem="h78-nK-gWI" secondAttribute="bottom" constant="8" id="ADG-Na-LIo"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Hbd-9F-Rzu" secondAttribute="trailing" constant="20" symbolic="YES" id="Bqx-3S-Gx1"/>
                                                 <constraint firstItem="wCt-fH-FEl" firstAttribute="leading" secondItem="hUa-z8-nL8" secondAttribute="trailing" constant="40" id="DPo-RT-rya"/>
+                                                <constraint firstAttribute="trailing" secondItem="PWv-MG-yCe" secondAttribute="trailing" constant="10" id="GRk-Qp-Vph"/>
+                                                <constraint firstItem="PWv-MG-yCe" firstAttribute="top" secondItem="wCt-fH-FEl" secondAttribute="top" id="M7p-PC-KVw"/>
                                                 <constraint firstItem="IGD-Bq-4LQ" firstAttribute="leading" secondItem="wqL-pv-MJj" secondAttribute="leading" id="Ojg-bz-pCU"/>
                                                 <constraint firstItem="JnO-NR-5Zk" firstAttribute="leading" secondItem="h78-nK-gWI" secondAttribute="leading" id="PJx-7v-eZz"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wqL-pv-MJj" secondAttribute="trailing" constant="20" symbolic="YES" id="PQc-Wd-W62"/>
@@ -941,12 +949,11 @@ para o cliente.</string>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleAspectFit" enabled="NO" highlighted="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYv-21-CFX">
-                                                <rect key="frame" x="370" y="99.333333333333343" width="24" height="25"/>
-                                                <state key="normal" title="Button" image="Calendar"/>
-                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calendar" translatesAutoresizingMaskIntoConstraints="NO" id="OIN-i9-E7a">
+                                                <rect key="frame" x="372" y="102.66666666666666" width="24" height="25"/>
+                                            </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dia/Mes/Ano" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ap-ay-0lc">
-                                                <rect key="frame" x="17" y="102.66666666666666" width="387" height="18.666666666666671"/>
+                                                <rect key="frame" x="17" y="102.66666666666666" width="387" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Cuo-VE-UDT"/>
                                                 </constraints>
@@ -957,20 +964,20 @@ para o cliente.</string>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sES-A1-FfZ" customClass="ValidateFieldsAddFields" customModule="MobileChallenge" customModuleProvider="target">
-                                                <rect key="frame" x="17" y="126.33333333333334" width="380" height="1"/>
+                                                <rect key="frame" x="17" y="129.66666666666666" width="380" height="1"/>
                                                 <color key="backgroundColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.60392156862745094" alpha="0.89803921568627454" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="0Td-hR-9Nl"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exibir campos adicionais" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsb-s2-Kx8">
-                                                <rect key="frame" x="18" y="161.33333333333334" width="159.66666666666666" height="15.666666666666657"/>
+                                                <rect key="frame" x="18" y="164.66666666666666" width="159.66666666666666" height="15.666666666666657"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                 <color key="textColor" red="0.43137254899999999" green="0.43529411759999997" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="p91-Iu-0Xf">
-                                                <rect key="frame" x="347" y="153.66666666666666" width="51" height="31"/>
+                                                <rect key="frame" x="347" y="157" width="51" height="31"/>
                                                 <connections>
                                                     <action selector="addFields:" destination="juE-Vm-GtY" eventType="valueChanged" id="eNw-37-xPN"/>
                                                 </connections>
@@ -979,30 +986,32 @@ para o cliente.</string>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="xR0-Yj-0zu" firstAttribute="leading" secondItem="uaM-d5-j0u" secondAttribute="leading" constant="17" id="4Fy-hM-Yue"/>
-                                            <constraint firstItem="BYv-21-CFX" firstAttribute="leading" secondItem="uaM-d5-j0u" secondAttribute="leading" constant="370" id="676-DC-P2T"/>
                                             <constraint firstItem="XrQ-YW-yRO" firstAttribute="width" secondItem="b7s-MF-a9C" secondAttribute="width" id="AzU-OR-Wjy"/>
                                             <constraint firstAttribute="trailing" secondItem="p91-Iu-0Xf" secondAttribute="trailing" constant="18" id="CoG-8B-flh"/>
                                             <constraint firstItem="6ap-ay-0lc" firstAttribute="top" secondItem="xR0-Yj-0zu" secondAttribute="bottom" constant="22" id="E1A-1q-hEJ"/>
                                             <constraint firstItem="b7s-MF-a9C" firstAttribute="leading" secondItem="PH6-I7-CSW" secondAttribute="trailing" constant="8" id="Iqi-S8-8zR"/>
                                             <constraint firstItem="PH6-I7-CSW" firstAttribute="top" secondItem="uaM-d5-j0u" secondAttribute="top" constant="18" id="Jqv-WU-9M4"/>
                                             <constraint firstAttribute="trailing" secondItem="6ap-ay-0lc" secondAttribute="trailing" constant="10" id="KxK-wZ-nWv"/>
+                                            <constraint firstItem="OIN-i9-E7a" firstAttribute="centerY" secondItem="6ap-ay-0lc" secondAttribute="centerY" id="L01-se-NOA"/>
                                             <constraint firstAttribute="trailing" secondItem="sES-A1-FfZ" secondAttribute="trailing" constant="17" id="NRR-vt-0k8"/>
-                                            <constraint firstItem="BYv-21-CFX" firstAttribute="centerY" secondItem="6ap-ay-0lc" secondAttribute="centerY" id="QcK-4O-SBa"/>
                                             <constraint firstItem="b7s-MF-a9C" firstAttribute="width" secondItem="PH6-I7-CSW" secondAttribute="width" id="Tj6-NL-iiN"/>
+                                            <constraint firstItem="OIN-i9-E7a" firstAttribute="top" secondItem="6ap-ay-0lc" secondAttribute="top" id="U6F-Ew-Ad5"/>
                                             <constraint firstItem="6ap-ay-0lc" firstAttribute="leading" secondItem="uaM-d5-j0u" secondAttribute="leading" constant="17" id="UBY-6Q-Ejz"/>
                                             <constraint firstItem="PH6-I7-CSW" firstAttribute="leading" secondItem="uaM-d5-j0u" secondAttribute="leading" constant="8" id="UxP-gh-NcP"/>
                                             <constraint firstItem="b7s-MF-a9C" firstAttribute="centerY" secondItem="PH6-I7-CSW" secondAttribute="centerY" id="V7o-yr-yUw"/>
-                                            <constraint firstItem="sES-A1-FfZ" firstAttribute="top" secondItem="BYv-21-CFX" secondAttribute="bottom" constant="2" id="Wlh-Ls-xCi"/>
                                             <constraint firstItem="sES-A1-FfZ" firstAttribute="leading" secondItem="uaM-d5-j0u" secondAttribute="leading" constant="17" id="Z2X-Jh-e9w"/>
+                                            <constraint firstItem="OIN-i9-E7a" firstAttribute="top" secondItem="6ap-ay-0lc" secondAttribute="top" id="brC-7t-9Os"/>
                                             <constraint firstItem="p91-Iu-0Xf" firstAttribute="centerY" secondItem="lsb-s2-Kx8" secondAttribute="centerY" id="bsT-xT-NOi"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lsb-s2-Kx8" secondAttribute="trailing" constant="20" symbolic="YES" id="iCd-er-RSA"/>
                                             <constraint firstItem="xR0-Yj-0zu" firstAttribute="top" secondItem="b7s-MF-a9C" secondAttribute="bottom" constant="30.5" id="inj-8t-8cV"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BYv-21-CFX" secondAttribute="trailing" constant="20" symbolic="YES" id="lZb-gr-PQb"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xR0-Yj-0zu" secondAttribute="trailing" constant="20" symbolic="YES" id="m7b-Up-FC0"/>
+                                            <constraint firstItem="sES-A1-FfZ" firstAttribute="top" secondItem="OIN-i9-E7a" secondAttribute="bottom" constant="2" id="mBP-C4-9dP"/>
+                                            <constraint firstItem="OIN-i9-E7a" firstAttribute="leading" secondItem="uaM-d5-j0u" secondAttribute="leading" constant="372" id="mgu-af-Yq1"/>
                                             <constraint firstItem="b7s-MF-a9C" firstAttribute="height" secondItem="PH6-I7-CSW" secondAttribute="height" id="mmt-fw-vfv"/>
                                             <constraint firstItem="lsb-s2-Kx8" firstAttribute="leading" secondItem="uaM-d5-j0u" secondAttribute="leading" constant="18" id="p6J-D2-LOl"/>
                                             <constraint firstItem="XrQ-YW-yRO" firstAttribute="centerY" secondItem="b7s-MF-a9C" secondAttribute="centerY" id="pvR-h2-gE8"/>
                                             <constraint firstItem="XrQ-YW-yRO" firstAttribute="leading" secondItem="b7s-MF-a9C" secondAttribute="trailing" constant="8" id="v8h-Qw-csD"/>
+                                            <constraint firstAttribute="trailing" secondItem="OIN-i9-E7a" secondAttribute="trailing" constant="18" id="wa2-le-lEf"/>
                                             <constraint firstItem="XrQ-YW-yRO" firstAttribute="height" secondItem="b7s-MF-a9C" secondAttribute="height" id="yU8-pE-qua"/>
                                             <constraint firstItem="lsb-s2-Kx8" firstAttribute="top" secondItem="sES-A1-FfZ" secondAttribute="bottom" constant="34" id="zyd-Kb-7bB"/>
                                         </constraints>
@@ -1122,12 +1131,11 @@ para o cliente.</string>
                                                 <color key="textColor" red="0.43137254899999999" green="0.43529411759999997" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GjA-87-wUy">
-                                                <rect key="frame" x="365" y="140.66666666666669" width="31" height="25"/>
-                                                <state key="normal" title="Button" image="Calendar"/>
-                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Calendar" translatesAutoresizingMaskIntoConstraints="NO" id="Tae-jQ-t2n">
+                                                <rect key="frame" x="371" y="139.66666666666669" width="25" height="25"/>
+                                            </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dia/Mes/Ano" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uiZ-oI-2nR">
-                                                <rect key="frame" x="162.66666666666663" y="141.66666666666669" width="231.33333333333337" height="22"/>
+                                                <rect key="frame" x="162.66666666666663" y="141.66666666666669" width="231.33333333333337" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -1135,7 +1143,7 @@ para o cliente.</string>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0KY-pR-xez" customClass="ValidateFieldsAddFields" customModule="MobileChallenge" customModuleProvider="target">
-                                                <rect key="frame" x="162.66666666666663" y="167.66666666666669" width="233.33333333333337" height="1"/>
+                                                <rect key="frame" x="162.66666666666663" y="166.66666666666669" width="233.33333333333337" height="1"/>
                                                 <color key="backgroundColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.60392156860000001" alpha="0.8980392157" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="rdc-D7-NWF"/>
@@ -1157,7 +1165,7 @@ para o cliente.</string>
                                                 </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(máximo de 4 linhas de 100 caracteres cada)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1B-B9-4DL">
-                                                <rect key="frame" x="100.66666666666669" y="195.66666666666669" width="272" height="15.666666666666657"/>
+                                                <rect key="frame" x="100.66666666666669" y="194.66666666666669" width="272" height="16.666666666666657"/>
                                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
                                                 <color key="textColor" red="0.43137254899999999" green="0.43529411759999997" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1180,13 +1188,13 @@ para o cliente.</string>
                                             <constraint firstItem="ZJc-Je-Vlt" firstAttribute="top" secondItem="jzE-gP-Eec" secondAttribute="bottom" constant="2" id="4fp-dR-1hz"/>
                                             <constraint firstItem="6MU-Bk-r2M" firstAttribute="leading" secondItem="A6e-di-zZw" secondAttribute="leading" constant="18" id="6po-pb-Tmy"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="V1B-B9-4DL" secondAttribute="trailing" constant="20" symbolic="YES" id="87V-dK-6Uj"/>
+                                            <constraint firstItem="0KY-pR-xez" firstAttribute="top" secondItem="Tae-jQ-t2n" secondAttribute="bottom" constant="2" id="8h8-LV-A73"/>
                                             <constraint firstItem="5Ob-5V-5yE" firstAttribute="top" secondItem="k8p-af-mhd" secondAttribute="bottom" constant="6" id="8z3-45-FoH"/>
                                             <constraint firstItem="ZJc-Je-Vlt" firstAttribute="top" secondItem="7rT-4i-zoh" secondAttribute="bottom" constant="2" id="9Ce-9L-X3o"/>
                                             <constraint firstItem="jzE-gP-Eec" firstAttribute="leading" secondItem="ZJc-Je-Vlt" secondAttribute="leading" id="9D5-Xo-4PU"/>
                                             <constraint firstItem="7rT-4i-zoh" firstAttribute="leading" secondItem="A6e-di-zZw" secondAttribute="leading" constant="38" id="9wj-0U-hEu"/>
                                             <constraint firstItem="ZJc-Je-Vlt" firstAttribute="top" secondItem="5Ob-5V-5yE" secondAttribute="top" id="Bml-vs-84E"/>
                                             <constraint firstItem="Wx1-fe-joI" firstAttribute="top" secondItem="2Vf-pB-yoa" secondAttribute="bottom" constant="2.3333333333333339" id="C2a-fo-EgC"/>
-                                            <constraint firstItem="GjA-87-wUy" firstAttribute="leading" secondItem="A6e-di-zZw" secondAttribute="leading" constant="365" id="FIN-Li-5Av"/>
                                             <constraint firstItem="k8p-af-mhd" firstAttribute="top" secondItem="OS8-hA-9jz" secondAttribute="bottom" constant="8" symbolic="YES" id="GGz-iy-Mgl"/>
                                             <constraint firstItem="4dA-bh-LEb" firstAttribute="top" secondItem="A6e-di-zZw" secondAttribute="top" constant="20" id="GyI-gz-inI"/>
                                             <constraint firstItem="RPj-Cw-F2n" firstAttribute="top" secondItem="ZJc-Je-Vlt" secondAttribute="bottom" constant="25" id="HVW-Y0-frx"/>
@@ -1206,16 +1214,17 @@ para o cliente.</string>
                                             <constraint firstAttribute="trailing" secondItem="Y3S-eb-BEb" secondAttribute="trailing" constant="18" id="Sb8-9y-g4t"/>
                                             <constraint firstItem="2Vf-pB-yoa" firstAttribute="centerY" secondItem="bMm-q4-dsn" secondAttribute="centerY" id="SfL-zx-lAO"/>
                                             <constraint firstItem="uiZ-oI-2nR" firstAttribute="leading" secondItem="RPj-Cw-F2n" secondAttribute="trailing" priority="999" constant="36" id="UCW-xr-Nfv"/>
+                                            <constraint firstItem="Tae-jQ-t2n" firstAttribute="centerY" secondItem="uiZ-oI-2nR" secondAttribute="centerY" id="UX8-6P-UTR"/>
                                             <constraint firstItem="5Ob-5V-5yE" firstAttribute="leading" secondItem="A6e-di-zZw" secondAttribute="leading" constant="64" id="WLX-Py-xgs"/>
                                             <constraint firstItem="Bhh-ad-Ovv" firstAttribute="centerY" secondItem="sTa-gY-b2G" secondAttribute="centerY" id="XEv-yt-cw1"/>
                                             <constraint firstItem="RhJ-D2-qAp" firstAttribute="top" secondItem="4xg-Gr-e8b" secondAttribute="bottom" constant="2" id="ZWH-BW-KlY"/>
+                                            <constraint firstAttribute="trailing" secondItem="Tae-jQ-t2n" secondAttribute="trailing" constant="18" id="ZzZ-GP-U41"/>
                                             <constraint firstItem="jzE-gP-Eec" firstAttribute="leading" secondItem="A6e-di-zZw" secondAttribute="leading" constant="18" id="au4-lj-dp9"/>
                                             <constraint firstItem="OS8-hA-9jz" firstAttribute="top" secondItem="sTa-gY-b2G" secondAttribute="bottom" constant="21.666666666666686" id="ayK-vc-2mu"/>
                                             <constraint firstItem="Bhh-ad-Ovv" firstAttribute="centerX" secondItem="Wx1-fe-joI" secondAttribute="centerX" id="bcR-5g-6dk"/>
                                             <constraint firstItem="V1B-B9-4DL" firstAttribute="leading" secondItem="0GM-oi-d4x" secondAttribute="trailing" constant="2" id="cMr-st-M5F"/>
                                             <constraint firstItem="bMm-q4-dsn" firstAttribute="top" secondItem="A6e-di-zZw" secondAttribute="top" id="ccg-Me-uuO"/>
                                             <constraint firstItem="4xg-Gr-e8b" firstAttribute="top" secondItem="A6e-di-zZw" secondAttribute="top" constant="25" id="cdL-Nz-4yM"/>
-                                            <constraint firstItem="0KY-pR-xez" firstAttribute="top" secondItem="GjA-87-wUy" secondAttribute="bottom" constant="2" id="cpo-a6-bYo"/>
                                             <constraint firstItem="k8p-af-mhd" firstAttribute="leading" secondItem="jzE-gP-Eec" secondAttribute="trailing" constant="19" id="dgX-IM-iJO"/>
                                             <constraint firstAttribute="trailing" secondItem="uiZ-oI-2nR" secondAttribute="trailing" constant="20" id="eBH-F0-2Fd"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OS8-hA-9jz" secondAttribute="trailing" constant="20" symbolic="YES" id="eSa-H0-bwU"/>
@@ -1239,7 +1248,6 @@ para o cliente.</string>
                                             <constraint firstAttribute="trailing" secondItem="2Vf-pB-yoa" secondAttribute="trailing" constant="124" id="pkE-wJ-ToV"/>
                                             <constraint firstItem="0KY-pR-xez" firstAttribute="trailing" secondItem="Y3S-eb-BEb" secondAttribute="trailing" id="q1j-KJ-DOL"/>
                                             <constraint firstItem="0KY-pR-xez" firstAttribute="top" secondItem="uiZ-oI-2nR" secondAttribute="bottom" constant="4" id="qT6-Hj-vI5"/>
-                                            <constraint firstItem="GjA-87-wUy" firstAttribute="trailing" secondItem="0KY-pR-xez" secondAttribute="trailing" id="qVW-vI-V6y"/>
                                             <constraint firstItem="sTa-gY-b2G" firstAttribute="leading" secondItem="OS8-hA-9jz" secondAttribute="leading" id="r93-J3-L2P"/>
                                             <constraint firstItem="4xg-Gr-e8b" firstAttribute="trailing" secondItem="RhJ-D2-qAp" secondAttribute="trailing" id="rPh-YH-xw6"/>
                                             <constraint firstAttribute="height" constant="340" id="sxv-5X-KhH"/>
@@ -1320,9 +1328,7 @@ para o cliente.</string>
                     <navigationItem key="navigationItem" title="EMISSÃO DE BOLETO" id="0dz-aF-TzB"/>
                     <connections>
                         <outlet property="btBack" destination="lWI-Hv-4is" id="dB2-PN-ptn"/>
-                        <outlet property="btCalendar" destination="BYv-21-CFX" id="mzC-4d-PHc"/>
                         <outlet property="btConditionalDiscount" destination="jzE-gP-Eec" id="rFq-jE-ECe"/>
-                        <outlet property="btDateShipping" destination="GjA-87-wUy" id="igP-v7-y2w"/>
                         <outlet property="btDiscount" destination="Wx1-fe-joI" id="GXf-lC-bRR"/>
                         <outlet property="btNext" destination="fWv-F1-PeJ" id="WoU-7M-SuE"/>
                         <outlet property="swAddFields" destination="p91-Iu-0Xf" id="CLp-d4-H92"/>
@@ -1953,7 +1959,7 @@ para o cliente.</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex.: Videogame" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dei-v2-Okn">
-                                                <rect key="frame" x="12" y="84" width="100.33333333333333" height="18.666666666666671"/>
+                                                <rect key="frame" x="12" y="84" width="328" height="18.666666666666671"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -1983,7 +1989,6 @@ para o cliente.</string>
                                             <constraint firstAttribute="bottom" secondItem="0HR-bI-BOK" secondAttribute="bottom" constant="12" id="F09-Es-6Pi"/>
                                             <constraint firstItem="oEO-Et-g3t" firstAttribute="top" secondItem="sC0-ao-E9M" secondAttribute="top" id="FtO-fG-hae"/>
                                             <constraint firstItem="qkT-3B-E9w" firstAttribute="leading" secondItem="Vd3-SX-0Re" secondAttribute="leading" id="Gsw-Y4-O1x"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Dei-v2-Okn" secondAttribute="trailing" constant="20" symbolic="YES" id="HDp-lt-So3"/>
                                             <constraint firstAttribute="bottom" secondItem="uAP-g6-C2y" secondAttribute="bottom" constant="12" id="HSD-Ls-XUh"/>
                                             <constraint firstItem="uAP-g6-C2y" firstAttribute="top" secondItem="qkT-3B-E9w" secondAttribute="bottom" constant="40" id="HTd-cb-bZ9"/>
                                             <constraint firstAttribute="trailing" secondItem="gNC-AN-xLm" secondAttribute="trailing" constant="12" id="K9Y-Yk-rsH"/>
@@ -2012,6 +2017,7 @@ para o cliente.</string>
                                             <constraint firstItem="qkT-3B-E9w" firstAttribute="leading" secondItem="nJU-wL-AcZ" secondAttribute="leading" constant="12" id="rlD-b8-byd"/>
                                             <constraint firstItem="0HR-bI-BOK" firstAttribute="height" secondItem="uAP-g6-C2y" secondAttribute="height" id="sZZ-IX-ySt"/>
                                             <constraint firstItem="dzh-rq-xRq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bZW-Xf-vm0" secondAttribute="trailing" constant="8" symbolic="YES" id="wk9-Kc-oZX"/>
+                                            <constraint firstAttribute="trailing" secondItem="Dei-v2-Okn" secondAttribute="trailing" constant="20" id="xuQ-z0-cmg"/>
                                             <constraint firstAttribute="width" constant="360" id="y7B-On-Tcg"/>
                                         </constraints>
                                     </view>
@@ -2035,6 +2041,7 @@ para o cliente.</string>
                     <connections>
                         <outlet property="btBack" destination="uAP-g6-C2y" id="7c1-nz-vKp"/>
                         <outlet property="btNext" destination="0HR-bI-BOK" id="LOd-Ix-1Kz"/>
+                        <outlet property="lbAddItem" destination="96T-OL-7tL" id="SSr-TE-Aps"/>
                         <outlet property="tfAmount" destination="oEO-Et-g3t" id="w8h-Jc-AF9"/>
                         <outlet property="tfName" destination="Dei-v2-Okn" id="I08-eb-4OS"/>
                         <outlet property="tfValue" destination="Vd3-SX-0Re" id="aPl-Bc-qgT"/>
@@ -2044,7 +2051,7 @@ para o cliente.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z06-Mw-Xk3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2940.579710144928" y="1539.9456521739132"/>
+            <point key="canvasLocation" x="2832" y="1540"/>
         </scene>
         <!--MEUS CLIENTES-->
         <scene sceneID="k6T-x3-QSO">
@@ -2187,6 +2194,7 @@ para o cliente.</string>
         <image name="Person " width="14" height="14"/>
         <image name="Share" width="17" height="17"/>
         <image name="addItem" width="23" height="24"/>
+        <image name="edit" width="5.6666665077209473" height="20"/>
         <image name="searchItem" width="18" height="18"/>
         <image name="" width="8" height="9"/>
         <systemColor name="systemBackgroundColor">

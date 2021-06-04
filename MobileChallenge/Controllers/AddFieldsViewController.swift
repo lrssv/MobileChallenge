@@ -270,21 +270,7 @@ class AddFieldsViewController: BaseViewController {
         vc.totalBankingBillet = totalBankingBillet
     }
     
-    func formatterNumber(number: String) -> String {
-        let formatter = NumberFormatter()
-        
-        formatter.usesGroupingSeparator = true
-        formatter.numberStyle = .currency
-        formatter.locale = Locale(identifier: "pt_BR")
-
-        let value = Double(number)!/100
-        
-        if let price = formatter.string(from: NSNumber(value: value)) {
-            return price
-        } else {
-            return ""
-        }
-    }
+  
     
     @IBAction func backToView(_ sender: UIButton) {
             navigationController?.popViewController(animated: true)     
