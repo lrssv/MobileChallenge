@@ -8,6 +8,8 @@ class IssueBankingBilletViewController: BaseViewController, AuthenticationDelaga
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        
         authentication.delegate = self
         authentication.auth()
     }
@@ -24,7 +26,6 @@ class IssueBankingBilletViewController: BaseViewController, AuthenticationDelaga
         }
         
         chargeRequest()
-        
     }
     
     func chargeRequest(){
@@ -59,8 +60,6 @@ class IssueBankingBilletViewController: BaseViewController, AuthenticationDelaga
                     
                     self.barcode = ((responseJSON!["data"] as? [String: Any])?["barcode"]) as? String ?? ""
                     self.link = ((responseJSON!["data"] as? [String: Any])?["link"]) as? String ?? ""
-                    
-                    //self.delegateBankingBillet?.chargeOneStepData(from: self, barcode: self.barcode, link: self.link)
                     
                     DispatchQueue.main.async {
                         let showBankingBillet = storyboard?.instantiateViewController(identifier: "ShowDataRequest") as! ShowBankingBilletViewController

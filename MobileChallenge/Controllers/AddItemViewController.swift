@@ -28,6 +28,8 @@ class AddItemViewController: BaseViewController {
     var totalItem: Double = 0
     var amount: Int = 1
     
+    
+    
     let validate = ValidateFieldsItems()
     var nameValidated = false, valueValidated = false
 
@@ -46,6 +48,7 @@ class AddItemViewController: BaseViewController {
         btNext.setTitle(buttonTitle, for: .normal)
     }
     
+ 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -62,6 +65,7 @@ class AddItemViewController: BaseViewController {
         
         realeaseButton()
     }
+    
     
     @IBAction func removeAmount(_ sender: UIButton) {
         if amount > 0 {
@@ -147,6 +151,5 @@ class AddItemViewController: BaseViewController {
     @IBAction func cancelItem(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
 }
 

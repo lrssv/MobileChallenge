@@ -14,10 +14,13 @@ class ClientsViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.topItem?.title = " "
+        
         if let getCustomers = config.getCustomer() {
             savedCustomers = getCustomers
         }
     }
+    
     
     func sendData(_ thisCustomer: Customer){
         let showCustomer = storyboard?.instantiateViewController(identifier: "BankingBilletViewController") as! BankingBilletViewController

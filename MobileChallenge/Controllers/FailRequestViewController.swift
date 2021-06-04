@@ -1,18 +1,11 @@
-//
-//  FailRequestViewController.swift
-//  MobileChallenge
-//
-//  Created by Larissa Silva | Gerencianet on 27/05/21.
-//
-
 import UIKit
 
-class FailRequestViewController: UIViewController {
-    
+class FailRequestViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.topItem?.title = " "
+        
+        self.navigationItem.setHidesBackButton(true, animated: false)
         self.title = "EMISSAO DE BOLETO"
      
     }

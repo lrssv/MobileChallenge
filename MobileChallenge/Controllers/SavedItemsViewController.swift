@@ -8,10 +8,12 @@ class SavedItemsViewController: UIViewController {
     let config = Configuration.shared
     
     weak var delegate: AddItemDelegate?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleBackButton()
     }
+    
 }
 
 extension SavedItemsViewController: UITableViewDataSource{
@@ -47,7 +49,7 @@ extension SavedItemsViewController: UITableViewDelegate{
             
             delegate?.prepareItems(added: thisItem)
             
-            dismiss(animated: true, completion: nil)
+            navigationController?.popViewController(animated: true)
         }
     }
 }

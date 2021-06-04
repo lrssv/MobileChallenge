@@ -9,8 +9,6 @@ class AddFieldsViewController: BaseViewController {
     
     // MARK: - Switch and Buttons variables
     @IBOutlet weak var swAddFields: UISwitch!
-    @IBOutlet weak var btCalendar: UIButton!
-    @IBOutlet weak var btDateShipping: UIButton!
     @IBOutlet weak var btDiscount: UITextField!
     @IBOutlet weak var btConditionalDiscount: UITextField!
     @IBOutlet weak var btNext: UIButton!

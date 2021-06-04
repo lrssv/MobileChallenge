@@ -29,6 +29,8 @@ enum InputType {
     case conditional_discount
     case until_date
     case message
+    
+    case buttonNotEnable
 }
 
 // MARK: - Enum for validating group of fields according to API required

@@ -59,7 +59,17 @@ class ValidateFieldsBankingBillet: UIView {
         } else {
             view.backgroundColor = .systemRed
         }
-    }    
+    }
+    
+    func changeColorText(label: UILabel, response: Bool, view: UIView) {
+        if response {
+            view.backgroundColor = .systemGreen
+            label.text = ""
+        } else {
+            view.backgroundColor = .systemRed
+            label.text = "Formato inválido"
+        }
+    }
 }
 
 

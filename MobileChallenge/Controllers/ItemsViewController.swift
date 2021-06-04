@@ -14,12 +14,54 @@ class ItemsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        titleBackButton()
+        
         btBack.layer.borderWidth = 1
         btBack.layer.borderColor = UIColor(hexString: "#F36F36").cgColor
         btNext.isEnabled = false
         
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
         tableview.addGestureRecognizer(longPress)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        tableview.reloadData()
+        realeaseButton()
+    }
+    
+    @IBAction func addItem(_ sender: UIButton) {
+        let addItem = storyboard?.instantiateViewController(identifier: "AddItemViewController") as! AddItemViewController
+        addItem.modalPresentationStyle = .fullScreen
+        addItem.delegate = self
+        present(addItem, animated: true, completion: nil)
+    }
+    
+    func realeaseButton(){
+        if items.count >= 1 {
+            btNext.backgroundColor = UIColor(hexString: "#F36F36")
+            btNext.isEnabled = true
+        } else {
+            btNext.backgroundColor = .lightGray
+            btNext.isEnabled = false
+        }
+    }
+    
+    @IBAction func backToView(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func searchItem(_ sender: UIButton) {
+        let searchItem = storyboard?.instantiateViewController(identifier: "SavedItemsViewController") as! SavedItemsViewController
+        searchItem.delegate = self
+        show(searchItem, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! AddFieldsViewController
+        vc.items = items
+        vc.customer = customer
     }
     
     @objc private func handleLongPress(sender: UILongPressGestureRecognizer) {
@@ -58,47 +100,6 @@ class ItemsViewController: BaseViewController {
                 present(options, animated: true, completion: nil)
             }
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        tableview.reloadData()
-        realeaseButton()
-    }
-    
-    @IBAction func addItem(_ sender: UIButton) {
-        let addItem = storyboard?.instantiateViewController(identifier: "AddItemViewController") as! AddItemViewController
-        addItem.modalPresentationStyle = .fullScreen
-        addItem.delegate = self
-        present(addItem, animated: true, completion: nil)
-    }
-    
-    func realeaseButton(){
-        if items.count >= 1 {
-            btNext.backgroundColor = UIColor(hexString: "#F36F36")
-            btNext.isEnabled = true
-        } else {
-            btNext.backgroundColor = .lightGray
-            btNext.isEnabled = false
-        }
-    }
-    
-    @IBAction func backToView(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func searchItem(_ sender: UIButton) {
-        let addItem = storyboard?.instantiateViewController(identifier: "SavedItemsViewController") as! SavedItemsViewController
-        addItem.modalPresentationStyle = .fullScreen
-        addItem.delegate = self
-        present(addItem, animated: true, completion: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! AddFieldsViewController
-        vc.items = items
-        vc.customer = customer
     }
 }
 
