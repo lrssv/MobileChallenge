@@ -2,11 +2,15 @@ import UIKit
 
 class FailRequestViewController: BaseViewController {
     
+    @IBOutlet weak var btBack: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.title = "EMISSAO DE BOLETO"
+        
+        buttonStyleFormatter(inThis: btBack)
      
     }
     

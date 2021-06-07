@@ -4,13 +4,14 @@ class ClientsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var tfName: UILabel!
     @IBOutlet weak var tfDocument: UILabel!
-    @IBOutlet weak var tfInitials: UILabel!
+    @IBOutlet weak var lbInitials: UILabel!
+    @IBOutlet weak var vwInitials: UIView!
     
     let config = Configuration.shared
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //vwInitials.layer.cornerRadius = 10
+        vwInitials.layer.cornerRadius = 25
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -27,12 +28,18 @@ class ClientsTableViewCell: UITableViewCell {
         guard let first_name_initial = first_name.first?.uppercased() else { return }
         guard let last_name_initial = last_name?.first?.uppercased() else { return }
         
-        tfInitials.text = first_name_initial + last_name_initial
+        lbInitials.text = first_name_initial + last_name_initial
+        tfDocument.text = formatterString(customer.cpf, "cpf")
         
         if let customerCPNJ = customer.juridical_person?.cnpj {
+            vwInitials.backgroundColor = .white
+            vwInitials.layer.borderWidth = 1
+            vwInitials.layer.borderColor = UIColor(hexString: "#1DB4C4").cgColor
+            lbInitials.textColor = UIColor(hexString: "#1DB4C4")
             tfDocument.text = formatterString(customerCPNJ,"cnpj")
         } else {
-            tfDocument.text = formatterString(customer.cpf, "cpf")
+            vwInitials.backgroundColor = UIColor(hexString: "#1DB4C4")
+            lbInitials.textColor = .white
         }
     }
     

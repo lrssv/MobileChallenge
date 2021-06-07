@@ -8,7 +8,8 @@ class SavedItemsViewController: UIViewController {
     let config = Configuration.shared
     
     weak var delegate: AddItemDelegate?
-
+    var indexRemoveItem: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         titleBackButton()
@@ -48,6 +49,7 @@ extension SavedItemsViewController: UITableViewDelegate{
             let thisItem = savedItems[indexPath.row]
             
             delegate?.prepareItems(added: thisItem)
+            delegate?.removeItem(indexItem: indexRemoveItem)
             
             navigationController?.popViewController(animated: true)
         }

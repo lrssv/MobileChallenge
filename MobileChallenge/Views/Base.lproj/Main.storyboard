@@ -1939,6 +1939,9 @@ para o cliente.</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iKc-A9-mt3"/>
+                    <connections>
+                        <outlet property="btBack" destination="ZAe-w1-CCl" id="jgg-cl-1MG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GuP-zA-sYG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2272,52 +2275,55 @@ para o cliente.</string>
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Elipse" translatesAutoresizingMaskIntoConstraints="NO" id="oni-Y6-A6U">
-                                                    <rect key="frame" x="26" y="4" width="49" height="56"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNu-26-uRa">
+                                                    <rect key="frame" x="26" y="6" width="52" height="52"/>
+                                                    <color key="backgroundColor" red="0.1137254902" green="0.70588235290000001" blue="0.76862745099999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="49" id="jYG-sQ-CfN"/>
+                                                        <constraint firstAttribute="width" constant="52" id="CS4-yH-NQd"/>
                                                     </constraints>
-                                                </imageView>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdX-WK-oQm">
-                                                    <rect key="frame" x="35" y="17.666666666666671" width="31" height="29"/>
+                                                    <rect key="frame" x="36.666666666666664" y="17.666666666666671" width="30.999999999999993" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pedro Henrique" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3B-Ko-LJ2">
-                                                    <rect key="frame" x="101" y="13" width="283" height="21"/>
+                                                    <rect key="frame" x="96" y="10" width="288" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25.153.072/0001-08" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JU-ba-SXs">
-                                                    <rect key="frame" x="101" y="38" width="303" height="18"/>
+                                                    <rect key="frame" x="96" y="35" width="308" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="oni-Y6-A6U" secondAttribute="bottom" constant="4" id="D9O-bp-7ha"/>
+                                                <constraint firstItem="k3B-Ko-LJ2" firstAttribute="top" secondItem="vPE-hC-lcz" secondAttribute="top" constant="10" id="2Q8-RT-2SY"/>
+                                                <constraint firstItem="k3B-Ko-LJ2" firstAttribute="leading" secondItem="cNu-26-uRa" secondAttribute="trailing" constant="18" id="2r1-c8-Iep"/>
+                                                <constraint firstItem="EdX-WK-oQm" firstAttribute="centerX" secondItem="cNu-26-uRa" secondAttribute="centerX" id="8c0-9G-nG9"/>
+                                                <constraint firstItem="cNu-26-uRa" firstAttribute="leading" secondItem="vPE-hC-lcz" secondAttribute="leading" constant="26" id="9tx-e6-w5G"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="k3B-Ko-LJ2" secondAttribute="trailing" constant="10" id="F3V-XQ-w0h"/>
-                                                <constraint firstItem="EdX-WK-oQm" firstAttribute="centerY" secondItem="oni-Y6-A6U" secondAttribute="centerY" id="Pd5-m7-gRo"/>
+                                                <constraint firstItem="cNu-26-uRa" firstAttribute="top" secondItem="vPE-hC-lcz" secondAttribute="top" constant="6" id="HRe-pQ-dwn"/>
                                                 <constraint firstAttribute="trailing" secondItem="7JU-ba-SXs" secondAttribute="trailing" constant="10" id="VX4-ao-tjj"/>
                                                 <constraint firstItem="7JU-ba-SXs" firstAttribute="leading" secondItem="k3B-Ko-LJ2" secondAttribute="leading" id="X05-QL-6Bj"/>
-                                                <constraint firstItem="oni-Y6-A6U" firstAttribute="leading" secondItem="vPE-hC-lcz" secondAttribute="leading" constant="26" id="YGT-tP-5hb"/>
-                                                <constraint firstItem="k3B-Ko-LJ2" firstAttribute="leading" secondItem="oni-Y6-A6U" secondAttribute="trailing" constant="26" id="Yn7-eU-kyc"/>
+                                                <constraint firstAttribute="bottom" secondItem="7JU-ba-SXs" secondAttribute="bottom" constant="11" id="bic-fu-LNU"/>
                                                 <constraint firstItem="7JU-ba-SXs" firstAttribute="top" secondItem="k3B-Ko-LJ2" secondAttribute="bottom" constant="4" id="cON-FF-XsH"/>
-                                                <constraint firstItem="EdX-WK-oQm" firstAttribute="centerX" secondItem="oni-Y6-A6U" secondAttribute="centerX" id="dpk-0g-fnR"/>
-                                                <constraint firstItem="oni-Y6-A6U" firstAttribute="top" secondItem="vPE-hC-lcz" secondAttribute="top" constant="4" id="nyi-xp-2T1"/>
-                                                <constraint firstAttribute="bottom" secondItem="7JU-ba-SXs" secondAttribute="bottom" constant="8" id="xOZ-gh-22W"/>
+                                                <constraint firstItem="EdX-WK-oQm" firstAttribute="centerY" secondItem="cNu-26-uRa" secondAttribute="centerY" id="fY3-T4-tgH"/>
+                                                <constraint firstAttribute="bottom" secondItem="cNu-26-uRa" secondAttribute="bottom" constant="6" id="kHY-mf-kcy"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" selected="YES"/>
                                         </accessibility>
                                         <connections>
+                                            <outlet property="lbInitials" destination="EdX-WK-oQm" id="DTM-dd-HOF"/>
                                             <outlet property="tfDocument" destination="7JU-ba-SXs" id="4c6-sQ-yc8"/>
-                                            <outlet property="tfInitials" destination="EdX-WK-oQm" id="DTM-dd-HOF"/>
                                             <outlet property="tfName" destination="k3B-Ko-LJ2" id="qum-2Q-NUh"/>
+                                            <outlet property="vwInitials" destination="cNu-26-uRa" id="iVH-ni-aUg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2348,7 +2354,7 @@ para o cliente.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLf-tP-htX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2029" y="22"/>
+            <point key="canvasLocation" x="2028.985507246377" y="21.195652173913047"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kKj-gg-G5u">
@@ -2384,7 +2390,6 @@ para o cliente.</string>
         <image name="Calendar" width="25" height="25"/>
         <image name="Code" width="23" height="23"/>
         <image name="Coin" width="14" height="14"/>
-        <image name="Elipse" width="49" height="49"/>
         <image name="Loading" width="149.66667175292969" height="150"/>
         <image name="Person " width="14" height="14"/>
         <image name="Share" width="17" height="17"/>

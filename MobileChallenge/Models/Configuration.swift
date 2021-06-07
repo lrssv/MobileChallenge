@@ -48,8 +48,10 @@ class Configuration {
         if let data = UserDefaults.standard.value(forKey:"items") as? Data {
             do {
                 var items = try PropertyListDecoder().decode(Array<Items>.self, from: data)
-                items.append(item)
-                UserDefaults.standard.set(try PropertyListEncoder().encode(items), forKey:"items")
+                if !items.contains(item) {
+                    items.append(item)
+                    UserDefaults.standard.set(try PropertyListEncoder().encode(items), forKey:"items")
+                }
             } catch {
                 print("error")
             }

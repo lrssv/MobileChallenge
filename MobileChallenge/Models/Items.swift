@@ -16,3 +16,9 @@ class Items: Codable {
         self.amount = amount
     }
 }
+
+extension Items: Equatable {
+    static func ==(lhs:Items,rhs:Items) -> Bool {
+        return lhs.name == rhs.name
+    }
+}

@@ -103,6 +103,7 @@ class BankingBilletViewController: BaseViewController {
     var client_type: PersonType = .individualPerson
     var client_showFields = 0
     
+    
     // MARK: - Functions for Banking Billet View
     
     override func viewDidLoad() {
@@ -119,6 +120,7 @@ class BankingBilletViewController: BaseViewController {
     //Code for when are a customer chosen
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        cleanFields()
         
         //Fills the fields with blank when there's no customer select, and when the customer are select fills with values chosen
         tfName.text = client_name

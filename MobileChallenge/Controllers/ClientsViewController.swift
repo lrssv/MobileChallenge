@@ -54,16 +54,16 @@ extension ClientsViewController: UITableViewDataSource  {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "clientsCell", for: indexPath) as! ClientsTableViewCell
-
+        var thisCustomer: Customer
+        
         if searching {
-            let thisCustomer = searchCustomers[indexPath.row]
-            cell.prepare(with: thisCustomer)
-            return cell
+            thisCustomer = searchCustomers[indexPath.row]
         } else {
-            let thisCustomer = savedCustomers[indexPath.row]
-            cell.prepare(with: thisCustomer)
-            return cell
+            thisCustomer = savedCustomers[indexPath.row]
         }
+        
+        cell.prepare(with: thisCustomer)
+        return cell
     }
 }
 
@@ -84,10 +84,10 @@ extension ClientsViewController: UITableViewDelegate {
 extension ClientsViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == ""{
+        if searchText == "" {
             searching = false
         } else {
-            let filtered = savedCustomers.filter{ ($0.name.contains(searchText.lowercased())) }
+            let filtered = savedCustomers.filter{ ($0.name.lowercased().contains(searchText.lowercased())) }
             searchCustomers = filtered.map({($0)})
             
             searching = true

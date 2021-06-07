@@ -2,6 +2,7 @@ import UIKit
 
 protocol AddItemDelegate: class {
     func prepareItems(added item: Items)
+    func removeItem(indexItem: Int?)
 }
 
 class AddItemViewController: BaseViewController {
@@ -20,15 +21,14 @@ class AddItemViewController: BaseViewController {
     @IBOutlet weak var btBack: UIButton!
     
     weak var delegate: AddItemDelegate?
-    
+   
     var titleItem: String = "Adicionar um item"
     var buttonTitle: String = "ADICIONAR"
+    var indexRemoveItem: Int?
     var nameItem: String = ""
     var valueItem: String = ""
     var totalItem: Double = 0
     var amount: Int = 1
-    
-    
     
     let validate = ValidateFieldsItems()
     var nameValidated = false, valueValidated = false
@@ -129,15 +129,13 @@ class AddItemViewController: BaseViewController {
         }
     }
     
-
-    
-    
     @IBAction func addItem(_ sender: UIButton) {
         guard let itemName = tfName.text else { return }
         
         item = Items(name: itemName, value: Int(valueItem)!, amount: amount)
         
         delegate?.prepareItems(added: item)
+        delegate?.removeItem(indexItem: indexRemoveItem)
         
         let itemForSave = Items(name: itemName, value: Int(valueItem)!, amount: 1)
         config.setItem(item: itemForSave)

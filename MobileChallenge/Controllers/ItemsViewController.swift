@@ -82,8 +82,8 @@ class ItemsViewController: BaseViewController {
                     editItem.buttonTitle = "ATUALIZAR"
                     editItem.nameItem = self.items[index].name
                     editItem.valueItem = String(self.items[index].value)
+                    editItem.indexRemoveItem = index
                     
-                    self.items.remove(at: index)
                     self.present(editItem, animated: true, completion: nil)
                 })
                 options.addAction(edit)
@@ -108,6 +108,12 @@ class ItemsViewController: BaseViewController {
 extension ItemsViewController: AddItemDelegate {
     func prepareItems(added item: Items) {
         items.append(item)
+    }
+    
+    func removeItem(indexItem: Int?) {
+        if indexItem != nil {
+            items.remove(at: indexItem!)
+        }
     }
 }
 

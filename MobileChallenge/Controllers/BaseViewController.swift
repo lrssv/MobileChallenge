@@ -60,6 +60,9 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        self.navigationController?.navigationBar.tintColor = .white
+        
         // Keyboard configuration
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
