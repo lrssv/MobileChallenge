@@ -82,8 +82,8 @@ class AddFieldsViewController: BaseViewController {
         
         createPickerView()
         
-        btBack.layer.borderWidth = 1
-        btBack.layer.borderColor = UIColor(hexString: "#F36F36").cgColor
+        buttonStyleFormatter(inThis: btBack)
+        
         btNext.isEnabled = true
     }
     
@@ -114,7 +114,7 @@ class AddFieldsViewController: BaseViewController {
             if textField == tfShipping {
                 if shipping.count == 1 {
                     let aux = "00\(shipping)"
-                    let valueAux = formatterNumber(number: aux)
+                    let valueAux = numberFormatter(number: aux)
                     tfShipping.text = valueAux
                     
                     validate.changeColorView(response: false, view: viewTFShipping)
@@ -126,7 +126,7 @@ class AddFieldsViewController: BaseViewController {
                     valueItem = valueItem.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
                     valueItem = String(valueItem.dropFirst())
                     
-                    let aux = formatterNumber(number: valueItem)
+                    let aux = numberFormatter(number: valueItem)
                     tfShipping.text = aux
                     
                     shippingValidated = validate.validateField(field: valueItem, type: .shipping)
@@ -215,7 +215,7 @@ class AddFieldsViewController: BaseViewController {
             totalBankingBillet += Double(i.total)!
         }
         
-        let total = formatterNumber(number: String(totalBankingBillet))
+        let total = numberFormatter(number: String(totalBankingBillet))
             
         tfTotal.text = total
     }
@@ -275,10 +275,7 @@ class AddFieldsViewController: BaseViewController {
     }
     
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+
     
     //MARK: - Create Picker Views
     func createPickerView(){

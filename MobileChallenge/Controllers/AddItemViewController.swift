@@ -38,8 +38,8 @@ class AddItemViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        btBack.layer.borderWidth = 1
-        btBack.layer.borderColor = UIColor(hexString: "#F36F36").cgColor
+        buttonStyleFormatter(inThis: btBack)
+        
         btNext.isEnabled = false
         
         lbAddItem.text = titleItem
@@ -58,7 +58,7 @@ class AddItemViewController: BaseViewController {
         }
         
         if valueItem != "" {
-            tfValue.text = formatterNumber(number: valueItem)
+            tfValue.text = numberFormatter(number: valueItem)
             valueValidated = true
             validateItem()
         }
@@ -91,7 +91,7 @@ class AddItemViewController: BaseViewController {
         
         if value.count == 1 {
             let aux = "00\(value)"
-            let valueAux = formatterNumber(number: aux)
+            let valueAux = numberFormatter(number: aux)
             tfValue.text = valueAux
             
             validate.changeColorView(response: false, view: viewTfValue)
@@ -103,7 +103,7 @@ class AddItemViewController: BaseViewController {
             valueItem = valueItem.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
             valueItem = String(valueItem.dropFirst())
             
-            let aux = formatterNumber(number: valueItem)
+            let aux = numberFormatter(number: valueItem)
             tfValue.text = aux
             
             valueValidated = validate.validateField(field: valueItem, type: .value)
@@ -129,10 +129,7 @@ class AddItemViewController: BaseViewController {
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+
     
     
     @IBAction func addItem(_ sender: UIButton) {

@@ -21,16 +21,12 @@ class BankingBilletViewController: BaseViewController {
     @IBOutlet weak var tfCNPJ: UITextField!
     @IBOutlet weak var tfPhoneNumber: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
-   
     @IBOutlet weak var tfStreet: UITextField!
     @IBOutlet weak var tfNumber: UITextField!
     @IBOutlet weak var tfComplement: UITextField!
     @IBOutlet weak var tfNeighborhood: UITextField!
     @IBOutlet weak var tfCEP: UITextField!
     @IBOutlet weak var tfState: UITextField!
-    
-    @IBOutlet weak var lbName: UILabel!
-    
     
     //MARK: - Buttons variables
     
@@ -47,21 +43,39 @@ class BankingBilletViewController: BaseViewController {
     
     // MARK: - Elements of Text field validate
     
-    @IBOutlet weak var viewTfName: ValidateFieldsBankingBillet!
-    @IBOutlet weak var viewTfCPF: ValidateFieldsBankingBillet!
-    @IBOutlet weak var viewTfCorporateName: ValidateFieldsBankingBillet!
-    @IBOutlet weak var viewTfCNPJ: ValidateFieldsBankingBillet!
-    @IBOutlet weak var viewTfPhoneNumber: ValidateFieldsBankingBillet!
-    @IBOutlet weak var viewTfEmail: ValidateFieldsBankingBillet!
-    @IBOutlet weak var viewTfStreet: ValidateFieldsBankingBillet!
-    @IBOutlet weak var viewTfNumber: ValidateFieldsBankingBillet!
-    @IBOutlet weak var viewTfComplement: ValidateFieldsBankingBillet!
-    @IBOutlet weak var viewTfNeighborhood: ValidateFieldsBankingBillet!
-    @IBOutlet weak var viewTfCEP: ValidateFieldsBankingBillet!
-    @IBOutlet weak var viewTfState: ValidateFieldsBankingBillet!
+    @IBOutlet weak var viewTfName: ValidatesFieldsBankingBillet!
+    @IBOutlet weak var viewTfCPF: ValidatesFieldsBankingBillet!
+    @IBOutlet weak var viewTfCorporateName: ValidatesFieldsBankingBillet!
+    @IBOutlet weak var viewTfCNPJ: ValidatesFieldsBankingBillet!
+    @IBOutlet weak var viewTfPhoneNumber: ValidatesFieldsBankingBillet!
+    @IBOutlet weak var viewTfEmail: ValidatesFieldsBankingBillet!
+    @IBOutlet weak var viewTfStreet: ValidatesFieldsBankingBillet!
+    @IBOutlet weak var viewTfNumber: ValidatesFieldsBankingBillet!
+    @IBOutlet weak var viewTfComplement: ValidatesFieldsBankingBillet!
+    @IBOutlet weak var viewTfNeighborhood: ValidatesFieldsBankingBillet!
+    @IBOutlet weak var viewTfCEP: ValidatesFieldsBankingBillet!
+    @IBOutlet weak var viewTfState: ValidatesFieldsBankingBillet!
     
-    let validate = ValidateFieldsBankingBillet()
-    var nameValidated = false, cpfValidated = false, phone_numberValidated = false, emailValidated = true, corporate_nameValidated = false, cnpjValidated = false, streetValidated = false, numberValidated = false, complementValidated = false, neighboorhoodValidated = false, cepValidated = false, stateValidated = false
+    @IBOutlet weak var lbName: UILabel!
+    @IBOutlet weak var lbCPF: UILabel!
+    @IBOutlet weak var lbCorporateName: UILabel!
+    @IBOutlet weak var lbCNPJ: UILabel!
+    @IBOutlet weak var lbPhoneNumber: UILabel!
+    @IBOutlet weak var lbEmail: UILabel!
+    @IBOutlet weak var lbStreet: UILabel!
+    @IBOutlet weak var lbNumber: UILabel!
+    @IBOutlet weak var lbComplement: UILabel!
+    @IBOutlet weak var lbNeighborhood: UILabel!
+    @IBOutlet weak var lbCEP: UILabel!
+    
+    @IBOutlet var textFields: [UITextField]!
+    @IBOutlet var labels: [UILabel]!
+    @IBOutlet var views: [UIView]!
+    
+    let validates = ValidatesFieldsBankingBillet()
+    let changes = ChangesColorAccordingToValidation()
+    
+    var nameValidated = false, cpfValidated = false, phoneNumberValidated = false, emailValidated = true, corporateNameValidated = false, cnpjValidated = false, streetValidated = false, numberValidated = false, complementValidated = false, neighboorhoodValidated = false, cepValidated = false, stateValidated = false
     
     var choosen: Bool = false
     var addFieldsIsOn: Bool = false
@@ -79,7 +93,7 @@ class BankingBilletViewController: BaseViewController {
     var stateChosen: String?
     var stateInitials: String?
     
-    // MARK: - Variables for Customers Table View
+    // MARK: - Variables for Customers List
     
     var client_name = ""
     var client_cpf = ""
@@ -89,60 +103,75 @@ class BankingBilletViewController: BaseViewController {
     var client_type: PersonType = .individualPerson
     var client_showFields = 0
     
-    // MARK: - Functions about Banking Billet View
+    // MARK: - Functions for Banking Billet View
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showAtrributes(for: .individualPerson)
-        
-        createPickerView()
-        
         self.navigationItem.setHidesBackButton(true, animated: false)
         
-        btBack.layer.borderWidth = 1
-        btBack.layer.borderColor = UIColor(hexString: "#F36F36").cgColor
-        
+        showAtrributes(for: .individualPerson)
+        buttonStyleFormatter(inThis: btBack)
         realeaseButton(field: .buttonNotEnable)
-        
-        lbName.text = ""
+        createPickerView()
     }
     
+    //Code for when are a customer chosen
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        //Fills the fields with blank when there's no customer select, and when the customer are select fills with values chosen
         tfName.text = client_name
         tfCPF.text = formatterField(client_cpf, "cpf")
         tfCNPJ.text = formatterField(client_cnpj, "cnpj")
         tfCorporateName.text = client_corporate_name
         tfPhoneNumber.text = formatterField(client_phone_number, "phoneNumber")
         
+        //Shows the type of customer chosen in Customer View
         scForWho.selectedSegmentIndex = client_showFields
         showAtrributes(for: client_type)
         
-        
+        //Validates the fields and releases the button when a customer is selected
         if client_name != "" {
             nameValidated = true
-            cpfValidated = true
-            phone_numberValidated = true
-            validate.changeColorView(response: nameValidated, view: viewTfName)
-            validate.changeColorView(response: cpfValidated, view: viewTfCPF)
-            validate.changeColorView(response: phone_numberValidated, view: viewTfPhoneNumber)
+            changes.fieldColor(result: nameValidated, label: lbName, view: viewTfName)
             
-            realeaseButton(field: .binding)
+            cpfValidated = true
+            changes.fieldColor(result: cpfValidated, label: lbCPF, view: viewTfCPF)
+            
+            phoneNumberValidated = true
+            changes.fieldColor(result: phoneNumberValidated, label: lbPhoneNumber, view: viewTfPhoneNumber)
+            
+            realeaseButton(field: .required)
         }
         
         if client_cnpj != "" {
             cnpjValidated = true
-            corporate_nameValidated = true
-            validate.changeColorView(response: cnpjValidated, view: viewTfCNPJ)
-            validate.changeColorView(response: corporate_nameValidated, view: viewTfCorporateName)
+            changes.fieldColor(result: cnpjValidated, label: lbCNPJ, view: viewTfCNPJ)
+            
+            corporateNameValidated = true
+            changes.fieldColor(result: corporateNameValidated, label: lbCorporateName, view: viewTfCorporateName)
             
             realeaseButton(field: .juridicalPerson)
         }
     }
- 
     
+    //Cleans the fields when the type of person is change
+    func cleanFields(){
+        for textField in textFields {
+            textField.text = ""
+        }
+        
+        for label in labels {
+            label.text = ""
+        }
+        
+        for view in views {
+            view.backgroundColor = UIColor(hexString: "#DBDBDB")
+        }
+    }
+    
+    //Shows fields for each type of person
     func showAtrributes(for person: PersonType){
         switch person {
             case .individualPerson:
@@ -160,19 +189,23 @@ class BankingBilletViewController: BaseViewController {
         }
     }
     
-    @IBAction func chosedPerson(_ sender: Any) {
+    //Styles the view according person type
+    @IBAction func chosenPerson(_ sender: Any) {
         switch scForWho.selectedSegmentIndex {
         case 0:
+            cleanFields()
             showAtrributes(for: .individualPerson)
             swAddFields.isOn = false
-            realeaseButton(field: .binding)
+            realeaseButton(field: .required)
         default:
+            cleanFields()
             showAtrributes(for: .juridicalPerson)
             realeaseButton(field: .buttonNotEnable)
             swAddFields.isOn = false
         }
     }
     
+    //Shows or hidden the additional fields
     @IBAction func swAddFields(_ sender: UISwitch) {
         if sender.isOn {
             viewAddres.isHidden = false
@@ -182,123 +215,25 @@ class BankingBilletViewController: BaseViewController {
         }
     }
     
-    @IBAction func verifyBasicFields(_ textField: UITextField) {
-        if let name = tfName.text {
-            if textField == tfName {
-                nameValidated = validate.validateField(field: name, type: .name)
-                validate.changeColorText(label: lbName, response: nameValidated, view: viewTfName)
-            }
-        }
-        
-        if let cpf = tfCPF.text {
-            if textField == tfCPF {
-                tfCPF.text = formatterField(cpf, "cpf")
-                cpfValidated = validate.validateField(field: cpf, type: .cpf)
-                validate.changeColorView(response: cpfValidated, view: viewTfCPF)
-            }
-        }
-        
-        if let phone_number = tfPhoneNumber.text {
-            if textField == tfPhoneNumber {
-                tfPhoneNumber.text = formatterField(phone_number, "phoneNumber")
-                phone_numberValidated = validate.validateField(field: phone_number, type: .phone_number)
-                validate.changeColorView(response: phone_numberValidated, view: viewTfPhoneNumber)
-            }
-        }
-        
-        if let email = tfEmail.text {
-            if textField == tfEmail {
-                emailValidated = validate.validateField(field: email, type: .email)
-                validate.changeColorView(response: emailValidated, view: viewTfEmail)
-            }
-        }
-        
-        realeaseButton(field: .binding)
-    }
-    
-    @IBAction func verifyJuridicalFields(_ textField: UITextField) {
-        if let corporate_name = tfCorporateName.text {
-            if textField == tfCorporateName {
-                corporate_nameValidated = validate.validateField(field: corporate_name, type: .corporate_name)
-                validate.changeColorView(response: corporate_nameValidated, view: viewTfCorporateName)
-            }
-        }
-        
-        if let cnpj = tfCNPJ.text {
-            if textField == tfCNPJ {
-                tfCNPJ.text = formatterField(cnpj, "cnpj")
-                cnpjValidated = validate.validateField(field: cnpj, type: .cnpj)
-                validate.changeColorView(response: cnpjValidated, view: viewTfCNPJ)
-            }
-        }
-        
-        realeaseButton(field: .juridicalPerson)
-    }
-    
-    @IBAction func verifyAddFields(_ textField: UITextField) {
-        if let street = tfStreet.text {
-            if textField == tfStreet {
-                streetValidated = validate.validateField(field: street, type: .street)
-                validate.changeColorView(response: streetValidated, view: viewTfStreet)
-            }
-        }
-        
-        if let number = tfNumber.text {
-            if textField == tfNumber {
-                numberValidated = validate.validateField(field: number, type: .number)
-                validate.changeColorView(response: numberValidated, view: viewTfNumber)
-            }
-        }
-        
-        if let complement = tfComplement.text {
-            if textField == tfComplement {
-                complementValidated = validate.validateField(field: complement, type: .complement)
-                validate.changeColorView(response: complementValidated, view: viewTfComplement)
-            }
-        }
-        
-        if let neighborhood = tfNeighborhood.text {
-            if textField == tfNeighborhood {
-                neighboorhoodValidated = validate.validateField(field: neighborhood, type: .neighborhood)
-                validate.changeColorView(response: neighboorhoodValidated, view: viewTfNeighborhood)
-            }
-        }
-        
-        if let cep = tfCEP.text {
-            if textField == tfCEP {
-                cepValidated = validate.validateField(field: cep, type: .zipcode)
-                validate.changeColorView(response: cepValidated, view: viewTfCEP)
-            }
-        }
-        
-        if let state = tfState.text {
-            if textField == tfState {
-                stateValidated = validate.validateField(field: state, type: .state)
-                validate.changeColorView(response: stateValidated, view: viewTfState)
-            }
-        }
-        
-        realeaseButton(field: .addedFields)
-    }
-    
-  
+    //Releases the button according the field type edited
     func realeaseButton(field type: FieldsType){
         switch type {
-        case .binding:
-            if nameValidated && cpfValidated && phone_numberValidated && emailValidated && scForWho.selectedSegmentIndex == 0 {
-                btNext.backgroundColor = UIColor(hexString: "#F36F36")
-                btNext.isEnabled = true
+        case .required:
+            if nameValidated && cpfValidated && phoneNumberValidated && emailValidated && scForWho.selectedSegmentIndex == 0 {
+                changesReleaseButton(in: btNext)
                 choosen = true
             }
         case .juridicalPerson:
-            if nameValidated && cpfValidated && phone_numberValidated && corporate_nameValidated && cnpjValidated {
-                btNext.backgroundColor = UIColor(hexString: "#F36F36")
-                btNext.isEnabled = true
+            if nameValidated && cpfValidated && phoneNumberValidated && corporateNameValidated && cnpjValidated {
+                changesReleaseButton(in: btNext)
             }
         case .addedFields:
             if choosen && streetValidated && numberValidated && complementValidated && neighboorhoodValidated && cepValidated && stateValidated && emailValidated  {
-                btNext.backgroundColor = UIColor(hexString: "#F36F36")
-                btNext.isEnabled = true
+                changesReleaseButton(in: btNext)
+                
+            } else {
+                btNext.backgroundColor = .lightGray
+                btNext.isEnabled = false
             }
         default:
             btNext.backgroundColor = .lightGray
@@ -306,6 +241,7 @@ class BankingBilletViewController: BaseViewController {
         }
     }
     
+    //Builds the Customer and stores the data at UserDefaults
     @IBAction func btNextView(_ sender: UIButton) {
         var cpfString = tfCPF.text!
         cpfString = cpfString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
@@ -342,17 +278,19 @@ class BankingBilletViewController: BaseViewController {
         
     }
     
+    //Sends Customer to next view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! ItemsViewController
         vc.customer = customer
     }
     
-    
+    //Show the Cients View Controller
     @IBAction func btClientsView(_ sender: UIButton) {
         let client = storyboard?.instantiateViewController(identifier: "ClientsViewController") as! ClientsViewController
         show(client, sender: self)
     }
     
+    //Applicates the mask in text fields
     func formatterField(_ number: String, _ type: String) -> String {
         let cleanNumber = number.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
         var format: [Character]
@@ -364,6 +302,8 @@ class BankingBilletViewController: BaseViewController {
             format = ["X", "X", "X", ".", "X", "X", "X", ".", "X", "X", "X", "-", "X", "X"]
         case "cnpj":
             format = ["X", "X", ".", "X", "X", "X", ".", "X", "X", "X", "/", "X", "X", "X", "X", "-", "X", "X"]
+        case "cep":
+            format = ["X","X","X","X","X","-","X", "X","X"]
         default:
             return ""
         }
@@ -384,10 +324,100 @@ class BankingBilletViewController: BaseViewController {
         return result
     }
     
-    // MARK: - Keyboard configuration
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    // MARK: - Validation of Text Fields
+
+    @IBAction func verifyBasicFields(_ textField: UITextField) {
+        if let name = tfName.text {
+            if textField == tfName {
+                nameValidated = validates.thisField(field: name, type: .name)
+                changes.fieldColor(result: nameValidated, label: lbName, view: viewTfName)
+            }
+        }
+        
+        if let cpf = tfCPF.text {
+            if textField == tfCPF {
+                tfCPF.text = formatterField(cpf, "cpf")
+                cpfValidated = validates.thisField(field: cpf, type: .cpf)
+                changes.fieldColor(result: cpfValidated, label: lbCPF, view: viewTfCPF)
+            }
+        }
+        
+        if let phone_number = tfPhoneNumber.text {
+            if textField == tfPhoneNumber {
+                tfPhoneNumber.text = formatterField(phone_number, "phoneNumber")
+                phoneNumberValidated = validates.thisField(field: phone_number, type: .phone_number)
+                changes.fieldColor(result: phoneNumberValidated, label: lbPhoneNumber, view: viewTfPhoneNumber)
+            }
+        }
+        
+        if let email = tfEmail.text {
+            if textField == tfEmail {
+                emailValidated = validates.thisField(field: email, type: .email)
+                changes.fieldColor(result: emailValidated, label: lbEmail, view: viewTfEmail)
+            }
+        }
+        
+        realeaseButton(field: .required)
+    }
+    
+    @IBAction func verifyJuridicalFields(_ textField: UITextField) {
+        if let corporate_name = tfCorporateName.text {
+            if textField == tfCorporateName {
+                corporateNameValidated = validates.thisField(field: corporate_name, type: .corporate_name)
+                changes.fieldColor(result: corporateNameValidated, label: lbCorporateName, view: viewTfCorporateName)
+            }
+        }
+        
+        if let cnpj = tfCNPJ.text {
+            if textField == tfCNPJ {
+                tfCNPJ.text = formatterField(cnpj, "cnpj")
+                cnpjValidated = validates.thisField(field: cnpj, type: .cnpj)
+                changes.fieldColor(result: cnpjValidated, label: lbCNPJ, view: viewTfCNPJ)
+            }
+        }
+        
+        realeaseButton(field: .juridicalPerson)
+    }
+    
+    @IBAction func verifyAddFields(_ textField: UITextField) {
+        if let street = tfStreet.text {
+            if textField == tfStreet {
+                streetValidated = validates.thisField(field: street, type: .street)
+                changes.fieldColor(result: streetValidated, label: lbStreet, view: viewTfStreet)
+            }
+        }
+        
+        if let number = tfNumber.text {
+            if textField == tfNumber {
+                numberValidated = validates.thisField(field: number, type: .number)
+                changes.fieldColor(result: numberValidated, label: lbNumber, view: viewTfNumber)
+            }
+        }
+        
+        if let complement = tfComplement.text {
+            if textField == tfComplement {
+                complementValidated = validates.thisField(field: complement, type: .complement)
+                changes.fieldColor(result: complementValidated, label: lbComplement, view: viewTfComplement)
+            }
+        }
+        
+        if let neighborhood = tfNeighborhood.text {
+            if textField == tfNeighborhood {
+                neighboorhoodValidated = validates.thisField(field: neighborhood, type: .neighborhood)
+                changes.fieldColor(result: neighboorhoodValidated, label: lbNeighborhood, view: viewTfNeighborhood)
+            }
+        }
+        
+        if let cep = tfCEP.text {
+            if textField == tfCEP {
+                tfCEP.text = formatterField(cep, "cep")
+                cepValidated = validates.thisField(field: cep, type: .zipcode)
+                changes.fieldColor(result: cepValidated, label: lbCEP, view: viewTfCEP)
+            }
+        }
+        
+        realeaseButton(field: .addedFields)
+        
     }
     
     // MARK: - States Picker View
@@ -398,7 +428,7 @@ class BankingBilletViewController: BaseViewController {
         let btFlexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
         let btCancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-        let btDone = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDiscount))
+        let btDone = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
         toolbar.items = [btCancel, btFlexibleSpace, btDone]
         
         tfState.inputAccessoryView = toolbar
@@ -410,7 +440,7 @@ class BankingBilletViewController: BaseViewController {
         tfState.resignFirstResponder()
     }
     
-    @objc func doneDiscount() {
+    @objc func done() {
         stateChosen = stateName[pickerViewStates.selectedRow(inComponent: 0)]
         tfState.text = stateChosen
         
@@ -419,7 +449,11 @@ class BankingBilletViewController: BaseViewController {
                 stateInitials = key
             }
         }
-
+        
+        stateValidated = true
+        changes.fieldColor(result: stateValidated, label: nil, view: viewTfState)
+        realeaseButton(field: .addedFields)
+        
         cancel()
     }
     

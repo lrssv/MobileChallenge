@@ -1,12 +1,14 @@
 import Foundation
 import UIKit
 
-class ValidateFieldsBankingBillet: UIView {
+// MARK: - Validates fields of Banking Billet View Controller
+
+class ValidatesFieldsBankingBillet: UIView {
     
     var result: Bool = false
     var hasLastName: Bool = false
     
-    func validateField(field: String, type: InputType) -> Bool {
+    func thisField(field: String, type: InputType) -> Bool {
         switch type {
         case .name:
             var completeName: [String] = []
@@ -53,21 +55,32 @@ class ValidateFieldsBankingBillet: UIView {
         return result
     }
     
-    func changeColorView(response: Bool, view: UIView) {
-        if response {
-            view.backgroundColor = .systemGreen
+   
+}
+
+class ChangesColorAccordingToValidation {
+    func fieldColor(result: Bool, label: UILabel?, view: UIView) {
+        if label != nil {
+            if result {
+                view.backgroundColor = .systemGreen
+                label!.text = ""
+            } else {
+                view.backgroundColor = .systemRed
+                label!.text = "Formato inválido"
+            }
         } else {
-            view.backgroundColor = .systemRed
+            if result {
+                view.backgroundColor = .systemGreen
+            } else {
+                view.backgroundColor = .systemRed
+            }
         }
     }
     
-    func changeColorText(label: UILabel, response: Bool, view: UIView) {
-        if response {
-            view.backgroundColor = .systemGreen
-            label.text = ""
-        } else {
-            view.backgroundColor = .systemRed
-            label.text = "Formato inválido"
+    func fieldColorDefault(label: UILabel?, view: UIView){
+        if label != nil {
+            view.backgroundColor = .systemGray
+            label!.text = ""
         }
     }
 }

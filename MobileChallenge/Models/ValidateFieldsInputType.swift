@@ -36,7 +36,7 @@ enum InputType {
 // MARK: - Enum for validating group of fields according to API required
 enum FieldsType{
     // case of Banking Billet
-    case binding
+    case required
     case juridicalPerson
     case addedFields
     case buttonNotEnable

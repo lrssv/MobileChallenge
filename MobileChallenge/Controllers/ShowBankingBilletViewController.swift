@@ -36,7 +36,7 @@ class ShowBankingBilletViewController: BaseViewController {
     
     func showData(){
         lbDate.text = convertDateFormater(payment.banking_billet.expire_at)
-        lbValue.text = formatterNumber(number: String(totalBankingBillet))
+        lbValue.text = numberFormatter(number: String(totalBankingBillet))
         lbName.text = payment.banking_billet.customer.name
         lbPaycode.text = barcode
     }
@@ -74,9 +74,8 @@ class ShowBankingBilletViewController: BaseViewController {
     }
     
     @IBAction func btBack(_ sender: UIButton) {
-        if let vc = navigationController?.viewControllers.filter({$0 is BankingBilletViewController}).first as? BankingBilletViewController {
-            self.navigationController?.popToViewController(vc, animated: true)
-        }
+        let client = storyboard?.instantiateViewController(identifier: "BankingBilletViewController") as! BankingBilletViewController
+        show(client, sender: self)
     }
     
     func convertDateFormater(_ date: String) -> String {

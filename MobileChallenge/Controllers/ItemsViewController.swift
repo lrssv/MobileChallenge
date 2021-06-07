@@ -16,8 +16,8 @@ class ItemsViewController: BaseViewController {
         
         titleBackButton()
         
-        btBack.layer.borderWidth = 1
-        btBack.layer.borderColor = UIColor(hexString: "#F36F36").cgColor
+        buttonStyleFormatter(inThis: btBack)
+        
         btNext.isEnabled = false
         
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))

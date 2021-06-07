@@ -17,6 +17,7 @@
 		9E4DF715264EA3D900855E08 /* AddFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DF714264EA3D900855E08 /* AddFieldsViewController.swift */; };
 		9E692668264AF6BD009AE3B2 /* BakingBilletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E692667264AF6BD009AE3B2 /* BakingBilletViewController.swift */; };
 		9E6A647226657D2900FE2BF8 /* SavedItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6A647126657D2900FE2BF8 /* SavedItemsTableViewCell.swift */; };
+		9E7D12D2266E4F6E00BF7843 /* ValidatesFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7D12D1266E4F6E00BF7843 /* ValidatesFields.swift */; };
 		9E88299B2649B8EE00683FFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88299A2649B8EE00683FFD /* AppDelegate.swift */; };
 		9E88299D2649B8EE00683FFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88299C2649B8EE00683FFD /* SceneDelegate.swift */; };
 		9E8829A22649B8EE00683FFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E8829A02649B8EE00683FFD /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 		9E4DF714264EA3D900855E08 /* AddFieldsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFieldsViewController.swift; sourceTree = "<group>"; };
 		9E692667264AF6BD009AE3B2 /* BakingBilletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BakingBilletViewController.swift; sourceTree = "<group>"; };
 		9E6A647126657D2900FE2BF8 /* SavedItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItemsTableViewCell.swift; sourceTree = "<group>"; };
+		9E7D12D1266E4F6E00BF7843 /* ValidatesFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatesFields.swift; sourceTree = "<group>"; };
 		9E8829972649B8EE00683FFD /* MobileChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E88299A2649B8EE00683FFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E88299C2649B8EE00683FFD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				9EA26487265D648C00F22D19 /* ValidateFieldsAddFields.swift */,
 				9EA2648A265D672C00F22D19 /* ValidateFieldsInputType.swift */,
 				9EE94F6B26651581000E1AD9 /* Configuration.swift */,
+				9E7D12D1266E4F6E00BF7843 /* ValidatesFields.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				9EB748AD26557ADB00C20215 /* Address.swift in Sources */,
 				9EA26482265C25EB00F22D19 /* ValidateFieldsItems.swift in Sources */,
 				9EB748B026557C9400C20215 /* Customer.swift in Sources */,
+				9E7D12D2266E4F6E00BF7843 /* ValidatesFields.swift in Sources */,
 				9E4DF70C264D48AF00855E08 /* ItemsViewController.swift in Sources */,
 				9EA2648B265D672C00F22D19 /* ValidateFieldsInputType.swift in Sources */,
 				9E4DF6F4264C0A6500855E08 /* BankingBillet.swift in Sources */,
