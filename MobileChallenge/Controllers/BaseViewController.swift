@@ -70,6 +70,25 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    func replacingOccurrences(fieldText: String, isCurrency: Bool) -> String {
+        var fieldReplaced = fieldText
+        
+        fieldReplaced = fieldReplaced.replacingOccurrences(of: "R$", with: "", options: NSString.CompareOptions.literal, range: nil)
+        fieldReplaced = fieldReplaced.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
+        fieldReplaced = fieldReplaced.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
+        fieldReplaced = fieldReplaced.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
+        fieldReplaced = fieldReplaced.replacingOccurrences(of: "/", with: "", options: NSString.CompareOptions.literal, range: nil)
+        fieldReplaced = fieldReplaced.replacingOccurrences(of: "(", with: "", options: NSString.CompareOptions.literal, range: nil)
+        fieldReplaced = fieldReplaced.replacingOccurrences(of: ")", with: "", options: NSString.CompareOptions.literal, range: nil)
+        fieldReplaced = fieldReplaced.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
+        
+        if isCurrency {
+            fieldReplaced = String(fieldReplaced.dropFirst())
+        }
+        
+        return fieldReplaced
+    }
+    
     // MARK: Number formatter to Brazilian Currency
     func numberFormatter(number: String) -> String {
         let formatter = NumberFormatter()
@@ -78,7 +97,6 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
         formatter.numberStyle = .currency
         formatter.locale = Locale(identifier: "pt_BR")
         
-
         let value = Double(number)!/100
         
         if let price = formatter.string(from: NSNumber(value: value)) {

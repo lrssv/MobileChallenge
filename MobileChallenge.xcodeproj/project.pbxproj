@@ -24,8 +24,6 @@
 		9E8829A52649B8EE00683FFD /* MobileChallenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E8829A32649B8EE00683FFD /* MobileChallenge.xcdatamodeld */; };
 		9E8829A72649B8EF00683FFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E8829A62649B8EF00683FFD /* Assets.xcassets */; };
 		9E8829AA2649B8EF00683FFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E8829A82649B8EF00683FFD /* LaunchScreen.storyboard */; };
-		9EA06445265704B700BF3197 /* ValidateFieldsBankingBillet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA06444265704B700BF3197 /* ValidateFieldsBankingBillet.swift */; };
-		9EA26482265C25EB00F22D19 /* ValidateFieldsItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA26481265C25EB00F22D19 /* ValidateFieldsItems.swift */; };
 		9EA26488265D648C00F22D19 /* ValidateFieldsAddFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA26487265D648C00F22D19 /* ValidateFieldsAddFields.swift */; };
 		9EA2648B265D672C00F22D19 /* ValidateFieldsInputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA2648A265D672C00F22D19 /* ValidateFieldsInputType.swift */; };
 		9EB7489E2653F6E900C20215 /* IssueBankingBilletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB7489D2653F6E900C20215 /* IssueBankingBilletViewController.swift */; };
@@ -65,8 +63,6 @@
 		9E8829A62649B8EF00683FFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E8829A92649B8EF00683FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E8829AB2649B8EF00683FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9EA06444265704B700BF3197 /* ValidateFieldsBankingBillet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateFieldsBankingBillet.swift; sourceTree = "<group>"; };
-		9EA26481265C25EB00F22D19 /* ValidateFieldsItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateFieldsItems.swift; sourceTree = "<group>"; };
 		9EA26487265D648C00F22D19 /* ValidateFieldsAddFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateFieldsAddFields.swift; sourceTree = "<group>"; };
 		9EA2648A265D672C00F22D19 /* ValidateFieldsInputType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateFieldsInputType.swift; sourceTree = "<group>"; };
 		9EB7489D2653F6E900C20215 /* IssueBankingBilletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBankingBilletViewController.swift; sourceTree = "<group>"; };
@@ -111,8 +107,6 @@
 				9EB748B226557D5100C20215 /* Shippings.swift */,
 				9EB748B52655866100C20215 /* Discount.swift */,
 				9EB748BC2655B87E00C20215 /* ConditionalDiscount.swift */,
-				9EA06444265704B700BF3197 /* ValidateFieldsBankingBillet.swift */,
-				9EA26481265C25EB00F22D19 /* ValidateFieldsItems.swift */,
 				9EA26487265D648C00F22D19 /* ValidateFieldsAddFields.swift */,
 				9EA2648A265D672C00F22D19 /* ValidateFieldsInputType.swift */,
 				9EE94F6B26651581000E1AD9 /* Configuration.swift */,
@@ -264,7 +258,6 @@
 				9E88299B2649B8EE00683FFD /* AppDelegate.swift in Sources */,
 				9E88299D2649B8EE00683FFD /* SceneDelegate.swift in Sources */,
 				9EB748BD2655B87E00C20215 /* ConditionalDiscount.swift in Sources */,
-				9EA06445265704B700BF3197 /* ValidateFieldsBankingBillet.swift in Sources */,
 				9EFAA5F0264EE18900E23E36 /* BaseViewController.swift in Sources */,
 				9EB748B326557D5100C20215 /* Shippings.swift in Sources */,
 				9E6A647226657D2900FE2BF8 /* SavedItemsTableViewCell.swift in Sources */,
@@ -275,7 +268,6 @@
 				9E4DF70F264D5D6E00855E08 /* SavedItemsViewController.swift in Sources */,
 				9EEDCE54265FE71B00C3DBCE /* ShowBankingBilletViewController.swift in Sources */,
 				9EB748AD26557ADB00C20215 /* Address.swift in Sources */,
-				9EA26482265C25EB00F22D19 /* ValidateFieldsItems.swift in Sources */,
 				9EB748B026557C9400C20215 /* Customer.swift in Sources */,
 				9E7D12D2266E4F6E00BF7843 /* ValidatesFields.swift in Sources */,
 				9E4DF70C264D48AF00855E08 /* ItemsViewController.swift in Sources */,

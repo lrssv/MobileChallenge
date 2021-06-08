@@ -24,21 +24,27 @@ class AddFieldsViewController: BaseViewController {
     @IBOutlet weak var tfTotal: UILabel!
     
     // MARK: - Views and variables for Text Field validation
+    @IBOutlet weak var viewTFDate: ValidatesFieldsAddFields!
+    @IBOutlet weak var viewTFShipping: ValidatesFieldsAddFields!
+    @IBOutlet weak var viewBTDiscount: ValidatesFieldsAddFields!
+    @IBOutlet weak var viewTFDiscount: ValidatesFieldsAddFields!
+    @IBOutlet weak var viewBTConditionalDiscount: ValidatesFieldsAddFields!
+    @IBOutlet weak var viewTFConditionalDiscount: ValidatesFieldsAddFields!
+    @IBOutlet weak var viewTFUntilDate: ValidatesFieldsAddFields!
     
-    @IBOutlet weak var viewTFDate: ValidateFieldsAddFields!
-    @IBOutlet weak var viewTFShipping: ValidateFieldsAddFields!
-    @IBOutlet weak var viewBTDiscount: ValidateFieldsAddFields!
-    @IBOutlet weak var viewTFDiscount: ValidateFieldsAddFields!
-    @IBOutlet weak var viewBTConditionalDiscount: ValidateFieldsAddFields!
-    @IBOutlet weak var viewTFConditionalDiscount: ValidateFieldsAddFields!
-    @IBOutlet weak var viewTFUntilDate: ValidateFieldsAddFields!
+    @IBOutlet weak var lbDate: UILabel!
+    @IBOutlet weak var lbShipping: UILabel!
+    @IBOutlet weak var lbDiscount: UILabel!
+    @IBOutlet weak var lbConditionalDiscount: UILabel!
+    @IBOutlet weak var lbUntilDate: UILabel!
     
     var addFieldsIsOn: Bool = false
-    var valueItem: String = ""
+    var valueShipping: String = ""
     
-    let validate = ValidateFieldsAddFields()
+    let validates = ValidatesFieldsAddFields()
+    let changes = ChangesColorAccordingToValidation()
     
-    var dateValidated = false, shippingValidated = false, btDiscountValidated = false, discountValidated = false, btConditionalDiscountValidated = false, conditionalDiscountValidated = false, untilDateValidated = false, messageValidated = true
+    var dateValidated = false, shippingValidated = false, btDiscountValidated = false, discountValidated = false, btConditionalDiscountValidated = false, conditionalDiscountValidated = false, untilDateValidated = false, messageValidated = true, result = false
         
     // MARK: - Elements of Date Picker
     let datePickerDate = UIDatePicker()
@@ -50,7 +56,6 @@ class AddFieldsViewController: BaseViewController {
     var untilDateChosen: String?
     
     // MARK: - Elements of Picker View
-    
     lazy var pickerViewDiscount: UIPickerView  = {
         let pickerViewDiscount = UIPickerView()
         pickerViewDiscount.delegate  = self
@@ -70,7 +75,6 @@ class AddFieldsViewController: BaseViewController {
     var conditionalDiscountChosen: String?
     
     // MARK: - Functions about Additional Fields View
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewAddFields.isHidden = true
@@ -84,112 +88,35 @@ class AddFieldsViewController: BaseViewController {
         
         buttonStyleFormatter(inThis: btBack)
         
-        btNext.isEnabled = true
+        releaseButton(field: .buttonNotEnable)
     }
-    
     
     @IBAction func addFields(_ sender: UISwitch) {
         if sender.isOn {
             viewAddFields.isHidden = false
             addFieldsIsOn = true
+            releaseButton(field: .addFields)
         } else {
             viewAddFields.isHidden = true
             addFieldsIsOn = false
+            releaseButton(field: .date)
         }
     }
     
-    @IBAction func validateDate(_ textField: UITextField) {
-        if let date = tfDate.text {
-            if textField == tfDate {
-                dateValidated = validate.validateField(field: date, type: .date)
-                validate.changeColorView(response: dateValidated, view: viewTFDate)
-            }
+    func totalPayment() {
+        for i in items {
+            totalBankingBillet += Double(i.total)!
         }
-        realeaseButton(field: .date)
+        
+        let total = numberFormatter(number: String(totalBankingBillet))
+            
+        tfTotal.text = total
     }
     
-    
-    @IBAction func validateAddFields(_ textField: UITextField) {
-        if let shipping = tfShipping.text {
-            if textField == tfShipping {
-                if shipping.count == 1 {
-                    let aux = "00\(shipping)"
-                    let valueAux = numberFormatter(number: aux)
-                    tfShipping.text = valueAux
-                    
-                    validate.changeColorView(response: false, view: viewTFShipping)
-                } else {
-                    valueItem = shipping
-                    valueItem = valueItem.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
-                    valueItem = valueItem.replacingOccurrences(of: "R$", with: "", options: NSString.CompareOptions.literal, range: nil)
-                    
-                    valueItem = valueItem.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
-                    valueItem = String(valueItem.dropFirst())
-                    
-                    let aux = numberFormatter(number: valueItem)
-                    tfShipping.text = aux
-                    
-                    shippingValidated = validate.validateField(field: valueItem, type: .shipping)
-                    validate.changeColorView(response: shippingValidated, view: viewTFShipping)
-                }
-            }
-        }
-        
-        if let btdiscount = btDiscount.text {
-            if textField == btDiscount {
-                btDiscountValidated = validate.validateField(field: btdiscount, type: .typeOf_discount)
-                validate.changeColorView(response: btDiscountValidated, view: viewBTDiscount)
-            }
-        }
-        
-        if let discount = tfDiscount.text {
-            if textField == tfDiscount {
-                tfDiscount.text! = discount.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
-                discountValidated  = validate.validateField(field: discount, type: .typeOf_conditional_discount)
-                validate.changeColorView(response: discountValidated, view: viewTFDiscount)
-            }
-        }
-        
-        if let conditional_discount = tfConditionalDiscount.text {
-            if textField == tfConditionalDiscount {
-                tfConditionalDiscount.text! = conditional_discount.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
-                conditionalDiscountValidated  = validate.validateField(field: conditional_discount, type: .typeOf_conditional_discount)
-                validate.changeColorView(response: conditionalDiscountValidated, view: viewTFConditionalDiscount)
-            }
-        }
-        
-        if let btconditional_discount = btConditionalDiscount.text {
-            if textField == btConditionalDiscount {
-                btConditionalDiscountValidated = validate.validateField(field: btconditional_discount, type: .typeOf_conditional_discount)
-                validate.changeColorView(response: btDiscountValidated, view: viewBTConditionalDiscount)
-            }
-        }
-        
-        if let until_date = tfUntilDate.text {
-            if textField == tfUntilDate {
-                untilDateValidated = validate.validateField(field: until_date, type: .until_date)
-                validate.changeColorView(response: untilDateValidated, view: viewTFUntilDate)
-            }
-        }
-        
-        if let message = tfMessage.text {
-            if textField == tfMessage {
-                messageValidated = validate.validateField(field: message, type: .message)
-                if messageValidated {
-                    tfMessage.textColor = .gray
-                } else {
-                    tfMessage.textColor = .red
-                }
-            }
-        }
-        
-        realeaseButton(field: .addFields)
-    }
-    
-    func realeaseButton(field type: FieldsType){
+    func releaseButton(field type: FieldsType){
         switch type {
         case .date:
-            if dateValidated {
+            if dateValidated && !addFieldsIsOn {
                 btNext.backgroundColor = UIColor(hexString: "#F36F36")
                 btNext.isEnabled = true
             } else {
@@ -210,49 +137,32 @@ class AddFieldsViewController: BaseViewController {
         }
     }
     
-    func totalPayment() {
-        for i in items {
-            totalBankingBillet += Double(i.total)!
-        }
-        
-        let total = numberFormatter(number: String(totalBankingBillet))
-            
-        tfTotal.text = total
-    }
-    
-    
     @IBAction func issueBankingBillet(_ sender: UIButton) {
-        var shippingString = tfShipping.text!
-        shippingString = shippingString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
-        shippingString = shippingString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
+        let shippingValueRequest = replacingOccurrences(fieldText: tfShipping.text!, isCurrency: true)
         
-        var discountString = tfDiscount.text!
-        discountString = discountString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
-        discountString  = discountString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
+        let discountValueRequest = replacingOccurrences(fieldText: tfDiscount.text!, isCurrency: true)
         
-        var conditionalDiscountString = tfConditionalDiscount.text!
-        conditionalDiscountString = conditionalDiscountString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
-        conditionalDiscountString = conditionalDiscountString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
+        let conditionalDiscountValueRequest = replacingOccurrences(fieldText: tfConditionalDiscount.text!, isCurrency: true)
         
         guard let dateChosen = dateChosen else { return }
         
         bankingbillet = BankingBillet(customer: customer, expire_at: dateChosen)
         
         if addFieldsIsOn {
-            shipping = Shippings(value: Int(shippingString)!)
+            shipping = Shippings(value: Int(shippingValueRequest)!)
             
             shippings.append(shipping)
             
             if discountChosen == "%" {
-                discount = Discount(type: "percentage", value: Int(discountString)!)
+                discount = Discount(type: "percentage", value: Int(discountValueRequest)!)
             } else {
-                discount = Discount(type: "currency", value: Int(discountString)!)
+                discount = Discount(type: "currency", value: Int(discountValueRequest)!)
             }
             
             if conditionalDiscountChosen == "%" {
-                conditional_discount = ConditionalDiscount(type: "percentage", value: Int(conditionalDiscountString)!, until_date: untilDateChosen!)
+                conditional_discount = ConditionalDiscount(type: "percentage", value: Int(conditionalDiscountValueRequest)!, until_date: untilDateChosen!)
             } else {
-                conditional_discount = ConditionalDiscount(type: "currency", value: Int(conditionalDiscountString)!, until_date: untilDateChosen!)
+                conditional_discount = ConditionalDiscount(type: "currency", value: Int(conditionalDiscountValueRequest)!, until_date: untilDateChosen!)
             }
             bankingbillet.discount = discount
             bankingbillet.conditional_discount = conditional_discount
@@ -271,11 +181,122 @@ class AddFieldsViewController: BaseViewController {
   
     
     @IBAction func backToView(_ sender: UIButton) {
-            navigationController?.popViewController(animated: true)     
+        navigationController?.popViewController(animated: true)
     }
     
     
-
+    // MARK: - Validation of Text Fields
+    func valueCentsFormatter(field: String) -> String {
+        let aux = "00\(field)"
+        let valueAux = numberFormatter(number: aux)
+        
+        return valueAux
+    }
+    
+    func valueCurrencyFormatter(value: String) -> String {
+        var valueItem = value
+        
+        valueItem = valueItem.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
+        valueItem = valueItem.replacingOccurrences(of: "R$", with: "", options: NSString.CompareOptions.literal, range: nil)
+        valueItem = valueItem.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
+        valueItem = String(valueItem.dropFirst())
+    
+        return valueItem
+    }
+    
+    @IBAction func validateDate(_ textField: UITextField) {
+        if let date = tfDate.text {
+            if textField == tfDate {
+                dateValidated = validates.thisField(field: date, type: .date)
+                changes.fieldColorDate(result: dateValidated, label: lbDate, view: viewTFDate)
+                releaseButton(field: .date)
+            }
+        }
+    }
+    
+    @IBAction func validateAddFields(_ textField: UITextField) {
+        if let shipping = tfShipping.text {
+            if textField == tfShipping {
+                if shipping.count == 1 {
+                    tfShipping.text = valueCentsFormatter(field: shipping)
+                    changes.fieldColor(result: false, label: lbShipping, view: viewTFShipping)
+                } else {
+                    let valueShipping = valueCurrencyFormatter(value: shipping)
+                    let formattedValue = numberFormatter(number: valueShipping)
+                    tfShipping.text = formattedValue
+                            
+                    shippingValidated = validates.thisField(field: valueShipping, type: .shipping)
+                    changes.fieldColor(result: shippingValidated, label: lbShipping, view: viewTFShipping)
+                }
+            }
+        }
+                
+        if let discount = tfDiscount.text {
+            if textField == tfDiscount {
+                if discount.count == 1 {
+                    tfDiscount.text = valueCentsFormatter(field: discount)
+                    changes.fieldColor(result: false, label: lbDiscount, view: viewTFDiscount)
+                } else {
+                    let valueDiscount = valueCurrencyFormatter(value: discount)
+                    let formattedValue = numberFormatter(number: valueDiscount)
+                    tfDiscount.text = formattedValue
+                            
+                    discountValidated = validates.thisField(field: valueDiscount, type: .discount)
+                    changes.fieldColor(result: discountValidated, label: lbDiscount, view: viewTFDiscount)
+                }
+            }
+        }
+                
+        if let conditional_discount = tfConditionalDiscount.text {
+            if textField == tfConditionalDiscount {
+                if conditional_discount.count == 1 {
+                    tfConditionalDiscount.text = valueCentsFormatter(field: conditional_discount)
+                    changes.fieldColor(result: false, label: lbConditionalDiscount, view: viewTFConditionalDiscount)
+                } else {
+                    let valueConditionalDiscount = valueCurrencyFormatter(value: conditional_discount)
+                    let formattedValue = numberFormatter(number: valueConditionalDiscount)
+                    tfConditionalDiscount.text = formattedValue
+                            
+                    conditionalDiscountValidated = validates.thisField(field: valueConditionalDiscount, type: .conditional_discount)
+                    changes.fieldColor(result: conditionalDiscountValidated, label: lbConditionalDiscount, view: viewTFConditionalDiscount)
+                }
+            }
+        }
+        
+        if let btdiscount = btDiscount.text {
+            if textField == btDiscount {
+                btDiscountValidated = validates.thisField(field: btdiscount, type: .typeOf_discount)
+                changes.fieldColor(result: btDiscountValidated, label: nil, view: viewBTDiscount)
+            }
+        }
+                
+        if let btconditional_discount = btConditionalDiscount.text {
+            if textField == btConditionalDiscount {
+                btConditionalDiscountValidated = validates.thisField(field: btconditional_discount, type: .typeOf_conditional_discount)
+                changes.fieldColor(result: btConditionalDiscountValidated, label: nil, view: viewBTDiscount)
+            }
+        }
+                
+        if let until_date = tfUntilDate.text {
+            if textField == tfUntilDate {
+                untilDateValidated = validates.thisField(field: until_date, type: .until_date)
+                changes.fieldColorDate(result: untilDateValidated, label: lbUntilDate, view: viewTFUntilDate)
+            }
+        }
+                
+        if let message = tfMessage.text {
+            if textField == tfMessage {
+                messageValidated = validates.thisField(field: message, type: .message)
+                if messageValidated {
+                    tfMessage.textColor = .gray
+                } else {
+                    tfMessage.textColor = .red
+                }
+            }
+        }
+        
+        releaseButton(field: .addFields)
+    }
     
     //MARK: - Create Picker Views
     func createPickerView(){
@@ -320,10 +341,11 @@ class AddFieldsViewController: BaseViewController {
         btConditionalDiscount.text = conditionalDiscountChosen
         cancel()
     }
-    /*
+    
     @objc override func keyboardWillShow(sender: NSNotification) {
          self.view.frame.origin.y = -50 
-    }*/
+    }
+    
     // MARK: - Create Date Pickers
     func datePickerDueDate(){
         if #available(iOS 13.4, *) {

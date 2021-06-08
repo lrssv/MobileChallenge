@@ -14,7 +14,7 @@ class ClientsViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.topItem?.title = " "
+        titleBackButton()
         
         if let getCustomers = config.getCustomer() {
             savedCustomers = getCustomers

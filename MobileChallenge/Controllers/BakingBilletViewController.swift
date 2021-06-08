@@ -212,8 +212,10 @@ class BankingBilletViewController: BaseViewController {
         if sender.isOn {
             viewAddres.isHidden = false
             addFieldsIsOn = true
+            realeaseButton(field: .addFields)
         } else {
             viewAddres.isHidden = true
+            realeaseButton(field: .required)
         }
     }
     
@@ -245,34 +247,20 @@ class BankingBilletViewController: BaseViewController {
     
     //Builds the Customer and stores the data at UserDefaults
     @IBAction func btNextView(_ sender: UIButton) {
-        var cpfString = tfCPF.text!
-        cpfString = cpfString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
-        cpfString = cpfString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
+        let cpfTextRequest = replacingOccurrences(fieldText: tfCPF.text!, isCurrency: false)
+        let phoneNumberTextRequest = replacingOccurrences(fieldText: tfPhoneNumber.text!, isCurrency: false)
+        let cepTextRequest = replacingOccurrences(fieldText: tfCEP.text!, isCurrency: false)
+        let cnpjTextRequest = replacingOccurrences(fieldText: tfCNPJ.text!, isCurrency: false)
         
-        var phoneNumberString = tfPhoneNumber.text!
-        phoneNumberString = phoneNumberString.replacingOccurrences(of: "(", with: "", options: NSString.CompareOptions.literal, range: nil)
-        phoneNumberString = phoneNumberString.replacingOccurrences(of: ")", with: "", options: NSString.CompareOptions.literal, range: nil)
-        phoneNumberString = phoneNumberString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
-        phoneNumberString = phoneNumberString.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
-        
-        var cepString = tfCEP.text!
-        cepString = cepString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
-        cepString = cepString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
-        
-        var cnpjString = tfCNPJ.text!
-        cnpjString = cnpjString.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
-        cnpjString = cnpjString.replacingOccurrences(of: "/", with: "", options: NSString.CompareOptions.literal, range: nil)
-        cnpjString = cnpjString.replacingOccurrences(of: "-", with: "", options: NSString.CompareOptions.literal, range: nil)
-        
-        customer = Customer(name: tfName.text!, cpf: cpfString, phone_number: phoneNumberString)
+        customer = Customer(name: tfName.text!, cpf: cpfTextRequest, phone_number: phoneNumberTextRequest)
         
         if addFieldsIsOn {
-            address = Address(street: tfStreet.text!, number: tfNumber.text!, neighborhood: tfNeighborhood.text!, zipcode: cepString, state: stateInitials!)
+            address = Address(street: tfStreet.text!, number: tfNumber.text!, neighborhood: tfNeighborhood.text!, zipcode: cepTextRequest, state: stateInitials!)
             customer.address = address
         }
         
         if scForWho.selectedSegmentIndex == 1 {
-            juridical_person = JuridicalPerson(corporate_name: tfCorporateName.text!, cnpj: cnpjString)
+            juridical_person = JuridicalPerson(corporate_name: tfCorporateName.text!, cnpj: cnpjTextRequest)
             customer.juridical_person = juridical_person
         }
         
@@ -473,7 +461,9 @@ extension BankingBilletViewController: UIPickerViewDelegate, UIPickerViewDataSou
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        for i in states {
+        let sortedStates = states.sorted(by: <)
+        
+        for i in sortedStates {
             stateName.append(i.value)
         }
         

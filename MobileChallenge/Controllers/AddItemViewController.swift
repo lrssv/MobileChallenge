@@ -13,9 +13,11 @@ class AddItemViewController: BaseViewController {
     @IBOutlet weak var tfAmount: UILabel!
     
     @IBOutlet weak var lbAddItem: UILabel!
+    @IBOutlet weak var lbName: UILabel!
+    @IBOutlet weak var lbValue: UILabel!
     
-    @IBOutlet weak var viewTfName: ValidateFieldsItems!
-    @IBOutlet weak var viewTfValue: ValidateFieldsItems!
+    @IBOutlet weak var viewTfName: ValidatesFieldsItems!
+    @IBOutlet weak var viewTfValue: ValidatesFieldsItems!
     
     @IBOutlet weak var btNext: UIButton!
     @IBOutlet weak var btBack: UIButton!
@@ -30,7 +32,9 @@ class AddItemViewController: BaseViewController {
     var totalItem: Double = 0
     var amount: Int = 1
     
-    let validate = ValidateFieldsItems()
+    let validates = ValidatesFieldsItems()
+    let changes = ChangesColorAccordingToValidation()
+    
     var nameValidated = false, valueValidated = false
 
     // MARK: - Functions about the Add Items View
@@ -82,8 +86,8 @@ class AddItemViewController: BaseViewController {
     func validateName(){
         guard let name = tfName.text else { return }
         
-        nameValidated = validate.validateField(field: name, type: .name)
-        validate.changeColorView(response: nameValidated, view: viewTfName)
+        nameValidated = validates.thisField(field: name, type: .name)
+        changes.fieldColor(result: nameValidated, label: lbName, view: viewTfName)
     }
     
     func validateItem(){
@@ -94,35 +98,34 @@ class AddItemViewController: BaseViewController {
             let valueAux = numberFormatter(number: aux)
             tfValue.text = valueAux
             
-            validate.changeColorView(response: false, view: viewTfValue)
+            changes.fieldColor(result: false, label: lbValue, view: viewTfValue)
         } else {
             valueItem = value
-            valueItem = valueItem.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
-            valueItem = valueItem.replacingOccurrences(of: "R$", with: "", options: NSString.CompareOptions.literal, range: nil)
-            
-            valueItem = valueItem.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
-            valueItem = String(valueItem.dropFirst())
+            valueItem = replacingOccurrences(fieldText: valueItem, isCurrency: true)
             
             let aux = numberFormatter(number: valueItem)
             tfValue.text = aux
             
-            valueValidated = validate.validateField(field: valueItem, type: .value)
-            validate.changeColorView(response: valueValidated, view: viewTfValue)
+            valueValidated = validates.thisField(field: valueItem, type: .value)
+            changes.fieldColor(result: valueValidated, label: lbValue, view: viewTfValue)
         }
     }
     
     @IBAction func verifyFields(_ textField: UITextField) {
-        if textField == tfName {validateName()}
+        if textField == tfName {
+            validateName()
+        }
 
-        if textField == tfValue {validateItem()}
+        if textField == tfValue {
+            validateItem()
+        }
             
         realeaseButton()
     }
     
     func realeaseButton(){
         if nameValidated && valueValidated  {
-            btNext.backgroundColor = UIColor(hexString: "#F36F36")
-            btNext.isEnabled = true
+            changesReleaseButton(in: btNext)
         } else {
             btNext.backgroundColor = .lightGray
             btNext.isEnabled = false
