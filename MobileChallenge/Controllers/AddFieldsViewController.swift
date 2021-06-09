@@ -71,15 +71,13 @@ class AddFieldsViewController: BaseViewController {
     }()
     
     let typeOfDiscount = ["%", "R$"]
-    var discountChosen: String?
+    var discountChosen: String = ""
     var conditionalDiscountChosen: String?
     
     // MARK: - Functions about Additional Fields View
     override func viewDidLoad() {
         super.viewDidLoad()
         viewAddFields.isHidden = true
-        
-        totalPayment()
         
         datePickerDueDate()
         datePickerDateShipping()
@@ -89,6 +87,11 @@ class AddFieldsViewController: BaseViewController {
         buttonStyleFormatter(inThis: btBack)
         
         releaseButton(field: .buttonNotEnable)
+        
+        for i in items {
+            totalBankingBillet += Double(i.total)!
+        }
+        totalPayment()
     }
     
     @IBAction func addFields(_ sender: UISwitch) {
@@ -103,13 +106,46 @@ class AddFieldsViewController: BaseViewController {
         }
     }
     
-    func totalPayment() {
-        for i in items {
-            totalBankingBillet += Double(i.total)!
+    @IBAction func addValuesOnTotal(_ sender: UITextField) {
+        var valueDiscount: Double = 0
+        
+        if sender == tfShipping {
+            guard let shipping = Double(valueCurrencyFormatter(value: tfShipping.text!)) else { return }
+            if shipping < totalBankingBillet {
+                totalBankingBillet = totalBankingBillet + shipping
+                totalPayment()
+            } else {
+                changes.fieldColor(result: false, label: lbShipping, view: viewTFShipping)
+            }
         }
         
-        let total = numberFormatter(number: String(totalBankingBillet))
+        if sender == tfDiscount {
+            guard let discount = Double(valueCurrencyFormatter(value: tfDiscount.text!)) else { return }
             
+            if discountChosen == "%" {
+                valueDiscount = (discount/100)/100 * totalBankingBillet
+                if valueDiscount < totalBankingBillet {
+                    totalBankingBillet = totalBankingBillet - valueDiscount
+                    totalPayment()
+                } else {
+                    changes.fieldColor(result: false, label: lbShipping, view: viewTFShipping)
+                }
+            }
+            
+            if discountChosen == "R$" {
+                if valueDiscount < totalBankingBillet {
+                    totalBankingBillet = totalBankingBillet - discount/100
+                    totalPayment()
+                } else {
+                    changes.fieldColor(result: false, label: lbShipping, view: viewTFShipping)
+                }
+            }
+        }
+    }
+    
+    
+    func totalPayment() {
+        let total = numberFormatter(number: String(totalBankingBillet))
         tfTotal.text = total
     }
     
@@ -228,43 +264,79 @@ class AddFieldsViewController: BaseViewController {
                     shippingValidated = validates.thisField(field: valueShipping, type: .shipping)
                     changes.fieldColor(result: shippingValidated, label: lbShipping, view: viewTFShipping)
                 }
+                totalPayment()
             }
         }
                 
         if let discount = tfDiscount.text {
             if textField == tfDiscount {
-                if discount.count == 1 {
-                    tfDiscount.text = valueCentsFormatter(field: discount)
-                    changes.fieldColor(result: false, label: lbDiscount, view: viewTFDiscount)
-                } else {
-                    let valueDiscount = valueCurrencyFormatter(value: discount)
-                    let formattedValue = numberFormatter(number: valueDiscount)
-                    tfDiscount.text = formattedValue
-                            
-                    discountValidated = validates.thisField(field: valueDiscount, type: .discount)
-                    changes.fieldColor(result: discountValidated, label: lbDiscount, view: viewTFDiscount)
+                if discountChosen == "R$" {
+                    if discount.count == 1 {
+                        tfDiscount.text = valueCentsFormatter(field: discount)
+                        changes.fieldColor(result: false, label: lbDiscount, view: viewTFDiscount)
+                    } else {
+                        let valueDiscount = valueCurrencyFormatter(value: discount)
+                        let formattedValue = numberFormatter(number: valueDiscount)
+                        tfDiscount.text = formattedValue
+                        
+                        discountValidated = validates.thisField(field: valueDiscount, type: .discount)
+                        changes.fieldColor(result: discountValidated, label: lbDiscount, view: viewTFDiscount)
+                    }
+                    totalPayment()
+                }
+                if discountChosen == "%" {
+                    if discount.count == 1 {
+                        changes.fieldColor(result: false, label: lbDiscount, view: viewTFDiscount)
+                    } else {
+                        let valueDiscount = valueCurrencyFormatter(value: discount)
+                        
+                        var formattedValue = numberFormatter(number: valueDiscount)
+                        formattedValue = formattedValue.replacingOccurrences(of: "R$", with: "", options: NSString.CompareOptions.literal, range: nil)
+                        tfDiscount.text = formattedValue
+                        
+                        discountValidated = validates.thisField(field: valueDiscount, type: .discount)
+                        changes.fieldColor(result: discountValidated, label: lbDiscount, view: viewTFDiscount)
+                    }
+                    totalPayment()
                 }
             }
         }
                 
         if let conditional_discount = tfConditionalDiscount.text {
             if textField == tfConditionalDiscount {
-                if conditional_discount.count == 1 {
-                    tfConditionalDiscount.text = valueCentsFormatter(field: conditional_discount)
-                    changes.fieldColor(result: false, label: lbConditionalDiscount, view: viewTFConditionalDiscount)
-                } else {
-                    let valueConditionalDiscount = valueCurrencyFormatter(value: conditional_discount)
-                    let formattedValue = numberFormatter(number: valueConditionalDiscount)
-                    tfConditionalDiscount.text = formattedValue
-                            
-                    conditionalDiscountValidated = validates.thisField(field: valueConditionalDiscount, type: .conditional_discount)
-                    changes.fieldColor(result: conditionalDiscountValidated, label: lbConditionalDiscount, view: viewTFConditionalDiscount)
+                if conditionalDiscountChosen == "R$" {
+                    if conditional_discount.count == 1 {
+                        tfConditionalDiscount.text = valueCentsFormatter(field: conditional_discount)
+                        changes.fieldColor(result: false, label: lbConditionalDiscount, view: viewTFConditionalDiscount)
+                    } else {
+                        let valueConditionalDiscount = valueCurrencyFormatter(value: conditional_discount)
+                        let formattedValue = numberFormatter(number: valueConditionalDiscount)
+                        tfConditionalDiscount.text = formattedValue
+                                
+                        conditionalDiscountValidated = validates.thisField(field: valueConditionalDiscount, type: .conditional_discount)
+                        changes.fieldColor(result: conditionalDiscountValidated, label: lbConditionalDiscount, view: viewTFConditionalDiscount)
+                    }
+                }
+                if conditionalDiscountChosen == "%" {
+                    if conditional_discount.count == 1 {
+                        changes.fieldColor(result: false, label: lbConditionalDiscount, view: viewTFConditionalDiscount)
+                    } else {
+                        let valueDiscount = valueCurrencyFormatter(value: conditional_discount)
+                        
+                        var formattedValue = numberFormatter(number: valueDiscount)
+                        formattedValue = formattedValue.replacingOccurrences(of: "R$", with: "", options: NSString.CompareOptions.literal, range: nil)
+                        tfConditionalDiscount.text = formattedValue
+                        
+                        btConditionalDiscountValidated = validates.thisField(field: valueDiscount, type: .conditional_discount)
+                        changes.fieldColor(result: btConditionalDiscountValidated, label: lbConditionalDiscount, view: viewTFConditionalDiscount)
+                    }
                 }
             }
         }
         
         if let btdiscount = btDiscount.text {
             if textField == btDiscount {
+                tfDiscount.text = ""
                 btDiscountValidated = validates.thisField(field: btdiscount, type: .typeOf_discount)
                 changes.fieldColor(result: btDiscountValidated, label: nil, view: viewBTDiscount)
             }
@@ -272,8 +344,9 @@ class AddFieldsViewController: BaseViewController {
                 
         if let btconditional_discount = btConditionalDiscount.text {
             if textField == btConditionalDiscount {
+                tfConditionalDiscount.text = ""
                 btConditionalDiscountValidated = validates.thisField(field: btconditional_discount, type: .typeOf_conditional_discount)
-                changes.fieldColor(result: btConditionalDiscountValidated, label: nil, view: viewBTDiscount)
+                changes.fieldColor(result: btConditionalDiscountValidated, label: nil, view: viewBTConditionalDiscount)
             }
         }
                 

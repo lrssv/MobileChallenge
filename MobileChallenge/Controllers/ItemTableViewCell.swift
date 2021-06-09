@@ -1,12 +1,14 @@
 import UIKit
 
-class ItemTableViewCell: UITableViewCell{
+class ItemTableViewCell: UITableViewCell {
     
+    // MARK: - Item Table View Cell variables
     @IBOutlet weak var lbItemName: UILabel!
     @IBOutlet weak var lbItemValue: UILabel!
     @IBOutlet weak var lbItemAmount: UILabel!
     @IBOutlet weak var lbTotal: UILabel!
     
+    // MARK: - Functions for Item Table View Cell
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -15,6 +17,7 @@ class ItemTableViewCell: UITableViewCell{
         super.setSelected(selected, animated: animated)
     }
     
+    //MARK: Configurates the cell with Item data
     func prepare(with item: Items){
         let formatter = NumberFormatter()
         

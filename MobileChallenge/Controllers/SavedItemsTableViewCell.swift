@@ -1,10 +1,12 @@
 import UIKit
 
 class SavedItemsTableViewCell: UITableViewCell {
-
+    
+    // MARK: - Saved Items Table View Cell variables
     @IBOutlet weak var tfName: UILabel!
     @IBOutlet weak var tfValue: UILabel!
     
+    // MARK: - Functions for Saved Items Table View Cell
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -12,7 +14,6 @@ class SavedItemsTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
     
     func prepare(with item: Items) {
         tfName.text = item.name

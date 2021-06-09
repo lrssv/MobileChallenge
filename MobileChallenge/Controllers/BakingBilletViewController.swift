@@ -8,13 +8,11 @@ enum PersonType {
 class BankingBilletViewController: BaseViewController {
 
     // MARK: - Elements with action
-    
     @IBOutlet weak var scForWho: UISegmentedControl!
     @IBOutlet weak var btClients: UIButton!
     @IBOutlet weak var swAddFields: UISwitch!
     
     // MARK: - Text field variables
-    
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var tfCPF: UITextField!
     @IBOutlet weak var tfCorporateName: UITextField!
@@ -103,7 +101,7 @@ class BankingBilletViewController: BaseViewController {
     var client_type: PersonType = .individualPerson
     var client_showFields = 0
     
-    
+
     // MARK: - Functions for Banking Billet View
     
     override func viewDidLoad() {
@@ -115,6 +113,8 @@ class BankingBilletViewController: BaseViewController {
         buttonStyleFormatter(inThis: btBack)
         realeaseButton(field: .buttonNotEnable)
         createPickerView()
+        
+      
     }
     
     //Code for when are a customer chosen
@@ -133,7 +133,7 @@ class BankingBilletViewController: BaseViewController {
         scForWho.selectedSegmentIndex = client_showFields
         showAtrributes(for: client_type)
         
-        //Validates the fields and releases the button when a customer is selected
+        //Validates the fields and releases the button when a saved customer is selected
         if client_name != "" {
             nameValidated = true
             changes.fieldColor(result: nameValidated, label: lbName, view: viewTfName)
@@ -215,7 +215,9 @@ class BankingBilletViewController: BaseViewController {
             realeaseButton(field: .addFields)
         } else {
             viewAddres.isHidden = true
+            addFieldsIsOn = false
             realeaseButton(field: .required)
+            realeaseButton(field: .juridicalPerson)
         }
     }
     
@@ -269,7 +271,7 @@ class BankingBilletViewController: BaseViewController {
         
     }
     
-    //Sends Customer to next view
+    //Sends Customer object to next view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! ItemsViewController
         vc.customer = customer

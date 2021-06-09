@@ -67,5 +67,15 @@ class Configuration {
         }
         return nil
     }
+    
+    var access_token: String {
+        get {
+            return userDefaults.string(forKey: "access_token")!
+        }
+        
+        set {
+            userDefaults.set(newValue, forKey: "access_token")
+        }
+    }
 }
 

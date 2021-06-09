@@ -3,7 +3,6 @@ import UIKit
 class ItemsViewController: BaseViewController {
     
     // MARK: - Variables
-    
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var btNext: UIButton!
     @IBOutlet weak var btBack: UIButton!
@@ -31,6 +30,7 @@ class ItemsViewController: BaseViewController {
         realeaseButton()
     }
     
+    //Shows Add Item View Controller
     @IBAction func addItem(_ sender: UIButton) {
         let addItem = storyboard?.instantiateViewController(identifier: "AddItemViewController") as! AddItemViewController
         addItem.modalPresentationStyle = .fullScreen
@@ -38,6 +38,7 @@ class ItemsViewController: BaseViewController {
         present(addItem, animated: true, completion: nil)
     }
     
+    //Releases the button according the validation
     func realeaseButton(){
         if items.count >= 1 {
             btNext.backgroundColor = UIColor(hexString: "#F36F36")
@@ -48,22 +49,26 @@ class ItemsViewController: BaseViewController {
         }
     }
     
+    //Backs to Banking Billet View Controller
     @IBAction func backToView(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
+    //Shows Saved Items View Controller
     @IBAction func searchItem(_ sender: UIButton) {
         let searchItem = storyboard?.instantiateViewController(identifier: "SavedItemsViewController") as! SavedItemsViewController
         searchItem.delegate = self
         show(searchItem, sender: self)
     }
     
+    //Sends Customer and Item object to next view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! AddFieldsViewController
         vc.items = items
         vc.customer = customer
     }
     
+    //Shows Alert View to edits and changes the Items
     @objc private func handleLongPress(sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             let touchPoint = sender.location(in: tableview)
@@ -106,10 +111,12 @@ class ItemsViewController: BaseViewController {
 
 // MARK: - Extensions
 extension ItemsViewController: AddItemDelegate {
+    //Save a Item in Items array
     func prepareItems(added item: Items) {
         items.append(item)
     }
     
+    //Remove a Item from Items array
     func removeItem(indexItem: Int?) {
         if indexItem != nil {
             items.remove(at: indexItem!)
@@ -118,6 +125,7 @@ extension ItemsViewController: AddItemDelegate {
 }
 
 extension ItemsViewController: UITableViewDataSource {
+    //Table View configurations
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -135,11 +143,5 @@ extension ItemsViewController: UITableViewDataSource {
         }
         return cell
     }
-}
-
-extension ItemsViewController: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         print("row: \(indexPath.row)")
-     }
 }
 

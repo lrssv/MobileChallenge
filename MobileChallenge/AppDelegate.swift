@@ -9,10 +9,21 @@ import UIKit
 import CoreData
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate, AuthenticationDelagate {
+    
+    //MARK: - Elements of Authentication
+    var authentication = Authentication()
+    let config = Configuration.shared
+    
+    func authDelegate(auth: Authentication, token: String) {
+        config.access_token = token
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        //Makes Access Token request
+        authentication.delegate = self
+        authentication.auth()
         return true
     }
 

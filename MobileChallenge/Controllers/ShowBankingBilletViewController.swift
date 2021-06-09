@@ -2,7 +2,7 @@ import UIKit
 import SafariServices
 
 class ShowBankingBilletViewController: BaseViewController {
-        
+    // MARK: - Show Bankiing Billet variables
     @IBOutlet weak var lbDate: UILabel!
     @IBOutlet weak var lbValue: UILabel!
     @IBOutlet weak var lbName: UILabel!
@@ -12,11 +12,11 @@ class ShowBankingBilletViewController: BaseViewController {
     @IBOutlet weak var btShare: UIButton!
     @IBOutlet weak var btCopy: UIButton!
     
+    // MARK: - Functions for Show Banking Billet
     override func viewDidLoad() {
         super.viewDidLoad()
                 
         self.title = "EMISSAO DE BOLETO"
-        
         self.navigationItem.setHidesBackButton(true, animated: false)
         
         buttonsCustom()

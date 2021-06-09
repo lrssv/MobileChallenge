@@ -2,13 +2,16 @@ import UIKit
 
 class ClientsTableViewCell: UITableViewCell {
     
+    // MARK: - Clients Table View Cell variables
     @IBOutlet weak var tfName: UILabel!
     @IBOutlet weak var tfDocument: UILabel!
     @IBOutlet weak var lbInitials: UILabel!
     @IBOutlet weak var vwInitials: UIView!
     
+    //For set and get in User Defaults
     let config = Configuration.shared
     
+    // MARK: - Functions for Clients Table View Cell
     override func awakeFromNib() {
         super.awakeFromNib()
         vwInitials.layer.cornerRadius = 25

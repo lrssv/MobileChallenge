@@ -60,7 +60,7 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        //Sets global configuration
         self.navigationController?.navigationBar.tintColor = .white
         
         // Keyboard configuration
@@ -70,6 +70,7 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    //MARK: Sets the variables to API format
     func replacingOccurrences(fieldText: String, isCurrency: Bool) -> String {
         var fieldReplaced = fieldText
         
@@ -89,7 +90,7 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
         return fieldReplaced
     }
     
-    // MARK: Number formatter to Brazilian Currency
+    //MARK: Number formatter to Brazilian Currency
     func numberFormatter(number: String) -> String {
         let formatter = NumberFormatter()
         
@@ -130,7 +131,6 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
          self.view.frame.origin.y = 0 // Move view to original position
     }
     
-    // MARK: - Keyboard configuration
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -139,7 +139,6 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
 
 
 // MARK: - Extensions
-
 extension UIViewController {
     func titleBackButton () {
         self.navigationController?.navigationBar.topItem?.backButtonTitle = ""

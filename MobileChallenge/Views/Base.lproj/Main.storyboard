@@ -1249,6 +1249,7 @@ para o cliente.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 <connections>
+                                                    <action selector="addValuesOnTotal:" destination="juE-Vm-GtY" eventType="editingDidEnd" id="TGG-qH-4Qc"/>
                                                     <action selector="validateAddFields:" destination="juE-Vm-GtY" eventType="editingChanged" id="Nhu-Mf-AH5"/>
                                                 </connections>
                                             </textField>
@@ -1395,6 +1396,7 @@ para o cliente.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 <connections>
+                                                    <action selector="addValuesOnTotal:" destination="juE-Vm-GtY" eventType="editingDidEnd" id="kEJ-Va-Yv1"/>
                                                     <action selector="validateAddFields:" destination="juE-Vm-GtY" eventType="editingChanged" id="PbR-mV-hyy"/>
                                                 </connections>
                                             </textField>
@@ -2089,6 +2091,9 @@ para o cliente.</string>
                             <searchBar contentMode="redraw" placeholder="Pesquise por item" translatesAutoresizingMaskIntoConstraints="NO" id="gNX-FY-CAE">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="aFf-va-Ke8" id="hSO-OI-YBt"/>
+                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ILJ-Ua-IyR">
                                 <rect key="frame" x="0.0" y="62" width="414" height="625"/>

@@ -56,6 +56,7 @@ class AddItemViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        //Validates the fields and releases the button when a saved item is selected
         if nameItem != "" {
             nameValidated = true
             validateName()
@@ -69,7 +70,6 @@ class AddItemViewController: BaseViewController {
         
         realeaseButton()
     }
-    
     
     @IBAction func removeAmount(_ sender: UIButton) {
         if amount > 0 {
@@ -132,6 +132,7 @@ class AddItemViewController: BaseViewController {
         }
     }
     
+    //Builds the Item and stores the data at UserDefaults, and remove item in case of edit button was selected
     @IBAction func addItem(_ sender: UIButton) {
         guard let itemName = tfName.text else { return }
         
