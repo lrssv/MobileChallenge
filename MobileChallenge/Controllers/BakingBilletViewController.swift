@@ -230,6 +230,7 @@ class BankingBilletViewController: BaseViewController {
         case .juridicalPerson:
             if nameValidated && cpfValidated && phoneNumberValidated && corporateNameValidated && cnpjValidated {
                 changesReleaseButton(in: btNext)
+                choosen = true
             }
         case .addedFields:
             if choosen && streetValidated && numberValidated && complementValidated && neighboorhoodValidated && cepValidated && stateValidated && emailValidated  {

@@ -2,12 +2,15 @@ import UIKit
 
 class IssueBankingBilletViewController: BaseViewController, AuthenticationDelagate {
     
+    @IBOutlet weak var vwGN: UIImageView!
+    
     var authentication = Authentication()
     var access_token: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.vwGN.rotate()
         self.navigationItem.setHidesBackButton(true, animated: false)
         
         authentication.delegate = self
@@ -85,3 +88,13 @@ class IssueBankingBilletViewController: BaseViewController, AuthenticationDelaga
 }
     
 
+extension UIView{
+    func rotate() {
+        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = NSNumber(value: Double.pi * 2)
+        rotation.duration = 1
+        rotation.isCumulative = true
+        rotation.repeatCount = Float.greatestFiniteMagnitude
+        self.layer.add(rotation, forKey: "rotationAnimation")
+    }
+}

@@ -63,6 +63,7 @@ extension ClientsViewController: UITableViewDataSource  {
         }
         
         cell.prepare(with: thisCustomer)
+        
         return cell
     }
 }
