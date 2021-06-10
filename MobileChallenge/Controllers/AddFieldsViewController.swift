@@ -45,7 +45,10 @@ class AddFieldsViewController: BaseViewController {
     let changes = ChangesColorAccordingToValidation()
     
     var dateValidated = false, shippingValidated = false, btDiscountValidated = false, discountValidated = false, btConditionalDiscountValidated = false, conditionalDiscountValidated = false, untilDateValidated = false, messageValidated = true, result = false
-        
+    
+    var totalShipping: Double = 0
+    var totalDiscount: Double = 0
+    
     // MARK: - Elements of Date Picker
     let datePickerDate = UIDatePicker()
     let datePickerShipping = UIDatePicker()
@@ -72,7 +75,7 @@ class AddFieldsViewController: BaseViewController {
     
     let typeOfDiscount = ["%", "R$"]
     var discountChosen: String = ""
-    var conditionalDiscountChosen: String?
+    var conditionalDiscountChosen: String = ""
     
     // MARK: - Functions about Additional Fields View
     override func viewDidLoad() {
@@ -87,10 +90,17 @@ class AddFieldsViewController: BaseViewController {
         buttonStyleFormatter(inThis: btBack)
         
         releaseButton(field: .buttonNotEnable)
+        releaseFields()
         
+        bankingBilletValue()
+    }
+    
+    func bankingBilletValue(){
         for i in items {
             totalBankingBillet += Double(i.total)!
         }
+        
+        totalBankingBillet = totalBankingBillet/100
         totalPayment()
     }
     
@@ -107,12 +117,14 @@ class AddFieldsViewController: BaseViewController {
     }
     
     @IBAction func addValuesOnTotal(_ sender: UITextField) {
-        var valueDiscount: Double = 0
-        
+
         if sender == tfShipping {
-            guard let shipping = Double(valueCurrencyFormatter(value: tfShipping.text!)) else { return }
+            guard var shipping = Double(valueCurrencyFormatter(value: tfShipping.text!)) else { return }
+            
+            shipping = shipping/100
+            
             if shipping < totalBankingBillet {
-                totalBankingBillet = totalBankingBillet + shipping
+                totalShipping = shipping
                 totalPayment()
             } else {
                 changes.fieldColor(result: false, label: lbShipping, view: viewTFShipping)
@@ -120,12 +132,15 @@ class AddFieldsViewController: BaseViewController {
         }
         
         if sender == tfDiscount {
-            guard let discount = Double(valueCurrencyFormatter(value: tfDiscount.text!)) else { return }
+            guard var discount = Double(valueCurrencyFormatter(value: tfDiscount.text!)) else { return }
+            
+            discount = discount/100
             
             if discountChosen == "%" {
-                valueDiscount = (discount/100)/100 * totalBankingBillet
+                let valueDiscount = (discount/100) * totalBankingBillet
+                
                 if valueDiscount < totalBankingBillet {
-                    totalBankingBillet = totalBankingBillet - valueDiscount
+                    totalDiscount = valueDiscount
                     totalPayment()
                 } else {
                     changes.fieldColor(result: false, label: lbShipping, view: viewTFShipping)
@@ -133,8 +148,8 @@ class AddFieldsViewController: BaseViewController {
             }
             
             if discountChosen == "R$" {
-                if valueDiscount < totalBankingBillet {
-                    totalBankingBillet = totalBankingBillet - discount/100
+                if discount < totalBankingBillet {
+                    totalDiscount = discount
                     totalPayment()
                 } else {
                     changes.fieldColor(result: false, label: lbShipping, view: viewTFShipping)
@@ -145,8 +160,8 @@ class AddFieldsViewController: BaseViewController {
     
     
     func totalPayment() {
-        let total = numberFormatter(number: String(totalBankingBillet))
-        tfTotal.text = total
+        let totalToPay = (totalBankingBillet + totalShipping - totalDiscount) * 100
+        tfTotal.text = numberFormatter(number: String(totalToPay))
     }
     
     func releaseButton(field type: FieldsType){
@@ -211,7 +226,7 @@ class AddFieldsViewController: BaseViewController {
         vc.items = items
         vc.bankingbillet = bankingbillet
         vc.shippings = shippings
-        vc.totalBankingBillet = totalBankingBillet
+        vc.totalBankingBillet = totalBankingBillet*100
     }
     
   
@@ -240,6 +255,20 @@ class AddFieldsViewController: BaseViewController {
         return valueItem
     }
     
+    func releaseFields(){
+        if discountChosen == "" {
+            tfDiscount.isUserInteractionEnabled = false
+        } else {
+            tfDiscount.isUserInteractionEnabled = true
+        }
+        
+        if conditionalDiscountChosen == "" {
+            tfConditionalDiscount.isUserInteractionEnabled = false
+        } else {
+            tfConditionalDiscount.isUserInteractionEnabled = true
+        }
+    }
+    
     @IBAction func validateDate(_ textField: UITextField) {
         if let date = tfDate.text {
             if textField == tfDate {
@@ -264,7 +293,6 @@ class AddFieldsViewController: BaseViewController {
                     shippingValidated = validates.thisField(field: valueShipping, type: .shipping)
                     changes.fieldColor(result: shippingValidated, label: lbShipping, view: viewTFShipping)
                 }
-                totalPayment()
             }
         }
                 
@@ -282,10 +310,12 @@ class AddFieldsViewController: BaseViewController {
                         discountValidated = validates.thisField(field: valueDiscount, type: .discount)
                         changes.fieldColor(result: discountValidated, label: lbDiscount, view: viewTFDiscount)
                     }
-                    totalPayment()
                 }
                 if discountChosen == "%" {
                     if discount.count == 1 {
+                        var formattedValue = valueCentsFormatter(field: discount)
+                        formattedValue = formattedValue.replacingOccurrences(of: "R$", with: "", options: NSString.CompareOptions.literal, range: nil)
+                        tfDiscount.text = formattedValue
                         changes.fieldColor(result: false, label: lbDiscount, view: viewTFDiscount)
                     } else {
                         let valueDiscount = valueCurrencyFormatter(value: discount)
@@ -297,7 +327,6 @@ class AddFieldsViewController: BaseViewController {
                         discountValidated = validates.thisField(field: valueDiscount, type: .discount)
                         changes.fieldColor(result: discountValidated, label: lbDiscount, view: viewTFDiscount)
                     }
-                    totalPayment()
                 }
             }
         }
@@ -319,6 +348,9 @@ class AddFieldsViewController: BaseViewController {
                 }
                 if conditionalDiscountChosen == "%" {
                     if conditional_discount.count == 1 {
+                        var formattedValue = valueCentsFormatter(field: conditional_discount)
+                        formattedValue = formattedValue.replacingOccurrences(of: "R$", with: "", options: NSString.CompareOptions.literal, range: nil)
+                        tfConditionalDiscount.text = formattedValue
                         changes.fieldColor(result: false, label: lbConditionalDiscount, view: viewTFConditionalDiscount)
                     } else {
                         let valueDiscount = valueCurrencyFormatter(value: conditional_discount)
@@ -406,12 +438,14 @@ class AddFieldsViewController: BaseViewController {
     @objc func doneDiscount() {
         discountChosen = typeOfDiscount[pickerViewDiscount.selectedRow(inComponent: 0)]
         btDiscount.text = discountChosen
+        releaseFields()
         cancel()
     }
     
     @objc func doneConditionalDiscount() {
         conditionalDiscountChosen = typeOfDiscount[pickerViewConditionalDiscount.selectedRow(inComponent: 0)]
         btConditionalDiscount.text = conditionalDiscountChosen
+        releaseFields()
         cancel()
     }
     
@@ -429,6 +463,7 @@ class AddFieldsViewController: BaseViewController {
         self.datePickerDate.locale = loc
         
         datePickerDate.translatesAutoresizingMaskIntoConstraints = false
+        datePickerDate.minimumDate = Date()
         
         let toolbarDate = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100.0, height: 44.0))
         toolbarDate.translatesAutoresizingMaskIntoConstraints = false
@@ -473,7 +508,8 @@ class AddFieldsViewController: BaseViewController {
         self.datePickerShipping.locale = loc
         
         datePickerShipping.translatesAutoresizingMaskIntoConstraints = false
- 
+        datePickerShipping.minimumDate = Date()
+        
         let toolbarShipping = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100.0, height: 44.0))
         toolbarShipping.translatesAutoresizingMaskIntoConstraints = false
         toolbarShipping.sizeToFit()
